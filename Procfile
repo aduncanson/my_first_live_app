@@ -1,0 +1,1 @@
+web: gunicorn ServiceCallReport.wsgi --log-file -
