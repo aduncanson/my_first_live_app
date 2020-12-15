@@ -1,0 +1,55 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <hr>
+        <p class="filter_btn">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAgentFilter" aria-expanded="false" aria-controls="collapseAgentFilter">
+                Filters
+            </button>
+          </p>
+        <div class="collapse" id="collapseAgentFilter">
+            <div class="card card-body">
+                <form method="GET">
+                    {{ myFilter.form.as_p }}
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <table class="table table-sm">
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Team</th>
+                    <th>Dept</th>
+                    <th>Account</th>
+                </tr>
+
+                {% for agent in agents %}
+                    <tr>
+                        <td>{{ agent.user }}</td>
+                        <td>{{ agent.user.first_name }}</td>
+                        <td>{{ agent.user.last_name }}</td>
+                        <td>{{ agent.user.email }}</td>
+                        <td>{{ agent.team_id }}</td>
+                        <td>{{ agent.team_id.department_id }}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'agent_page' agent.id %}">View</a></td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

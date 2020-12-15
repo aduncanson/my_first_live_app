@@ -5,11 +5,15 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from django.db.models import *
 
 from .models import *
-from .forms import OrderForm, CreateUserForm, CustomerForm
-from .filters import OrderFilter
-from .decorators import unauthenticated_user, allowed_users, admin_only
+from .forms import *
+from .filters import *
+from .decorators import *
+
+from datetime import datetime, timedelta
+import time
 
 @unauthenticated_user
 def registerPage(request):
@@ -19,12 +23,17 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user.is_active = False
+            user = form.save()
             username = form.cleaned_data.get("username")
 
             messages.success(request, "Account was created for '" + username + "'.")
             return redirect('login')
 
+    title = "Register"
+
     context = {
+        "title": title,
         'form': form
     }
     return render(request, 'accounts/register.html', context)
@@ -42,7 +51,11 @@ def loginPage(request):
         else:
             messages.info(request, "Username or password is incorrect.")
     
-    context = {}
+    title = "Login"
+    
+    context = {
+        "title": title
+    }
     return render(request, 'accounts/login.html', context)
 
 def logoutUser(request):
@@ -50,139 +63,105 @@ def logoutUser(request):
     return redirect("login")
 
 @login_required(login_url="login")
-@admin_only
+@allowed_users(allowed_roles=["Admin", "Supervisor"])
 def home(request):
-    orders = Order.objects.all()
-    customers = Customer.objects.all()
+    calls_today = ClientContact.objects.all()
+    calls_today_count = calls_today.filter().count()
 
-    total_orders = orders.count()
-    delivered = orders.filter(status='Delivered').count()
-    pending = orders.filter(status='Pending').count()
+    title = "Dashboard"
 
     context = {
-        'orders': orders,
-        'customers': customers,
-        'total_orders': total_orders,
-        'delivered': delivered,
-        'pending': pending,
+        "title": title,
+        'calls_today': calls_today,
+        'calls_today_count': calls_today_count,
     }
 
     return render(request, 'accounts/dashboard.html', context)
 
 @login_required(login_url="login")
-@allowed_users(allowed_roles=["customer"])
-def userPage(request):
-    orders = request.user.customer.order_set.all()
-    total_orders = orders.count()
-    delivered = orders.filter(status='Delivered').count()
-    pending = orders.filter(status='Pending').count()
+@allowed_users(allowed_roles=["Admin", "Agent"])
+def agentPage(request, pk):
+    agent = Agent.objects.get(id=pk)
+    agent_search = AgentSearch.objects.get(agent=request.user.agent)
+    
+    calls_today = ClientContact.objects.filter(
+        contact_date__gte=datetime(2020,6,1),
+        contact_date__lte=datetime(2020,6,2),
+        agent_id=agent.user,
+        contact_session_id__brand_id__in=agent_search.brands.all()
+    ).order_by("contact_date")
+
+    myFilter = AgentFilter(request.GET, queryset=calls_today)
+
+    calls_today = myFilter.qs
+    
+    calls_today_count = calls_today.count()
+
+    statistics = calls_today.aggregate(
+        avg=Avg(F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')),
+        max=Max(F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')),
+    )
+
+    calls_today_range = calls_today.annotate(
+        call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
+    )
+
+    calls_today_range = calls_today_range.filter(
+        call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit]
+    ).order_by("contact_date")
+
+    title = "User Page"
 
     context = {
-        "orders": orders,
-        "total_orders": total_orders,
-        "delivered": delivered,
-        "pending": pending
+        "title": title,
+        "calls_today": calls_today,
+        "calls_today_count": calls_today_count,
+        "avg": statistics["avg"],
+        "max": str(round(calls_today_range.count()/calls_today_count*100, 2)) + "%",
+        "myFilter": myFilter,
+        "agent_search": agent_search,
+        "ranged_count": calls_today_range,
     }
 
-    return render(request, 'accounts/user.html', context)
+    return render(request, 'accounts/agent.html', context)
 
 @login_required(login_url="login")
-@allowed_users(allowed_roles=["customer"])
+@allowed_users(allowed_roles=["Admin", "Supervisor", "Agent"])
 def accountSettings(request):
-    customer = request.user.customer
-    form = CustomerForm(instance=customer)
+    agent = request.user.agent
+    agent_search = AgentSearch.objects.get(agent=agent)
+    form = AgentForm(instance=agent_search)
 
     if request.method == "POST":
-        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        form = AgentForm(request.POST, instance=agent_search)
         if form.is_valid():
             form.save()
-
+    
+    title = "Settings"
+    
     context = {
+        "title": title,
+        "agent": agent,
         "form": form
     }
 
     return render(request, 'accounts/account_settings.html', context)
 
 @login_required(login_url="login")
-@allowed_users(allowed_roles=["admin"])
-def products(request):
-    products = Product.objects.all()
+@allowed_users(allowed_roles=["Admin", "Supervisor"])
+def agentList(request):
+    agents = Agent.objects.filter(user__is_superuser=False)
+
+    myFilter = AgentListFilter(request.GET, queryset=agents)
+
+    agents = myFilter.qs
+
+    title = "Agent List"
 
     context = {
-        "products": products
-    }
-
-    return render(request, 'accounts/products.html', context)
-
-@login_required(login_url="login")
-@allowed_users(allowed_roles=["admin"])
-def customer(request, pk):
-    customer = Customer.objects.get(id=pk)
-    orders = customer.order_set.all()
-    order_count = orders.count()
-
-    myFilter = OrderFilter(request.GET, queryset=orders)
-
-    orders = myFilter.qs
-
-    context = {
-        'customer': customer,
-        'orders': orders,
-        'order_count': order_count,
+        "title": title,
+        'agents': agents,
         'myFilter': myFilter
     }
 
-    return render(request, 'accounts/customers.html', context)
-
-@login_required(login_url="login")
-@allowed_users(allowed_roles=["admin"])
-def createOrder(request, pk):
-    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10)
-    customer = Customer.objects.get(id=pk)
-    #form = OrderForm(initial={'customer': customer})
-    formset = OrderFormSet(queryset=Order.objects.none(), instance=customer)
-    if request.method =='POST':
-        #form = OrderForm(request.POST)
-        formset = OrderFormSet(request.POST, instance=customer)
-        if formset.is_valid():
-            formset.save()
-            return redirect('/')
-
-    context = {
-        'formset': formset
-    }
-
-    return render(request, 'accounts/order_form.html', context)
-
-@login_required(login_url="login")
-@allowed_users(allowed_roles=["admin"])
-def updateOrder(request, pk):
-    order = Order.objects.get(id=pk)
-    form = OrderForm(instance=order)
-
-    if request.method =='POST':
-        form = OrderForm(request.POST, instance=order)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-
-    context = {
-        'form': form
-    }
-
-    return render(request, 'accounts/order_form.html', context)
-
-@login_required(login_url="login")
-@allowed_users(allowed_roles=["admin"])
-def deleteOrder(request, pk):
-    order = Order.objects.get(id=pk)
-    
-    if request.method =='POST':
-        order.delete()
-        return redirect('/')
-    
-    context = {
-        'order': order
-    }
-
-    return render(request, 'accounts/delete.html', context)
+    return render(request, 'accounts/agent_list.html', context)

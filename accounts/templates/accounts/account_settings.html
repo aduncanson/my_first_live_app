@@ -17,19 +17,33 @@
 		<div class="card card-body">
 			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Profile</a>
 			<hr>
-			<h3 style="text-align: center">Account Settings</h3>
+			<h4 style="text-align: center">Who am I?</h4>
 			<hr>
-			<img class="profile-pic" src="{{request.user.customer.profile_pic.url}}">
+			<img class="profile-pic" src="{{request.user.agent.profile_pic.url}}">
 		</div>
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-3">
 		<div class="card card-body">
-			
+			<h5 style="text-align: center">{{ agent.user.first_name }} {{ agent.user.last_name }}</h5>
+			<hr>
+			<h5 style="text-align: center">{{ agent.user.email }}</h5>
+			<hr>
+			<h5 style="text-align: center"></h5>
+			<hr>
+			<h5 style="text-align: center">{{ agent.team_id }}</h5>
+			<hr>
+			<h5 style="text-align: center">{{ agent.team_id.department_id }}</h5>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card card-body">
+			<h4 style="text-align: center">Search criteria</h4>
+			<hr>
 			<form method="POST" action="" enctype="multipart/form-data">
 				{% csrf_token %}
 				{{ form.as_p }}
 		
-			<input class="btn btn-primary" type="submit" name="Update Information">
+				<input class="btn btn-primary" type="submit" name="Update Information">
 			</form>
 		</div>
 	</div>
