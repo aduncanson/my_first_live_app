@@ -19,5 +19,9 @@ def customer_profile(sender, instance, created, **kwargs):
         AgentSearch.objects.create(
             agent=agent
         )
+        
+        agentsearch = AgentSearch.objects.get(agent=agent)
+
+        agentsearch.brands.set(Brand.objects.all())
 
 post_save.connect(customer_profile, sender=User)
