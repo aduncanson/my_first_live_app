@@ -24,6 +24,6 @@ def customer_profile(sender, instance, created, **kwargs):
 
         agentsearch.brands.set(Brand.objects.all())
 
-        agentsearch.brands.set(Team.objects.all())
+        agentsearch.teams.set(Team.objects.all())
 
 post_save.connect(customer_profile, sender=User)
