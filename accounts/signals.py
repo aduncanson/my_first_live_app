@@ -28,6 +28,6 @@ def customer_profile(sender, instance, created, **kwargs):
 
     agentsearch = AgentSearch.objects.get(agent=agent)
 
-    agentsearch.teams.set(agent.team_id.objects.all())
+    agentsearch.teams.set(agent.team_id)
 
 post_save.connect(customer_profile, sender=User)
