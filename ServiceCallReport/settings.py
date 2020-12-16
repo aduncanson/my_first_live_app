@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'ServiceCallReport.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'SCR',
-        'USER': 'postgres',
-        'PASSWORD': 'DXCAdmin',
-        'HOST': 'localhost',
+        'NAME': 'd8j9n9iib2i3q7',
+        'USER': 'kftjijtnohnczi',
+        'PASSWORD': '90463fff7d2504bf2f6ba9204f0ef928e92bf886219f3c38acf0aeaf7de4b2ab',
+        'HOST': 'ec2-46-137-124-19.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }

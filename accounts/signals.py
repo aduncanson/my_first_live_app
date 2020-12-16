@@ -14,4 +14,10 @@ def customer_profile(sender, instance, created, **kwargs):
             team_id=team
         )
 
+        agent = Agent.objects.get(user=instance)
+
+        AgentSearch.objects.create(
+            user=agent
+        )
+
 post_save.connect(customer_profile, sender=User)

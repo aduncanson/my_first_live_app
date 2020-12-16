@@ -13,7 +13,6 @@ from .filters import *
 from .decorators import *
 
 from datetime import datetime, timedelta
-import time
 
 @unauthenticated_user
 def registerPage(request):
