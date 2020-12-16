@@ -84,8 +84,8 @@ def agentPage(request, pk):
     agent_search = AgentSearch.objects.get(agent=request.user.agent)
     
     calls_today = ClientContact.objects.filter(
-        contact_date__gte=datetime(2020,6,1),
-        contact_date__lte=datetime(2020,6,2),
+        contact_date__gte=datetime(2021,1,1),
+        contact_date__lte=datetime(2021,1,7),
         agent_id=agent.user,
         contact_session_id__brand_id__in=agent_search.brands.all()
     ).order_by("contact_date")
