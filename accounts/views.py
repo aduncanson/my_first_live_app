@@ -104,7 +104,7 @@ def agentSettings(request):
         if form.is_valid():
             form.save()
     
-    title = "Settings"
+    title = "My Settings"
     
     context = {
         "title": title,
