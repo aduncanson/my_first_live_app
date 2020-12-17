@@ -52,7 +52,7 @@ alert('{{ message }}');
                         <td>{{ call.contact_session_id }}</td>
                         <td>{{ call.contact_date }}</td>
                         <td>{{ call.contact_session_id.call_start_time }}</td>
-                        <td>{{ call.contact_session_id.wrap_up_duration.value|time:"H:M:S" }}</td>
+                        <td>{{ call.contact_session_id.wrap_up_duration.value|time:"G:i:s" }}</td>
                         <td>{{ call.contact_session_id.call_end_time }}</td>
                         <td>{{ call.call_outcome }}</td>
                         <td>{{ call.wrap_up_notes }}</td>
