@@ -7,10 +7,10 @@ urlpatterns = [
 	path('login/', views.loginPage, name="login"),  
 	path('logout/', views.logoutUser, name="logout"),
 
-    path('', views.home, name="home"),
+    path('', views.dashboard, name="dashboard"),
     path('agent/<str:pk>/', views.agentPage, name="agent_page"),
 
-    path('account/', views.accountSettings, name="account"),
+    path('agent_settings/', views.agentSettings, name="agent_settings"),
 
     path('agent_list/', views.agentList, name="agent_list"),
 
