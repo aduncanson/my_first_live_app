@@ -37,7 +37,7 @@ alert('{{ message }}');
                     <th>Contact ID</th>
                     <th>Date</th>
                     <th>Start time</th>
-                    <th>Wrap up time</th>
+                    <th>Wrap up duration</th>
                     <th>End time</th>
                     <th>Call outcome</th>
                     <th>Wrap up notes</th>
@@ -51,9 +51,9 @@ alert('{{ message }}');
                     <tr>
                         <td>{{ call.contact_session_id }}</td>
                         <td>{{ call.contact_date }}</td>
-                        <td>{{ call.contact_session_id.call_start_time }}</td>
+                        <td>{{ call.contact_session_id.call_start_time|time:"g:i:s a" }}</td>
                         <td>{{ call.contact_session_id.wrap_up_duration|time:"G:i:s" }}</td>
-                        <td>{{ call.contact_session_id.call_end_time }}</td>
+                        <td>{{ call.contact_session_id.call_end_time|time:"g:i:s a" }}</td>
                         <td>{{ call.call_outcome }}</td>
                         <td>{{ call.wrap_up_notes }}</td>
                         <td>{{ call.contact_session_id.call_type }}</td>
