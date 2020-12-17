@@ -10,6 +10,12 @@ alert('{{ message }}');
 </script>
 {% endfor %}
 
+<style>
+    .isHidden {
+        display: none;
+    }
+</style>
+
 <div class="row">
     <div class="col">
         <hr>
@@ -37,13 +43,13 @@ alert('{{ message }}');
                     <th>Contact ID</th>
                     <th>Date</th>
                     <th>Call duration
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".collapseTimeColumns" aria-expanded="false" aria-controls="collapseTimeColumns">
+                        <button class="btn btn-primary" type="button" >
                             Details
                         </button>
                     </th>
-                    <th class="collapse collapseTimeColumns">Start time</th>
-                    <th class="collapse collapseTimeColumns">Wrap up duration</th>
-                    <th class="collapse collapseTimeColumns">End time</th>
+                    <th class="collapseTimeColumns">Start time</th>
+                    <th class="collapseTimeColumns">Wrap up duration</th>
+                    <th class="collapseTimeColumns">End time</th>
                     <th>Call outcome</th>
                     <th>Wrap up notes</th>
                     <th>Call type</th>
@@ -56,9 +62,9 @@ alert('{{ message }}');
                         <td>{{ call.contact_session_id }}</td>
                         <td>{{ call.contact_date }}</td>
                         <td>{{ call.call_time }}</td>
-                        <td class="collapse collapseTimeColumns">{{ call.contact_session_id.call_start_time|time:"g:i:s a" }}</td>
-                        <td class="collapse collapseTimeColumns">{{ call.contact_session_id.wrap_up_duration|time:"G:i:s" }}</td>
-                        <td class="collapse collapseTimeColumns">{{ call.contact_session_id.call_end_time|time:"g:i:s a" }}</td>
+                        <td class="collapseTimeColumns">{{ call.contact_session_id.call_start_time|time:"g:i:s a" }}</td>
+                        <td class="collapseTimeColumns">{{ call.contact_session_id.wrap_up_duration|time:"G:i:s" }}</td>
+                        <td class="collapseTimeColumns">{{ call.contact_session_id.call_end_time|time:"g:i:s a" }}</td>
                         <td>{{ call.call_outcome }}</td>
                         <td>{{ call.wrap_up_notes }}</td>
                         <td>{{ call.contact_session_id.call_type }}</td>
@@ -71,5 +77,13 @@ alert('{{ message }}');
         </div>
     </div>
 </div>
+
+<script>
+    function toggleColumns() {
+        for (var i = 0; i < document.getElementsByClassName("collapseTimeColumns").length; i++) {
+            document.getElementsByClassName("collapseTimeColumns")[i].classList.toggle("isHidden");
+        }
+    }
+</script>
 
 {% endblock content %}
