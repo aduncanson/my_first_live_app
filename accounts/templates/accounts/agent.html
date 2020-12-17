@@ -36,6 +36,7 @@ alert('{{ message }}');
                 <tr>
                     <th>Contact ID</th>
                     <th>Date</th>
+                    <th>Call duration</th>
                     <th>Start time</th>
                     <th>Wrap up duration</th>
                     <th>End time</th>
@@ -44,13 +45,13 @@ alert('{{ message }}');
                     <th>Call type</th>
                     <th>Dialled</th>
                     <th>Brand</th>
-                    <th>Call time</th>
                 </tr>
 
                 {% for call in ranged_count %}
                     <tr>
                         <td>{{ call.contact_session_id }}</td>
                         <td>{{ call.contact_date }}</td>
+                        <td>{{ call.call_time }}</td>
                         <td>{{ call.contact_session_id.call_start_time|time:"g:i:s a" }}</td>
                         <td>{{ call.contact_session_id.wrap_up_duration|time:"G:i:s" }}</td>
                         <td>{{ call.contact_session_id.call_end_time|time:"g:i:s a" }}</td>
@@ -59,7 +60,6 @@ alert('{{ message }}');
                         <td>{{ call.contact_session_id.call_type }}</td>
                         <td>{{ call.contact_session_id.dialled }}</td>
                         <td>{{ call.contact_session_id.brand_id }}</td>
-                        <td>{{ call.call_time }}</td>
                     </tr>
                 {% endfor %}
 
