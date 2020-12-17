@@ -21,3 +21,8 @@ class CreateUserForm(UserCreationForm):
             'password1',
             'password2'
         ]
+
+class UpdateProfilePic(forms.ModelForm):  
+    class Meta:  
+        model = Agent
+        fields = ["profile_pic"]

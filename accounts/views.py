@@ -98,6 +98,7 @@ def agentSettings(request):
     agent = request.user.agent
     agent_search = AgentSearch.objects.get(agent=agent)
     form = AgentForm(instance=agent_search)
+    profilePic = UpdateProfilePic(instance=agent)
 
     if request.method == "POST":
         form = AgentForm(request.POST, instance=agent_search)
@@ -109,7 +110,8 @@ def agentSettings(request):
     context = {
         "title": title,
         "agent": agent,
-        "form": form
+        "form": form,
+        "profilePic": profilePic,
     }
 
     return render(request, 'accounts/agent_settings.html', context)

@@ -17,9 +17,9 @@
 		<div class="card card-body">
 			<a class="btn btn-warning" href="{% url 'dashboard' %}"> &#8592; Back to Dashboard</a>
 			<hr>
-			<h4 style="text-align: center">Who am I?</h4>
-			<hr>
 			<img class="profile-pic" src="{{request.user.agent.profile_pic.url}}">
+			<hr>
+			<h4 style="text-align: center">{{ profilePic }}</h4>
 		</div>
 	</div>
 	<div class="col-md-3">
