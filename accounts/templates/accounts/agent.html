@@ -15,10 +15,10 @@ alert('{{ message }}');
         display: none;
     }
     .pointRight {
-        rotate: 0deg;
+        transform: rotate(0deg);
     }
     .pointLeft {
-        rotate: 180deg;
+        transform: rotate(180deg);
     }
 </style>
 
@@ -85,6 +85,9 @@ alert('{{ message }}');
         for (var i = 0; i < document.getElementsByClassName("collapseTimeColumns").length; i++) {
             document.getElementsByClassName("collapseTimeColumns")[i].classList.toggle("isHidden");
         }
+
+        this.classList.toggle("pointRight");
+        this.classList.toggle("pointLeft");
     }
 </script>
 
