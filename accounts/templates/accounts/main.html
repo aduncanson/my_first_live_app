@@ -24,14 +24,34 @@
     <link href="{% static 'css/generic.css' %}" rel="stylesheet">
     
     
-    
+    <style>
+        #page-container {
+        position: relative;
+        min-height: 100vh;
+        }
+
+        #content-wrap {
+        padding-bottom: 2.5rem;
+        }
+
+        #footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2.5rem;
+        }
+    </style>
 </head>  
-<body>  
-    {% include 'accounts/navbar.html' %}
+<body>
+    <div id="page-container">
+        <div id="content-wrap">
+        {% include 'accounts/navbar.html' %}
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
+        </div>
 
-    {% include 'accounts/footer.html' %}
+        {% include 'accounts/footer.html' %}
+    </div>
 </body>  
 </html>  
