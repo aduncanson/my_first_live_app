@@ -25,19 +25,19 @@ alert('{{ message }}');
 
 
 #expand-btn {
-  color: #ecf0f1;
   width: 25px;
   height: 25px;
   border: solid black 3px;
   font-size: 1.5em;
   position: relative;
   border-radius: 100%;
+  background-color: green;
 }
 
 #expand-btn span {
   position: absolute;
   transition: .3s;
-  background: green;
+  background-color: white;
   border-radius: 2px;
 }
 
@@ -55,9 +55,12 @@ alert('{{ message }}');
   top: 45%;
 }
 
+#expand-btn:hover {
+  background: red;
+}
+
 #expand-btn:hover span:first-of-type, #expand-btn:hover span:last-of-type {
   transform: rotate(90deg);
-  background: red;
 }
 
 #expand-btn:hover span:last-of-type {
