@@ -22,7 +22,53 @@ alert('{{ message }}');
         transform: rotate(180deg);
         transition: 0.2s;
     }
+
+
+#expand-btn {
+  color: #ecf0f1;
+  background: #e74c3c;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  font-size: 1.5em;
+  position: relative;
+}
+
+#expand-btn span {
+  position: absolute;
+  transition: .3s;
+  background: white;
+  border-radius: 2px;
+}
+
+#expand-btn span:first-of-type {
+  top: 25%;
+  bottom: 25%;
+  width: 10%;
+  left: 45%;
+}
+
+#expand-btn span:last-of-type {
+  left: 25%;
+  right: 25%;
+  height: 10%;
+  top: 45%;
+}
+
+#expand-btn:hover span:first-of-type, #expand-btn:hover span:last-of-type {
+  transform: rotate(90deg);
+}
+
+#expand-btn:hover span:last-of-type {
+  left: 50%;
+  right: 50%;
+}
 </style>
+
+<div id="expand-btn">
+    <span></span>
+    <span></span>
+</div>
 
 <div class="row">
     <div class="col">
