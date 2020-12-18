@@ -14,15 +14,6 @@ alert('{{ message }}');
     .isHidden {
         display: none;
     }
-    .pointRight {
-        transform: rotate(0deg);
-        transition: 0.2s;
-    }
-    .pointLeft {
-        transform: rotate(180deg);
-        transition: 0.2s;
-    }
-
 
 #expand-btn {
   width: 20px;
@@ -31,8 +22,15 @@ alert('{{ message }}');
   font-size: 1.5em;
   position: relative;
   border-radius: 100%;
-  background-color: green;
   transition: .3s;
+}
+
+.btn-col-open {
+    background-color: green;
+}
+
+.btn-col-closed {
+    background-color: red;
 }
 
 #expand-btn span {
@@ -42,38 +40,29 @@ alert('{{ message }}');
   border-radius: 2px;
 }
 
-#expand-btn span:first-of-type {
+.btn-col-open span:first-of-type {
   top: 25%;
   bottom: 25%;
   width: 10%;
   left: 45%;
 }
 
-#expand-btn span:last-of-type {
+.btn-col-open span:last-of-type {
   left: 25%;
   right: 25%;
   height: 10%;
   top: 45%;
 }
 
-#expand-btn:hover {
-  background: red;
-}
-
-#expand-btn:hover span:first-of-type, #expand-btn:hover span:last-of-type {
+.btn-col-closed span:first-of-type, .btn-col-closed span:last-of-type {
   transform: rotate(90deg);
 }
 
-#expand-btn:hover span:last-of-type {
+.btn-col-closed span:last-of-type {
   left: 50%;
   right: 50%;
 }
 </style>
-
-<div id="expand-btn">
-    <span></span>
-    <span></span>
-</div>
 
 <div class="row">
     <div class="col">
@@ -101,7 +90,7 @@ alert('{{ message }}');
                 <tr>
                     <th>Contact ID</th>
                     <th>Date</th>
-                    <th>Call duration <div class="pointRight" style="text-align: center;" onclick="toggleColumns(this)">&#8594;</div></th>
+                    <th>Call duration <div id="expand-btn" class="btn-col-open" onclick="toggleColumns(this)"><span></span><span></span></div></th>
                     <th class="collapseTimeColumns isHidden">Start time</th>
                     <th class="collapseTimeColumns isHidden">Wrap up duration</th>
                     <th class="collapseTimeColumns isHidden">End time</th>
@@ -139,8 +128,8 @@ alert('{{ message }}');
             document.getElementsByClassName("collapseTimeColumns")[i].classList.toggle("isHidden");
         }
 
-        arrow.classList.toggle("pointRight");
-        arrow.classList.toggle("pointLeft");
+        arrow.classList.toggle("btn-col-open");
+        arrow.classList.toggle("btn-col-closed");
     }
 </script>
 
