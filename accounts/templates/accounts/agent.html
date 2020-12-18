@@ -14,12 +14,6 @@ alert('{{ message }}');
     .isHidden {
         display: none;
     }
-    .pointRight {
-        transform: rotate(0deg);
-    }
-    .pointLeft {
-        transform: rotate(180deg);
-    }
 </style>
 
 <div class="row">
@@ -48,7 +42,7 @@ alert('{{ message }}');
                 <tr>
                     <th>Contact ID</th>
                     <th>Date</th>
-                    <th>Call duration <span onclick="toggleColumns(this)">&#8594;</span></th>
+                    <th>Call duration <span onclick="toggleColumns()">&#8594;</span></th>
                     <th class="collapseTimeColumns isHidden">Start time</th>
                     <th class="collapseTimeColumns isHidden">Wrap up duration</th>
                     <th class="collapseTimeColumns isHidden">End time</th>
@@ -81,7 +75,7 @@ alert('{{ message }}');
 </div>
 
 <script>
-    function toggleColumns(this) {
+    function toggleColumns() {
         for (var i = 0; i < document.getElementsByClassName("collapseTimeColumns").length; i++) {
             document.getElementsByClassName("collapseTimeColumns")[i].classList.toggle("isHidden");
         }
