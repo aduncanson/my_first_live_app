@@ -21,7 +21,7 @@
 
                 {% for calls in total_calls_today_full %}
                     <tr>
-                        <td><a class="btn btn-sm btn-info" href="{% url 'home' %}">View</a></td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'dashboard' %}">View</a></td>
                         <td>{{calls.contact_id}}</td>
                         <td>{{calls.contact_id}}</td>
                     </tr>
@@ -49,7 +49,7 @@
                         <td>{{call.contact_id}}</td>
                         <td>{{call.contact_id}}</td>
                         <td>{{call.contact_id}}</td>
-                        <td><a class="btn btn-sm btn-info" href="{% url 'home' %}">Update</a></td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'dashboard' %}">Update</a></td>
                         <td><a class="btn btn-sm btn-danger" href="{% url 'account' %}">Delete</a></td>
                     </tr>
                 {% endfor %}
