@@ -13,6 +13,10 @@
 
 <br>
 <div class="row">
+	<div class="col-md-1">
+		<div class="card card-body">
+		</div>
+	</div>
 	<div class="col-md-3">
 		<div class="card card-body">
 			<a class="btn btn-warning" href="{% url 'dashboard' %}"> &#8592; Back to Dashboard</a>
@@ -35,7 +39,7 @@
 			<h5 style="text-align: center">{{ agent.team_id.department_id }}</h5>
 		</div>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<div class="card card-body">
 			<h4 style="text-align: center">Search criteria</h4>
 			<hr>
@@ -45,6 +49,10 @@
 		
 				<input class="btn btn-primary" type="submit" name="Update Information">
 			</form>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="card card-body">
 		</div>
 	</div>
 </div>
