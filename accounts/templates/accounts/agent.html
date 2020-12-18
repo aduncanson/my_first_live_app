@@ -10,60 +10,6 @@ alert('{{ message }}');
 </script>
 {% endfor %}
 
-<style>
-    .isHidden {
-        display: none;
-    }
-
-#expand-btn {
-  width: 20px;
-  height: 20px;
-  border: solid black 2px;
-  font-size: 1.5em;
-  position: relative;
-  border-radius: 100%;
-  transition: .3s;
-}
-
-.btn-col-open {
-    background-color: green;
-}
-
-.btn-col-closed {
-    background-color: red;
-}
-
-#expand-btn span {
-  position: absolute;
-  transition: .3s;
-  background-color: white;
-  border-radius: 2px;
-}
-
-.btn-col-open span:first-of-type {
-  top: 25%;
-  bottom: 25%;
-  width: 10%;
-  left: 45%;
-}
-
-.btn-col-open span:last-of-type {
-  left: 25%;
-  right: 25%;
-  height: 10%;
-  top: 45%;
-}
-
-.btn-col-closed span:first-of-type, .btn-col-closed span:last-of-type {
-  transform: rotate(90deg);
-}
-
-.btn-col-closed span:last-of-type {
-  left: 50%;
-  right: 50%;
-}
-</style>
-
 <div class="row">
     <div class="col">
         <hr>
@@ -90,10 +36,10 @@ alert('{{ message }}');
                 <tr>
                     <th>Contact ID</th>
                     <th>Date</th>
-                    <th>Call duration <div id="expand-btn" class="btn-col-open" onclick="toggleColumns(this)"><span></span><span></span></div></th>
-                    <th class="collapseTimeColumns isHidden">Start time</th>
-                    <th class="collapseTimeColumns isHidden">Wrap up duration</th>
-                    <th class="collapseTimeColumns isHidden">End time</th>
+                    <th>Call duration</th>
+                    <th>Start time</th>
+                    <th>Wrap up duration</th>
+                    <th>End time</th>
                     <th>Call outcome</th>
                     <th>Wrap up notes</th>
                     <th>Call type</th>
@@ -106,9 +52,9 @@ alert('{{ message }}');
                         <td>{{ call.contact_session_id }}</td>
                         <td>{{ call.contact_date }}</td>
                         <td>{{ call.call_time }}</td>
-                        <td class="collapseTimeColumns isHidden">{{ call.contact_session_id.call_start_time|time:"g:i:s a" }}</td>
-                        <td class="collapseTimeColumns isHidden">{{ call.contact_session_id.wrap_up_duration|time:"G:i:s" }}</td>
-                        <td class="collapseTimeColumns isHidden">{{ call.contact_session_id.call_end_time|time:"g:i:s a" }}</td>
+                        <td>{{ call.contact_session_id.call_start_time|time:"g:i:s a" }}</td>
+                        <td>{{ call.contact_session_id.wrap_up_duration|time:"G:i:s" }}</td>
+                        <td>{{ call.contact_session_id.call_end_time|time:"g:i:s a" }}</td>
                         <td>{{ call.call_outcome }}</td>
                         <td>{{ call.wrap_up_notes }}</td>
                         <td>{{ call.contact_session_id.call_type }}</td>
@@ -121,16 +67,5 @@ alert('{{ message }}');
         </div>
     </div>
 </div>
-
-<script>
-    function toggleColumns(arrow) {
-        for (var i = 0; i < document.getElementsByClassName("collapseTimeColumns").length; i++) {
-            document.getElementsByClassName("collapseTimeColumns")[i].classList.toggle("isHidden");
-        }
-
-        arrow.classList.toggle("btn-col-open");
-        arrow.classList.toggle("btn-col-closed");
-    }
-</script>
 
 {% endblock content %}
