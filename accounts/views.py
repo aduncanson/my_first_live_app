@@ -214,6 +214,8 @@ def agentPage(request, pk):
         "myFilter": myFilter,
         "agent_search": agent_search,
         "ranged_count": calls_today_range,
+        "oversessing": True,
+        "agent": agent,
     }
 
     return render(request, 'accounts/agent.html', context)

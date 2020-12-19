@@ -2,15 +2,29 @@
 
 <div class="row">
 	<div class="col-md-1">
-	</div>
+    </div>
+    {% if oversessing %}
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center mb-3" id="all-calls-today">
+                    <div class="card-header">
+                        <h5 class="card-title">Agent's dashboard</h5>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ agent }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
     <div class="col">
         <div class="col-md">
             <div class="card text-center mb-3" id="all-calls-today">
                 <div class="card-header">
-                    <h5 class="card-title">Total Calls Today</h5>
+                    <h5 class="card-title">Total calls today</h5>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">{{calls_today_count}}</h3>
+                    <h4 class="card-title">{{calls_today_count}}</h4>
                 </div>
             </div>
         </div>
@@ -20,10 +34,10 @@
         <div class="col-md">
             <div class="card text-center mb-3" id="average-call-length">
                 <div class="card-header">
-                    <h5 class="card-title">Average Call Length</h5>
+                    <h5 class="card-title">Average Call Duration</h5>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">{{ avg }}</h3>
+                    <h4 class="card-title">{{ avg }}</h4>
                 </div>
             </div>
         </div>
@@ -36,7 +50,7 @@
                     <h5 class="card-title">Percentage Outside Limits</h5>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">{{ max }}</h3>
+                    <h4 class="card-title">{{ max }}</h4>
                 </div>
             </div>
         </div>
