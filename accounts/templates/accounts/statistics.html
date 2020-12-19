@@ -3,6 +3,7 @@
 <div class="row">
 	<div class="col-md-1">
     </div>
+
     {% if oversessing %}
         <div class="col">
             <div class="col-md">
@@ -55,6 +56,20 @@
             </div>
         </div>
     </div>
+    
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center mb-3" id="perc-outside-limit">
+                <div class="card-header">
+                    <h5 class="card-title">Calls outside criteria</h5>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ max }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
 	<div class="col-md-1">
 	</div>
 </div>
