@@ -25,7 +25,7 @@
                     <h5 class="card-title">Total calls today</h5>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">{{calls_today_count}}</h4>
+                    <h4 class="card-title">{{ calls_today_count }}</h4>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <h5 class="card-title">Average call duration</h5>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">{{ avg }}</h4>
+                    <h4 class="card-title">{{ avg|time:"G:i:s" }}</h4>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
         <div class="col-md">
             <div class="card text-center mb-3" id="perc-outside-limit">
                 <div class="card-header">
-                    <h5 class="card-title">Calls outside criteria</h5>
+                    <h5 class="card-title">Vs yesterday</h5>
                 </div>
                 <div class="card-body">
                     <h4 class="card-title">{{ max }}</h4>
