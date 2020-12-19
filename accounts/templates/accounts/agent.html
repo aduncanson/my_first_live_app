@@ -2,14 +2,15 @@
 
 {% block content %}
 
-{% include 'accounts/status.html' %}
+{% include 'accounts/statistics.html' %}
 
 {% for message in messages %}
 <script type="text/javascript">
-alert('{{ message }}');
+    alert('{{ message }}');
 </script>
 {% endfor %}
 
+<!--
 <div class="row">
     <div class="col">
         <hr>
@@ -28,6 +29,7 @@ alert('{{ message }}');
         </div>
     </div>
 </div>
+-->
 
 <div class="row">
     <div class="col-md">
