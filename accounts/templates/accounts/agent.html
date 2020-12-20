@@ -52,7 +52,7 @@
                 {% for call in ranged_count %}
                     <tr>
                         <td>{{ call.contact_session_id }}</td>
-                        <td>{{ call.contact_date }}</td>
+                        <td>{{ call.contact_date|date:"M. j, Y" }}</td>
                         <td>{{ call.call_time }}</td>
                         <td>{{ call.contact_session_id.call_start_time|time:"g:i:s a" }}</td>
                         <td>{{ call.contact_session_id.wrap_up_duration|time:"G:i:s" }}</td>
