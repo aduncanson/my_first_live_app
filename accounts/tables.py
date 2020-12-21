@@ -8,10 +8,7 @@ class AgentContacts(tables.Table):
 
 class AgentList(tables.Table):
 
-    my_extra_column = tables.Column(accessor='my_function',
-         verbose_name='My calculated value')
-
-    btnCol = tables.URLColumn("View")
+    btnCol = tables.URLColumn("View", "{% url 'agent_page' id %}")
 
     class Meta:
         model = Agent
