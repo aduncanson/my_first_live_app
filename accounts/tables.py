@@ -8,7 +8,7 @@ class AgentContacts(tables.Table):
 
 class AgentList(tables.Table):
 
-    def Agent_view(id):
+    def Agent_view(self, id):
         return tables.TemplateColumn("<a class='btn btn-sm btn-info' href='{% url 'agent_page' " + str(id) + " %}'>View</a>")
 
     class Meta:
