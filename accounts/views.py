@@ -207,7 +207,7 @@ def agentPage(request, pk):
         "calls_today_count": calls_today_count,
         "avg": statistics["avg"],
         "max": str(round(calls_today_range.count()/calls_today_count*100, 2)) + "%",
-        "myFilter": myFilter,
+        #"myFilter": myFilter,
         "agent_search": agent_search,
         "ranged_count": calls_today_range,
         "oversessing": True,
