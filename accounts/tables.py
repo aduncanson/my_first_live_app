@@ -1,4 +1,5 @@
 import django_tables2 as tables
+from django_tables2.utils import A
 from .models import *
 
 class AgentContacts(tables.Table):
@@ -8,7 +9,7 @@ class AgentContacts(tables.Table):
 
 class AgentList(tables.Table):
 
-    Agent_view = tables.LinkColumn('agent_page', args=['id'], verbose_name='View', empty_values=())
+    Agent_view = tables.LinkColumn(viewname="View", 'agent_page', args=[A("pk")], empty_values=())
 
     class Meta:
         model = Agent
