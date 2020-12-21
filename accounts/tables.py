@@ -15,5 +15,5 @@ class AgentList(tables.Table):
 
     class Meta:
         model = Agent
-        fields = ["user", "user.first_name", "user.last_name", "user.email", "team_id", "team_id.department_id", {"btnCol": "{% url 'agent_page' id %}"}]
+        fields = ["user", "user.first_name", "user.last_name", "user.email", "team_id", "team_id.department_id", "btnCol"]
         attrs = {"class": "table table-sm"}
