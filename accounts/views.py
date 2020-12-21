@@ -199,7 +199,7 @@ def agentPage(request, pk):
         call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit]
     ).order_by("contact_date")
 
-    table = AgentContacts(ClientContact.objects.filter(agent_id=agent.user))
+    table = AgentContacts(ReqService.objects.filter(contact_id_id__agent_id=agent.user))
 
     title = "User Page"
 

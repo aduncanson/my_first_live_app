@@ -18,7 +18,6 @@ class AgentContacts(tables.Table):
     class Meta:
         model = ReqService
         fields = [
-            "req_service_id",
             "contact_id",
             "contact_id.contact_date",
             "contact_id.call_time",
