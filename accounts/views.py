@@ -179,11 +179,11 @@ def agentPage(request, pk):
         agent_id=agent.user,
         contact_session_id__brand_id__in=agent_search.brands.all()
     ).order_by("contact_date")
-
+    """
     myFilter = AgentFilter(request.GET, queryset=calls_today)
 
     calls_today = myFilter.qs
-    
+    """
     calls_today_count = calls_today.count()
 
     statistics = calls_today.aggregate(
