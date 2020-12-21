@@ -8,6 +8,8 @@ min-height: 100%;
 body {
 margin-bottom: 40px;
 overflow-x: hidden;
+padding-left: 20px;
+padding-right: 20px;
 }
 footer {
 position: absolute;
