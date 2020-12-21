@@ -11,8 +11,9 @@ from django.db.models import *
 # my django imports
 from .models import *
 from .forms import *
-from .filters import *
+# from .filters import *
 from .decorators import *
+from .tables import *
 
 # external imports
 from datetime import datetime
@@ -128,18 +129,13 @@ def agentSettings(request):
 @login_required(login_url="login")
 @allowed_users(allowed_roles=["Admin", "Supervisor"])
 def agentList(request):
-    agents = Agent.objects.filter(user__is_superuser=False)
-
-    myFilter = AgentListFilter(request.GET, queryset=agents)
-
-    agents = myFilter.qs
+    table = AgentList(Agent.objects.filter(user__is_superuser=False))
 
     title = "Agent List"
 
     context = {
         "title": title,
-        'agents': agents,
-        'myFilter': myFilter
+        'table': table,
     }
 
     return render(request, 'accounts/agent_list.html', context)
