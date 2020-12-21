@@ -8,7 +8,7 @@ class AgentContacts(tables.Table):
 
 class AgentList(tables.Table):
 
-    Agent_view = tables.TemplateColumn("<a class='btn btn-sm btn-info' href='{% url /'agent_page/' id %}'>View</a>")
+    Agent_view = tables.LinkColumn('agent_page', args=[A('id')], verbose_name='View', empty_values=())
 
     class Meta:
         model = Agent
