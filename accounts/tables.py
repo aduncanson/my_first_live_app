@@ -17,7 +17,6 @@ class AgentContacts(tables.Table):
 
     class Meta:
         model = ReqService
-        fields = [
-            "contact_id", "comments"]
+        fields = "__all__"
         attrs = {"class": "table table-sm"}
         orderable = False
