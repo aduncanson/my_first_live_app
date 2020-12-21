@@ -8,7 +8,7 @@ class AgentContacts(tables.Table):
 
 class AgentList(tables.Table):
 
-    btnCol = tables.URLColumn("View", "{% url 'agent_page' id %}")
+    btnCol = tables.URLColumn("{% url 'agent_page' id %}", "View")
 
     class Meta:
         model = Agent
