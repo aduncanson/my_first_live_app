@@ -9,7 +9,7 @@ class AgentContacts(tables.Table):
 
 class AgentList(tables.Table):
 
-    Agent_view = tables.LinkColumn('agent_page', viewname="Agent view", text="View", args=[A("pk")])
+    Agent_view = tables.LinkColumn('agent_page', text="View", args=[A("pk")])
 
     class Meta:
         model = Agent
