@@ -9,4 +9,4 @@ class AgentContacts(tables.Table):
 class AgentList(tables.Table):
     class Meta:
         model = Agent
-        fields = ["user", "first_name", "last_name", "email", "team_id", "team_id.department_id"]
+        fields = ["user", "user.first_name", "user.last_name", "user.email", "team_id", "team_id.department_id"]
