@@ -10,3 +10,4 @@ class AgentList(tables.Table):
     class Meta:
         model = Agent
         fields = ["user", "user.first_name", "user.last_name", "user.email", "team_id", "team_id.department_id"]
+        attrs = {"class": "table table-sm"}
