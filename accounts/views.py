@@ -199,6 +199,8 @@ def agentPage(request, pk):
         call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit]
     ).order_by("contact_date")
 
+    table = AgentContacts(ClientContact.objects.filter(agent_id=agent.user))
+
     title = "User Page"
 
     context = {
@@ -212,6 +214,7 @@ def agentPage(request, pk):
         "ranged_count": calls_today_range,
         "oversessing": True,
         "agent": agent,
+        "table": table,
     }
 
     return render(request, 'accounts/agent.html', context)

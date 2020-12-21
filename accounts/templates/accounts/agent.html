@@ -1,4 +1,5 @@
 {% extends 'accounts/main.html' %}
+{% load render_table from django_tables2 %}
 
 {% block content %}
 
@@ -28,38 +29,9 @@
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
-            <table class="table table-sm">
-                <tr>
-                    <th>Contact ID</th>
-                    <th>Date</th>
-                    <th>Call duration</th>
-                    <th>Start time</th>
-                    <th>Wrap up duration</th>
-                    <th>End time</th>
-                    <th>Call outcome</th>
-                    <th>Wrap up notes</th>
-                    <th>Call type</th>
-                    <th>Dialled</th>
-                    <th>Brand</th>
-                </tr>
 
-                {% for call in ranged_count %}
-                    <tr>
-                        <td>{{ call.contact_session_id }}</td>
-                        <td>{{ call.contact_date|date:"N j, Y" }}</td>
-                        <td>{{ call.call_time }}</td>
-                        <td>{{ call.contact_session_id.call_start_time|time:"g:i:s a" }}</td>
-                        <td>{{ call.contact_session_id.wrap_up_duration|time:"G:i:s" }}</td>
-                        <td>{{ call.contact_session_id.call_end_time|time:"g:i:s a" }}</td>
-                        <td>{{ call.call_outcome }}</td>
-                        <td>{{ call.wrap_up_notes }}</td>
-                        <td>{{ call.contact_session_id.call_type }}</td>
-                        <td>{{ call.contact_session_id.dialled }}</td>
-                        <td>{{ call.contact_session_id.brand_id }}</td>
-                    </tr>
-                {% endfor %}
+            {% render_table table %}
 
-            </table>
         </div>
     </div>
 </div>
