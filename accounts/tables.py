@@ -19,7 +19,7 @@ class AgentContacts(tables.Table):
         model = ReqService
         fields = [
             "contact_id",
-            "contact_id.contact_dat",
+            "contact_id.contact_date",
             "contact_id.call_time",
             "contact_id.contact_session_id.call_start_time",
             "contact_id.contact_session_id.wrap_up_duration",
