@@ -26,6 +26,7 @@ class AgentContacts(tables.Table):
             "contact_id.contact_session_id.call_end_time",
             "contact_id.call_outcome",
             "contact_id.wrap_up_notes",
+            "comments",
             "contact_id.contact_session_id.call_type",
             "contact_id.contact_session_id.dialled",
             "contact_id.contact_session_id.brand_id",
