@@ -26,7 +26,8 @@ def criteria_agent_contact(agent, report):
     agent_search = AgentSearch.objects.get(agent=agent)
 
     report_annotated = report.annotate(
-        call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
+        call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time'),
+        additional_value=Value("ewfw", output_field=models.CharField())
     )
 
     report_annotated_filter = report_annotated.filter(

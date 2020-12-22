@@ -20,8 +20,6 @@ class AgentContactsTable(tables.Table):
     contact_session_id__wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
     contact_session_id__call_end_time = tables.TimeColumn(format = 'g:i:s a')
 
-    reqServce = tables.Column(accessor='contact_id.reqservice_set', verbose_name='Demo value')
-
     class Meta:
         model = ClientContact
         fields = [
@@ -29,7 +27,6 @@ class AgentContactsTable(tables.Table):
             "call_time",
             "call_outcome",
             "wrap_up_notes",
-            "reqServce",
             ]
         sequence = [
             "contact_id",
@@ -40,7 +37,6 @@ class AgentContactsTable(tables.Table):
             "contact_session_id__call_end_time",
             "call_outcome",
             "wrap_up_notes",
-            "reqServce",
         ]
         attrs = {"class": "table table-sm"}
         orderable = False
