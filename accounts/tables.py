@@ -27,18 +27,16 @@ class AgentContactsTable(tables.Table):
             "call_time",
             "call_outcome",
             "wrap_up_notes",
-            "demo",
             ]
         sequence = [
             "contact_id",
-            "contact_date",
+            "contact_id__contact_date",
             "call_time",
             "contact_id__contact_session_id__call_start_time",
             "contact_id__ccontact_session_id__wrap_up_duration",
             "contact_id__contact_session_id__call_end_time",
             "call_outcome",
             "wrap_up_notes",
-            "demo",
         ]
         attrs = {"class": "table table-sm"}
         orderable = False
