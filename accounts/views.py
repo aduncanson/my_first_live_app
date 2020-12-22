@@ -173,9 +173,9 @@ def dashboard(request):
 def agentPage(request, pk):
     agent = Agent.objects.get(id=pk)
 
-    full_contact_report = reports.full_agent_contact(agent, datetime(2021,1,1), datetime(2021,1,7))
+    full_contact_report = full_agent_contact(agent, datetime(2021,1,1), datetime(2021,1,7))
 
-    criteria_contact_report = reports.criteria_agent_contact(agent, full_contact_report)
+    criteria_contact_report = criteria_agent_contact(agent, full_contact_report)
 
     criteria_contact_report_table = AgentContactsTable(criteria_contact_report)
 
