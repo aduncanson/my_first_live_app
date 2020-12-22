@@ -75,7 +75,7 @@ class ClientContact(models.Model):
 
     @property
     def reqServce(self, contact_id):
-        return ReqService.objects.filter(contact_id=contact_id).count()
+        return "ytre"
 
 class ReqService(models.Model):
     req_service_id = models.AutoField(primary_key=True)
