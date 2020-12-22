@@ -4,7 +4,7 @@ from .models import *
 
 class AgentList(tables.Table):
 
-    Agent_view = tables.LinkColumn('agent_page', text="View", args=[A("id")])
+    Agent_view = tables.LinkColumn('agent_page', text="View", args=[A("id")], attrs={"class":"btn btn-primary btn-sm btn-block"})
 
     class Meta:
         model = Agent
