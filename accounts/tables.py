@@ -23,7 +23,7 @@ class AgentContactsTable(tables.Table):
     class Meta:
         model = ReqService
         fields = [
-            "contact_id__contact_id",
+            "contact_id",
             "call_time",
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
