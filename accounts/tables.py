@@ -26,9 +26,6 @@ class AgentContactsTable(tables.Table):
             "contact_id",
             "contact_date",
             "call_time",
-            "contact_session_id__call_start_time",
-            "contact_session_id__wrap_up_duration",
-            "contact_session_id__call_end_time",
             "call_outcome",
             "wrap_up_notes",
             ]
