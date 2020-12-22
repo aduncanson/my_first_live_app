@@ -27,7 +27,7 @@ def criteria_agent_contact(agent, report):
 
     report_annotated = report.annotate(
         call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time'),
-        demo=1
+        demo=ReqService.objects.filter(contact_id=F('contact_id'))
     )
 
     report_annotated_filter = report_annotated.filter(
