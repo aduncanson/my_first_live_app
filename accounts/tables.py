@@ -27,6 +27,7 @@ class AgentContactsTable(tables.Table):
             "call_time",
             "call_outcome",
             "wrap_up_notes",
+            "reqServce",
             ]
         sequence = [
             "contact_id",
@@ -37,6 +38,7 @@ class AgentContactsTable(tables.Table):
             "contact_session_id__call_end_time",
             "call_outcome",
             "wrap_up_notes",
+            "reqServce",
         ]
         attrs = {"class": "table table-sm"}
         orderable = False
