@@ -181,8 +181,8 @@ def agentPage(request, pk):
 
 
     statistics = full_contact_report.aggregate(
-        avg=Avg(F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')),
-        max=Max(F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')),
+        avg=Avg(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
+        max=Max(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
     )
 
     title = "User Page"

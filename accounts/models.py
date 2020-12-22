@@ -73,10 +73,6 @@ class ClientContact(models.Model):
     def __str__(self):
         return str(self.contact_id)
 
-    @property
-    def reqServce(self):
-        return "ytre"
-
 class ReqService(models.Model):
     req_service_id = models.AutoField(primary_key=True)
     contact_id = models.ForeignKey(ClientContact, null=True, blank=True, on_delete=models.SET_NULL)

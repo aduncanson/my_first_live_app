@@ -15,13 +15,13 @@ class AgentList(tables.Table):
 
 class AgentContactsTable(tables.Table):
 
-    contact_date = tables.DateTimeColumn(format = 'N j, Y')
-    contact_session_id__call_start_time = tables.TimeColumn(format = 'g:i:s a')
-    contact_session_id__wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
-    contact_session_id__call_end_time = tables.TimeColumn(format = 'g:i:s a')
+    contact_id__contact_date = tables.DateTimeColumn(format = 'N j, Y')
+    contact_id__contact_session_id__call_start_time = tables.TimeColumn(format = 'g:i:s a')
+    contact_id__contact_session_id__wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
+    contact_id__contact_session_id__call_end_time = tables.TimeColumn(format = 'g:i:s a')
 
     class Meta:
-        model = ClientContact
+        model = ReqService
         fields = [
             "contact_id",
             "call_time",
@@ -33,9 +33,9 @@ class AgentContactsTable(tables.Table):
             "contact_id",
             "contact_date",
             "call_time",
-            "contact_session_id__call_start_time",
-            "contact_session_id__wrap_up_duration",
-            "contact_session_id__call_end_time",
+            "contact_id__contact_session_id__call_start_time",
+            "contact_id__ccontact_session_id__wrap_up_duration",
+            "contact_id__contact_session_id__call_end_time",
             "call_outcome",
             "wrap_up_notes",
             "demo",
