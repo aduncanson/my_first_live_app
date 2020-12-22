@@ -14,6 +14,7 @@ from .forms import *
 # from .filters import *
 from .decorators import *
 from .tables import *
+from classes import *
 
 # external imports
 from datetime import datetime
@@ -171,50 +172,31 @@ def dashboard(request):
 @allowed_users(allowed_roles=["Admin", "Agent"])
 def agentPage(request, pk):
     agent = Agent.objects.get(id=pk)
-    agent_search = AgentSearch.objects.get(agent=request.user.agent)
-    
-    calls_today = ClientContact.objects.filter(
-        contact_date__gte=datetime(2021,1,1),
-        contact_date__lte=datetime(2021,1,7),
-        agent_id=agent.user,
-        contact_session_id__brand_id__in=agent_search.brands.all()
-    ).order_by("contact_date")
-    """
-    myFilter = AgentFilter(request.GET, queryset=calls_today)
 
-    calls_today = myFilter.qs
-    """
-    calls_today_count = calls_today.count()
+    full_contact_report = reports.full_agent_contact(agent, datetime(2021,1,1), datetime(2021,1,7))
 
-    statistics = calls_today.aggregate(
+    criteria_contact_report = reports.criteria_agent_contact(agent, full_contact_report)
+
+    criteria_contact_report_table = AgentContactsTable(criteria_contact_report)
+
+
+    statistics = full_contact_report.aggregate(
         avg=Avg(F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')),
         max=Max(F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')),
     )
-
-    calls_today_range = calls_today.annotate(
-        call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
-    )
-
-    calls_today_range = calls_today_range.filter(
-        call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit]
-    ).order_by("contact_date")
-
-    table = AgentContacts(ReqService.objects.filter(contact_id_id__agent_id=agent.user))
 
     title = "User Page"
 
     context = {
         "title": title,
-        "calls_today": calls_today,
-        "calls_today_count": calls_today_count,
+        "criteria_contact_report_table": criteria_contact_report_table,
+        "calls_today_count": full_contact_report.count(),
         "avg": statistics["avg"],
-        "max": str(round(calls_today_range.count()/calls_today_count*100, 2)) + "%",
-        #"myFilter": myFilter,
-        "agent_search": agent_search,
-        "ranged_count": calls_today_range,
+        "max": str(round(criteria_contact_report.count()/full_contact_report.count()*100, 2)) + "%",
+        "ranged_count": criteria_contact_report.count(),
         "oversessing": True,
         "agent": agent,
-        "table": table,
+        "table": criteria_contact_report_table,
     }
 
     return render(request, 'accounts/agent.html', context)

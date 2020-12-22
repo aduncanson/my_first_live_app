@@ -13,19 +13,19 @@ class AgentList(tables.Table):
         orderable = False
 
 
-class AgentContacts(tables.Table):
+class AgentContactsTable(tables.Table):
 
     class Meta:
-        model = ReqService
+        model = ClientContact
         fields = [
             "contact_id",
-            "contact_id.contact_date",
-            "contact_id.call_time",
-            "contact_id.contact_session_id.call_start_time",
-            "contact_id.contact_session_id.wrap_up_duration",
-            "contact_id.contact_session_id.call_end_time",
-            "contact_id.call_outcome",
-            "contact_id.wrap_up_notes",
-            "comments"]
+            "contact_date",
+            "call_time",
+            "contact_session_id.call_start_time",
+            "contact_session_id.wrap_up_duration",
+            "contact_session_id.call_end_time",
+            "call_outcome",
+            "wrap_up_notes",
+            ]
         attrs = {"class": "table table-sm"}
         orderable = False
