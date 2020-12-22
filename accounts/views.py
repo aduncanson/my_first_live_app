@@ -14,7 +14,7 @@ from .forms import *
 # from .filters import *
 from .decorators import *
 from .tables import *
-from classes import *
+from .classes.reports import *
 
 # external imports
 from datetime import datetime
