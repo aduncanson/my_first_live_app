@@ -15,7 +15,7 @@ def full_agent_contact(agent, start_date, end_date):
     calls_today = ClientContact.objects.filter(
         contact_date__gte=start_date,
         contact_date__lte=end_date,
-        agent_id=agent
+        agent_id=agent.user
     )
 
     return calls_today
