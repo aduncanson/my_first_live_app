@@ -16,9 +16,9 @@ class AgentList(tables.Table):
 class AgentContactsTable(tables.Table):
 
     contact_date = tables.DateTimeColumn(format = 'N j, Y')
-    call_start_time = tables.TimeColumn(format = 'g:i:s a')
-    wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
-    call_end_time = tables.TimeColumn(format = 'g:i:s a')
+    contact_session_id.call_start_time = tables.TimeColumn(format = 'g:i:s a')
+    contact_session_id.wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
+    contact_session_id.call_end_time = tables.TimeColumn(format = 'g:i:s a')
 
     class Meta:
         model = ClientContact
