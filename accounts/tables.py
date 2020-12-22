@@ -23,10 +23,10 @@ class AgentContactsTable(tables.Table):
     class Meta:
         model = ReqService
         fields = [
-            "contact_id",
+            "contact_id__contact_id",
             "call_time",
-            "call_outcome",
-            "wrap_up_notes",
+            "contact_id__call_outcome",
+            "contact_id__wrap_up_notes",
             ]
         sequence = [
             "contact_id",
@@ -35,8 +35,8 @@ class AgentContactsTable(tables.Table):
             "contact_id__contact_session_id__call_start_time",
             "contact_id__ccontact_session_id__wrap_up_duration",
             "contact_id__contact_session_id__call_end_time",
-            "call_outcome",
-            "wrap_up_notes",
+            "contact_id__call_outcome",
+            "contact_id__wrap_up_notes",
         ]
         attrs = {"class": "table table-sm"}
         orderable = False
