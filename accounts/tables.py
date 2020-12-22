@@ -15,11 +15,13 @@ class AgentList(tables.Table):
 
 class AgentContactsTable(tables.Table):
 
+    contact_date = tables.DateTimeColumn(format = 'N j, Y')
+
     class Meta:
         model = ClientContact
         fields = [
             "contact_id",
-            "contact_date|date:'N j, Y'",
+            "contact_date",
             "call_time",
             "contact_session_id.call_start_time",
             "contact_session_id.wrap_up_duration",
