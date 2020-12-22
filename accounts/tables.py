@@ -24,13 +24,13 @@ class AgentContactsTable(tables.Table):
         model = ClientContact
         fields = [
             "contact_id",
-            "contact_date",
             "call_time",
             "call_outcome",
             "wrap_up_notes",
             ]
         sequence = [
             "contact_id",
+            "contact_date",
             "call_time",
             "contact_session_id__call_start_time",
             "contact_session_id__wrap_up_duration",
