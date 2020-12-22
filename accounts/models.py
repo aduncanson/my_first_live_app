@@ -74,7 +74,7 @@ class ClientContact(models.Model):
         return str(self.contact_id)
 
     @property
-    def reqServce(self, contact_id):
+    def reqServce(self):
         return "ytre"
 
 class ReqService(models.Model):
