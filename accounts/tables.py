@@ -4,7 +4,7 @@ from .models import *
 
 class AgentList(tables.Table):
 
-    Agent_view = tables.LinkColumn('agent_page', text="View", args=[A("id")], attrs={"class":"btn btn-primary btn-sm btn-block"})
+    Agent_view = tables.LinkColumn('agent_page', text="View", args=[A("id")])
 
     class Meta:
         model = Agent
@@ -19,7 +19,7 @@ class AgentContactsTable(tables.Table):
         model = ClientContact
         fields = [
             "contact_id",
-            "contact_date",
+            "contact_date|date:'N j, Y'",
             "call_time",
             "contact_session_id.call_start_time",
             "contact_session_id.wrap_up_duration",
