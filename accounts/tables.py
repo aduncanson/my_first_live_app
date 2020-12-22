@@ -20,6 +20,8 @@ class AgentContactsTable(tables.Table):
     contact_session_id__wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
     contact_session_id__call_end_time = tables.TimeColumn(format = 'g:i:s a')
 
+    reqServce = tables.Column(accessor='reqServce', verbose_name='Demo value')
+
     class Meta:
         model = ClientContact
         fields = [
