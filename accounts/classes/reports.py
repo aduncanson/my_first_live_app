@@ -26,7 +26,10 @@ def criteria_agent_contact(agent, report):
     agent_search = AgentSearch.objects.get(agent=agent)
 
     report_annotated = report.annotate(
-        call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time'),
+        call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')
+    )
+
+    report_annotated = report.annotate(
         demo=Count("service_type_id__service_type_name")
     )
 
