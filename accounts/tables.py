@@ -19,6 +19,7 @@ class AgentContactsTable(tables.Table):
     contact_id__contact_session_id__call_start_time = tables.TimeColumn(format = 'g:i:s a')
     contact_id__contact_session_id__wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
     contact_id__contact_session_id__call_end_time = tables.TimeColumn(format = 'g:i:s a')
+    demo.split(",") = tables.CharField()
 
     class Meta:
         model = ReqService
