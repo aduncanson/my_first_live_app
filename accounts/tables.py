@@ -20,8 +20,8 @@ class AgentContactsTable(tables.Table):
     contact_id__contact_session_id__wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
     contact_id__contact_session_id__call_end_time = tables.TimeColumn(format = 'g:i:s a')
 
-    def render_comments(self):
-        return " ".join(self.comments)
+    def render_comments(self, value):
+        return " ".join(value)
 
     class Meta:
         model = ReqService
