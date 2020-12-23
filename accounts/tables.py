@@ -21,11 +21,13 @@ class AgentContactsTable(tables.Table):
             "contact_id",
             "call_time",
             "contact_id__call_outcome",
+            "contact_id__wrap_up_notes",
             ]
         sequence = [
             "contact_id",
             "call_time",
             "contact_id__call_outcome",
+            "contact_id__wrap_up_notes",
         ]
         attrs = {"class": "table table-sm"}
         orderable = False
