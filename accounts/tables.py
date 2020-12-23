@@ -28,7 +28,7 @@ class AgentContactsTable(tables.Table):
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
             "comments",
-            "services|join:', '",
+            "services"|join:', ',
             ]
         sequence = [
             "contact_id",
@@ -40,7 +40,7 @@ class AgentContactsTable(tables.Table):
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
             "comments",
-            "services|join:', '",
+            "services"|join:', ',
         ]
         attrs = {"class": "table table-sm"}
         orderable = False
