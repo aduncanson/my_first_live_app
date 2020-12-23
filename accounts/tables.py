@@ -14,16 +14,18 @@ class AgentList(tables.Table):
 
 
 class AgentContactsTable(tables.Table):
-    
+
     class Meta:
         model = ReqService
         fields = [
             "contact_id",
             "call_time",
+            "contact_id__call_outcome",
             ]
         sequence = [
             "contact_id",
             "call_time",
+            "contact_id__call_outcome",
         ]
         attrs = {"class": "table table-sm"}
         orderable = False
