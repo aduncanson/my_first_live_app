@@ -23,6 +23,9 @@ class AgentContactsTable(tables.Table):
     def render_comments(self, value):
         return " ".join(value)
 
+    def render_services(self, value):
+        return " ".join(value)
+
     class Meta:
         model = ReqService
         fields = [
