@@ -21,10 +21,10 @@ class AgentContactsTable(tables.Table):
     contact_id__contact_session_id__call_end_time = tables.TimeColumn(format = 'g:i:s a')
 
     def render_comments(self, value):
-        return "\n".join(value)
+        return "&#13;".join(value)
 
     def render_services(self, value):
-        return "\n".join(value)
+        return "&#13;".join(value)
 
     class Meta:
         model = ReqService
