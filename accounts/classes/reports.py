@@ -45,6 +45,6 @@ def criteria_agent_contact(agent, report):
     report_annotated_filter = report_annotated.filter(
         call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
         contact_id_id__contact_session_id__brand_id__in=agent_search.brands.all()
-    ).order_by("contact_id_id__contact_date")
+    ).order_by("contact_id")
 
     return report_annotated_filter
