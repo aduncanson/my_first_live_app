@@ -46,7 +46,7 @@ def criteria_agent_contact(agent, report):
     )
 
     report_annotated = report.annotate(
-        comments=" ".join(F('comments'))
+        comments=type(F('comments'))
     )
 
     report_annotated_filter = report_annotated.filter(
