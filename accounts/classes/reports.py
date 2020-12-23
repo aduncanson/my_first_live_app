@@ -29,10 +29,6 @@ def criteria_agent_contact(agent, report):
         call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')
     )
 
-    report_annotated = report.annotate(
-        demo=Count("service_type_id__service_type_name")
-    )
-
     report_annotated_filter = report_annotated.filter(
         call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
         contact_id_id__contact_session_id__brand_id__in=agent_search.brands.all()
