@@ -41,7 +41,7 @@ def criteria_agent_contact(agent, report):
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
     ).annotate(
-        comments=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
+        comments=ArrayAgg('comments', ordering=("req_service_id")),
         services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id"))
     )
 
