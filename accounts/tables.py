@@ -15,6 +15,8 @@ class AgentList(tables.Table):
 
 class AgentContactsTable(tables.Table):
 
+    contact_id__contact_date = tables.DateTimeColumn(format = 'N j, Y')
+
     class Meta:
         model = ReqService
         fields = [
@@ -22,12 +24,14 @@ class AgentContactsTable(tables.Table):
             "call_time",
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
+            "contact_id__contact_date",
             ]
         sequence = [
             "contact_id",
             "call_time",
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
+            "contact_id__contact_date",
         ]
         attrs = {"class": "table table-sm"}
         orderable = False
