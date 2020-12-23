@@ -10,6 +10,19 @@ from ..tables import *
 # external imports
 from datetime import datetime
 
+
+class Concat(Aggregate):
+    function = 'GROUP_CONCAT'
+    template = '%(function)s(%(distinct)s%(expressions)s)'
+
+    def __init__(self, expression, distinct=False, **extra):
+        super(Concat, self).__init__(
+            expression,
+            distinct='DISTINCT ' if distinct else '',
+            output_field=CharField(),
+            **extra)
+
+
 def full_agent_contact(agent, start_date, end_date):
 
     calls_today = ReqService.objects.filter(
@@ -39,7 +52,7 @@ def criteria_agent_contact(agent, report):
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
     ).annotate(
-        demo="service_type_id__service_type_name"
+        demo=Concat('service_type_id__service_type_name')
     )
 
     report_annotated_filter = report_annotated.filter(
