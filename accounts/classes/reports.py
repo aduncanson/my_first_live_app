@@ -29,7 +29,7 @@ def criteria_agent_contact(agent, report):
         call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')
     )
 
-    report_annotated = report_annotated.value(
+    report_annotated = report_annotated.all().value(
             "contact_id",
             "contact_id__contact_date",
             "call_time",
