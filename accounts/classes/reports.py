@@ -42,7 +42,7 @@ def criteria_agent_contact(agent, report):
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
     ).annotate(
-        demo=ArrayAgg(Cast('service_type_id__service_type_name', TextField()), delimiter='<br />', ordering=("req_service_id"))
+        demo=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id"))
     )
 
     report_annotated_filter = report_annotated.filter(
