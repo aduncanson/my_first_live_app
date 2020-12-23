@@ -16,6 +16,9 @@ class AgentList(tables.Table):
 class AgentContactsTable(tables.Table):
 
     contact_id__contact_date = tables.DateTimeColumn(format = 'N j, Y')
+    contact_id__contact_session_id__call_start_time = tables.TimeColumn(format = 'g:i:s a')
+    contact_id__contact_session_id__wrap_up_duration = tables.TimeColumn(format = 'G:i:s')
+    contact_id__contact_session_id__call_end_time = tables.TimeColumn(format = 'g:i:s a')
 
     class Meta:
         model = ReqService
@@ -24,7 +27,6 @@ class AgentContactsTable(tables.Table):
             "call_time",
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
-            "contact_id__contact_date",
             ]
         sequence = [
             "contact_id",
