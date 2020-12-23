@@ -1,5 +1,7 @@
 # existing django imports
 from django.db.models import *
+from django.contrib.postgres.aggregates import *
+from django.db.models.functions import *
 # my django imports
 from ..models import *
 from ..forms import *
@@ -40,7 +42,7 @@ def criteria_agent_contact(agent, report):
             "contact_id__call_outcome",
             "contact_id__wrap_up_notes",
     ).annotate(
-        demo=ArrayAgg('service_type_id__service_type_name')
+        demo=StringAgg(Cast('service_type_id__service_type_name', TextField()), delimiter=',')
     )
 
     report_annotated_filter = report_annotated.filter(
