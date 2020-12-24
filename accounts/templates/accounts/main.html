@@ -30,12 +30,14 @@
         <script type="text/javascript">
             alert('{{ message }}');
 
-            $(document).ready( function () {
                 $('#agent-contacts-table').DataTable();
-            } );
         </script>
 
     {% endfor %}
+
+    <script type="text/javascript">
+        document.getElementById('agent-contacts-table').DataTable();
+    </script>
 
 </body>
 </html>
