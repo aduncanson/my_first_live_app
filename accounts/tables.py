@@ -1,11 +1,11 @@
-import django_tables2 as tables
-from django_tables2.utils import A
+from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.utils.safestring import mark_safe
+from django.utils.html import escape
 
 from .models import *
 
-class AgentList(tables.Table):
-
+class AgentList(BaseDatatableView):
+    """
     Agent_view = tables.LinkColumn('agent_page', text="View", args=[A("id")])
 
     class Meta:
@@ -13,9 +13,13 @@ class AgentList(tables.Table):
         fields = ["user", "user.first_name", "user.last_name", "user.email", "team_id", "team_id.department_id", "Agent_view"]
         attrs = {"class": "table table-sm"}
         orderable = False
+    """
+    model = Agent
+    columns = ["user", "user.first_name", "user.last_name", "user.email", "team_id", "team_id.department_id", "Agent_view"]
+    order_columns = ["user", "", "", "", "", "", ""]
 
-
-class AgentContactsTable(tables.Table):
+"""
+class AgentContactsTable(BaseDatatableView):
 
     contact_id__contact_date = tables.DateTimeColumn(format = 'N j, Y', footer="")
     contact_id__contact_session_id__call_start_time = tables.TimeColumn(format = 'g:i:s a')
@@ -55,3 +59,4 @@ class AgentContactsTable(tables.Table):
             "id": "agent-contacts-table"
         }
         orderable = False
+"""

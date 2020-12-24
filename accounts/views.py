@@ -11,7 +11,6 @@ from django.db.models import *
 # my django imports
 from .models import *
 from .forms import *
-# from .filters import *
 from .decorators import *
 from .tables import *
 from .classes.reports import *
