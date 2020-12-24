@@ -129,7 +129,7 @@ def agentSettings(request):
 @login_required(login_url="login")
 @allowed_users(allowed_roles=["Admin", "Supervisor"])
 def agentList(request):
-    table = AgentList()
+    table = AgentList(Agent.objects.filter(user__is_superuser=False))
 
     title = "Agent List"
 

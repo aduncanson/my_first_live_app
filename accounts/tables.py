@@ -15,8 +15,6 @@ class AgentList(BaseDatatableView):
         orderable = False
     """
     model = Agent
-    columns = ["user", "user.first_name", "user.last_name", "user.email", "team_id", "team_id.department_id", "Agent_view"]
-    order_columns = ["user", "", "", "", "", "", ""]
 
 """
 class AgentContactsTable(BaseDatatableView):
