@@ -177,7 +177,7 @@ def agentPage(request, pk):
 
     report_table = AgentContactsTable(agent_contacts["criteria_calls_with_ct"])
 
-    statistics = agent_contacts["all_calls_with_ct"].aggregate(
+    statistics = agent_contacts["criteria_calls_with_ct"].aggregate(
         avg=Avg(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
         max=Max(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
     )
@@ -187,9 +187,9 @@ def agentPage(request, pk):
     context = {
         "title": title,
         "report_table": report_table,
-        "calls_today_count": agent_contacts["all_calls_with_ct"].count(),
+        "calls_today_count": agent_contacts["criteria_calls_with_ct"].count(),
         "avg": statistics["avg"],
-        "max": str(round(agent_contacts["criteria_calls_with_ct"].count()/agent_contacts["all_calls_with_ct"].count()*100, 2)) + "%",
+        "max": str(round(agent_contacts["criteria_calls_with_ct"].count()/agent_contacts["criteria_calls_with_ct"].count()*100, 2)) + "%",
         "ranged_count": agent_contacts["criteria_calls_with_ct"].count(),
         "oversessing": True,
         "agent": agent,
