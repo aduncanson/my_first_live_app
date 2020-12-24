@@ -173,14 +173,11 @@ def dashboard(request):
 def agentPage(request, pk):
     agent = Agent.objects.get(id=pk)
 
-    full_contact_report = full_agent_contact(agent, datetime(2021,1,1), datetime(2021,1,7))
+    agent_contacts = agent_contact(agent, datetime(2021,1,1), datetime(2021,1,7))
 
-    criteria_contact_report = criteria_agent_contact(agent, full_contact_report)
+    report_table = AgentContactsTable(agent_contacts.criteria_calls_with_ct)
 
-    criteria_contact_report_table = AgentContactsTable(criteria_contact_report)
-
-
-    statistics = full_contact_report.aggregate(
+    statistics = agent_contacts.all_calls_with_ct.aggregate(
         avg=Avg(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
         max=Max(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
     )
@@ -189,14 +186,13 @@ def agentPage(request, pk):
 
     context = {
         "title": title,
-        "criteria_contact_report_table": criteria_contact_report_table,
-        "calls_today_count": full_contact_report.count(),
+        "report_table": report_table,
+        "calls_today_count": agent_contacts.all_calls_with_ct.count(),
         "avg": statistics["avg"],
-        "max": str(round(criteria_contact_report.count()/full_contact_report.count()*100, 2)) + "%",
-        "ranged_count": criteria_contact_report.count(),
+        "max": str(round(agent_contacts.criteria_calls_with_ct.count()/agent_contacts.all_calls_with_ct.count()*100, 2)) + "%",
+        "ranged_count": agent_contacts.criteria_calls_with_ct.count(),
         "oversessing": True,
         "agent": agent,
-        "table": criteria_contact_report_table,
     }
 
     return render(request, 'accounts/agent.html', context)
