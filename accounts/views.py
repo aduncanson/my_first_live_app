@@ -177,7 +177,7 @@ def agentPage(request, pk):
 
     report_table = AgentContactsTable(agent_contacts["criteria_calls_with_ct"])
 
-    statistics = agent_contacts.all_calls_with_ct.aggregate(
+    statistics = agent_contacts["all_calls_with_ct"].aggregate(
         avg=Avg(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
         max=Max(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
     )
