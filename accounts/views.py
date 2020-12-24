@@ -173,7 +173,7 @@ def dashboard(request):
 def agentPage(request, pk):
     agent = Agent.objects.get(id=pk)
 
-    agent_contacts = agent_contact_report(agent, datetime(2021,1,1), datetime(2021,1,7))
+    agent_contacts = agent_contact_report(request, agent, datetime(2021,1,1), datetime(2021,1,7))
 
     report_table = AgentContactsTable(agent_contacts["criteria_calls_with_ct"])
 
