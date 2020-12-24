@@ -14,7 +14,7 @@ from .forms import *
 # from .filters import *
 from .decorators import *
 from .tables import *
-from .classes.reports import *
+import .classes.reports as reports
 
 # external imports
 from datetime import datetime
@@ -173,7 +173,7 @@ def dashboard(request):
 def agentPage(request, pk):
     agent = Agent.objects.get(id=pk)
 
-    agent_contacts = agent_contact(agent, datetime(2021,1,1), datetime(2021,1,7))
+    agent_contacts = reports.agent_contact(agent, datetime(2021,1,1), datetime(2021,1,7))
 
     report_table = AgentContactsTable(agent_contacts.criteria_calls_with_ct)
 
