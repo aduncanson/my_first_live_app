@@ -9,7 +9,7 @@ from ..decorators import *
 from ..tables import *
 
 
-def agent_contact(agent, start_date, end_date):
+def agent_contact_report(agent, start_date, end_date):
 
     agent_search = AgentSearch.objects.get(agent=agent)
 
