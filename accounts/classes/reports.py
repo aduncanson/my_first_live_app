@@ -11,7 +11,7 @@ from ..tables import *
 
 def agent_contact_report(agent, start_date, end_date):
 
-    agent_search = AgentSearch.objects.get(agent=agent)
+    agent_search = AgentSearch.objects.get(agent=request.user.agent)
 
     all_services = ReqService.objects.filter(
         contact_id_id__contact_date__gte=start_date,
