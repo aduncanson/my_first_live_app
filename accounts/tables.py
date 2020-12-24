@@ -50,5 +50,8 @@ class AgentContactsTable(tables.Table):
             "comments",
             "services",
         ]
-        attrs = {"class": "table table-sm"}
+        attrs = {
+            "class": "table table-sm",
+            "id": "agent-contacts-table"
+        }
         orderable = False
