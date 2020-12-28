@@ -15,7 +15,7 @@
 
 <script language="javascript">
     $(document).ready(function() {
-        alert(12);
+
         AjaxDatatableViewUtils.initialize_table(
             $('#list_of_agents_table'),
             "{% url 'ajax_list_of_agents_table' %}",
@@ -30,6 +30,7 @@
                 // ...
             },
         );
+        alert(543);
     });
 
 </script>
