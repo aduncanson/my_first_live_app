@@ -12,7 +12,13 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
     search_values_separator = '+'
 
     column_defs = [
-        {'name': 'user_id', 'visible': True, },
-        {'name': 'team_id_id', 'visible': True, },
-        {'name': 'username', 'foreign_field': 'user__username', 'visible': True, },
+        {'name': 'Username', 'foreign_field': 'user__username', 'visible': True, },
+        {'name': 'First Name', 'foreign_field': 'user__first_name', 'visible': True, },
+        {'name': 'Surname', 'foreign_field': 'user__last_name', 'visible': True, },
+        {'name': 'Email', 'foreign_field': 'user__email', 'visible': True, },
+        {'name': 'Team', 'foreign_field': 'team__team_name', 'visible': True, },
+        {'name': 'Department', 'foreign_field': 'team__department__department_name', 'visible': True, },
     ]
+
+
+ "user.email", "team_id", "team_id.department_id", "Agent_view"]
