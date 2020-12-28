@@ -5,13 +5,13 @@ from .models import *
 
 class AgentListAjaxDatatableView(AjaxDatatableView):
 
-    model = User
-    title = 'User'
-    initial_order = [["username", "asc"], ]
+    model = Agent
+    title = 'Agent'
+    initial_order = [["user_id", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
 
     column_defs = [
-        {'name': 'username', 'visible': True, },
-        {'name': 'first_name', 'visible': True, },
+        {'name': 'user_id', 'visible': True, },
+        {'name': 'team_id_id', 'visible': True, },
     ]
