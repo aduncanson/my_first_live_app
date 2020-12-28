@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'datatableview',
+    'ajax_datatable',
 ]
 
 MIDDLEWARE = [
