@@ -15,4 +15,5 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         AjaxDatatableView.render_row_tools_column_def(),
         {'name': 'user', 'visible': True, },
         {'name': 'team_id', 'visible': True, },
+        {'name': 'department_id', 'foreign_field': 'team_id__department_id', 'visible': True, },
     ]
