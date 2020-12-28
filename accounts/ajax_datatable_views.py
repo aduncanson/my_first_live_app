@@ -13,4 +13,5 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
 
     column_defs = [
         {'name': 'username', 'visible': True, },
+        {'name': 'agent', 'foreign_field': 'user__agent', 'visible': True, },
     ]
