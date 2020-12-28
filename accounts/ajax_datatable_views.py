@@ -1,16 +1,16 @@
 from ajax_datatable.views import AjaxDatatableView
-from django.contrib.auth.models import Permission
+from django.contrib.auth.models import Permission, User
 
 from .models import *
 
 class AgentListAjaxDatatableView(AjaxDatatableView):
 
-    model = Permission
-    title = 'Permissions'
-    initial_order = [["codename", "asc"], ]
+    model = User
+    title = 'User'
+    initial_order = [["username", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
 
     column_defs = [
-        {'name': 'codename', 'visible': True, },
+        {'name': 'username', 'visible': True, },
     ]
