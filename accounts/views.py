@@ -12,7 +12,6 @@ from django.db.models import *
 from .models import *
 from .forms import *
 from .decorators import *
-from .tables import *
 from .classes.reports import *
 
 # external imports
