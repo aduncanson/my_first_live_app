@@ -1,6 +1,7 @@
 from ajax_datatable.views import AjaxDatatableView
 from django.contrib.auth.models import Permission
 
+from .models import *
 
 class AgentListAjaxDatatableView(AjaxDatatableView):
 
