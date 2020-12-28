@@ -19,6 +19,3 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         {'name': 'Team', 'foreign_field': 'team__team_name', 'visible': True, },
         {'name': 'Department', 'foreign_field': 'team__department__department_name', 'visible': True, },
     ]
-
-
- "user.email", "team_id", "team_id.department_id", "Agent_view"]
