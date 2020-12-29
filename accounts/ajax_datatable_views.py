@@ -21,5 +21,5 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Name'] = "ff"
-        row['View'] = '<a href="">View</a>'
+        row['Name'] = obj.user__email
+        row['Agent Dashboard'] = '<a href="">View</a>'
