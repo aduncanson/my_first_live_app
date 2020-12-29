@@ -33,8 +33,6 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
-        queryset = self.model.objects.all()
-
-        queryset = queryset.filter(user__is_superuser=False)
+        queryset = self.model.objects.filter(user__is_superuser=False)
 
         return queryset
