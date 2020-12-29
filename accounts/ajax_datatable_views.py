@@ -20,10 +20,10 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         {'name': 'Email', 'foreign_field': 'user__email', 'visible': True, },
         {'name': 'Team', 'foreign_field': 'team_id__team_name', 'visible': True, },
         {'name': 'Department', 'foreign_field': 'team_id__department_id__department_name', 'visible': True, },
-        {'name': 'Agent Dashboard', 'visible': True, 'className': 'btn btn-primary btn-sm btn-block', },
+        {'name': 'Agent Dashboard', 'visible': True, },
     ]
 
     def customize_row(self, row, obj):
-        row['Agent Dashboard'] = '<a href="%s">View</a>' % (
+        row['Agent Dashboard'] = '<a class="btn btn-primary btn-sm btn-block" href="%s">View</a>' % (
             reverse('agent_page', args=(obj.id,))
         )
