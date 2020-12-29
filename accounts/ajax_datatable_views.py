@@ -18,8 +18,8 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         {'name': 'Email', 'foreign_field': 'user__email', 'visible': True, },
         {'name': 'Team', 'foreign_field': 'team_id__team_name', 'visible': True, },
         {'name': 'Department', 'foreign_field': 'team_id__department_id__department_name', 'visible': True, },
-        AjaxDatatableView.render_row_tools_column_def(),
+        {'name': 'View', 'visible': True, },
     ]
 
-    def render_row_details(self, pk, request=None):
-        return "test"
+    def customize_row(self, row, obj):
+        row['View'] = '<b>thrtd</b>'
