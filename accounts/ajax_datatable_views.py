@@ -59,7 +59,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Call Time'] = obj.contact_session_id__call_end_time - obj.contact_session_id__call_start_time
+        row['Call Time'] = row['Call End Time'] - row['Call Start Time']
 
     def get_initial_queryset(self, request=None):
 
