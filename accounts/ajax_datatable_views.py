@@ -51,7 +51,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     column_defs = [
         {'name': 'contact_id', 'visible': True, },
         {'name': 'contact_date', 'visible': True, },
-        {'name': 'call_time', 'visible': True, },
+        {'name': 'Call Time', 'visible': True, },
         {'name': 'Call Start Time', 'foreign_field': 'contact_session_id__call_start_time', 'visible': True, },
         {'name': 'Wrap Up Duration', 'foreign_field': 'contact_session_id__wrap_up_duration', 'visible': True, },
         {'name': 'Call End Time', 'foreign_field': 'contact_session_id__call_end_time', 'visible': True, },
@@ -70,7 +70,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
         queryset = self.model.objects.filter(agent=request.REQUEST.get('agent')).annotate(
-            call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
+            "Call Time"=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
             )
 
         return queryset
