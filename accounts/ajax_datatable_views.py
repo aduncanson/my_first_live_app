@@ -22,4 +22,4 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['View'] = '<a href="{% url "agent_list" %}">View</a>'
+        row['View'] = '<a href="">View</a>'
