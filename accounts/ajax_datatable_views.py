@@ -18,8 +18,8 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         {'name': 'Email', 'foreign_field': 'user__email', 'visible': True, },
         {'name': 'Team', 'foreign_field': 'team_id__team_name', 'visible': True, },
         {'name': 'Department', 'foreign_field': 'team_id__department_id__department_name', 'visible': True, },
-        {'name': 'View', 'visible': True, },
+        {'name': 'Agent Dashboard', 'visible': True, },
     ]
 
     def customize_row(self, row, obj):
-        row['View'] = '<b>%s</b>' % obj.id
+        row['View'] = '<a href="{% url ''agent_list'' ' + obj.id + ' %}">View</a>'
