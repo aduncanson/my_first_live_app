@@ -54,13 +54,13 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Demo'] = agent
+        row['Demo'] = '<b>ghj/b>'
 
     def get_initial_queryset(self, request=None):
 
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
-        queryset = self.model.objects.filter()
+        queryset = self.model.objects.filter(agent=request.REQUEST.get('agent'))
 
         return queryset
