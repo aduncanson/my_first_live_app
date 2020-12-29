@@ -13,8 +13,7 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
 
     column_defs = [
         {'name': 'Username', 'foreign_field': 'user__username', 'visible': True, },
-        {'name': 'First Name', 'foreign_field': 'user__first_name', 'visible': True, },
-        {'name': 'Surname', 'foreign_field': 'user__last_name', 'visible': True, },
+        {'name': 'Name', 'visible': True, },
         {'name': 'Email', 'foreign_field': 'user__email', 'visible': True, },
         {'name': 'Team', 'foreign_field': 'team_id__team_name', 'visible': True, },
         {'name': 'Department', 'foreign_field': 'team_id__department_id__department_name', 'visible': True, },
@@ -22,4 +21,5 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
+        row['Name'] = obj.user__first_name + " " + obj.user__last_name
         row['View'] = '<a href="">View</a>'
