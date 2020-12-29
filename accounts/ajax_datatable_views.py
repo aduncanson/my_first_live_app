@@ -60,7 +60,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     def customize_row(self, row, obj):
         row['Call Time'] = row['Call End Time']
-        row['contact_date'] = row['contact_date'].hour
+        row['contact_date'] = obj.hour
 
     def get_initial_queryset(self, request=None):
 
