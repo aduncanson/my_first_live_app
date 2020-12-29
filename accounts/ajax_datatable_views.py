@@ -22,4 +22,4 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['View'] = '<b>thrtd</b>'
+        row['View'] = '<b>%s</b>' % id
