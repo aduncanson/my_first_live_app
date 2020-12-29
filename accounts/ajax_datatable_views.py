@@ -54,7 +54,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Demo'] = '<b>ghj/b>'
+        row['Demo'] = agent
 
     def get_initial_queryset(self, request=None):
 
