@@ -23,5 +23,6 @@ urlpatterns = [
 
     # ajax
     path('ajax_datatable/agent_list/', ajax_datatable_views.AgentListAjaxDatatableView.as_view(), name="ajax_list_of_agents_table"),
+    path('ajax_datatable/agent/', ajax_datatable_views.AgentContactsAjaxDatatableView.as_view(), name="ajax_agent_contact_sessions"),
 
 ]

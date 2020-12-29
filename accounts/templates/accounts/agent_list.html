@@ -20,18 +20,15 @@
             $('#list_of_agents_table'),
             "{% url 'ajax_list_of_agents_table' %}",
             {
-                // extra_options (example)
                 processing: false,
                 autoWidth: false,
                 full_row_select: false,
                 scrollX: false
             }, {
-                // extra_data
-                // ...
+                
             },
         );
     });
-
 </script>
 
 {% endblock content %}

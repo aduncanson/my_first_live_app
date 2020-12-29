@@ -27,12 +27,35 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         row['Agent Dashboard'] = '<a class="btn btn-primary btn-sm btn-block" href="%s">View</a>' % (
             reverse('agent_page', args=(obj.id,))
         )
-    
+
     def get_initial_queryset(self, request=None):
 
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
         queryset = self.model.objects.filter(user__is_superuser=False)
+
+        return queryset
+
+
+class AgentContactsAjaxDatatableView(AjaxDatatableView):
+
+    model = ClientContact
+    title = 'ClientContact'
+    initial_order = [["contact_date", "asc"], ]
+    length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
+    search_values_separator = '+'
+
+    column_defs = [
+        {'name': 'contact_date', 'visible': True, },
+        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
+    ]
+
+    def get_initial_queryset(self, request=None):
+
+        if not getattr(request, 'REQUEST', None):
+            request.REQUEST = request.GET if request.method=='GET' else request.POST
+
+        queryset = self.model.objects.filter(agent=agent)
 
         return queryset

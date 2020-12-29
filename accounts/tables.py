@@ -3,19 +3,6 @@ from django.utils.html import escape
 
 from .models import *
 """
-class AgentList(BaseDatatableView):
-    
-    Agent_view = tables.LinkColumn('agent_page', text="View", args=[A("id")])
-
-    class Meta:
-        model = Agent
-        fields = ["user", "user.first_name", "user.last_name", "user.email", "team_id", "team_id.department_id", "Agent_view"]
-        attrs = {"class": "table table-sm"}
-        orderable = False
-    
-    model = Agent
-
-
 class AgentContactsTable(BaseDatatableView):
 
     contact_id__contact_date = tables.DateTimeColumn(format = 'N j, Y', footer="")

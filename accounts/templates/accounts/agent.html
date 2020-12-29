@@ -4,35 +4,33 @@
 
 {% include 'accounts/statistics.html' %}
 
-<!--
-<div class="row">
-    <div class="col">
-        <hr>
-        <p class="filter_btn">
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAgentFilter" aria-expanded="false" aria-controls="collapseAgentFilter">
-                Filters
-            </button>
-          </p>
-        <div class="collapse" id="collapseAgentFilter">
-            <div class="card card-body">
-                <form method="GET">
-                    {{ myFilter.form.as_p }}
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
--->
-
 <div class="row">
     <div class="col-md">
         <div class="card card-body">
 
-            {% render_table report_table %}
+            <table id="agent_contact_sessions" class="table table-sm">
+            </table>
 
         </div>
     </div>
 </div>
+
+<script language="javascript">
+    $(document).ready(function() {
+
+        AjaxDatatableViewUtils.initialize_table(
+            $('#agent_contact_sessions'),
+            "{% url 'ajax_agent_contact_sessions' %}",
+            {
+                processing: false,
+                autoWidth: false,
+                full_row_select: false,
+                scrollX: false
+            }, {
+                agent: "{{ agent }}",
+            },
+        );
+    });
+</script>
 
 {% endblock content %}
