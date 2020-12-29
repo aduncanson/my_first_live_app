@@ -1,5 +1,7 @@
-from ajax_datatable.views import AjaxDatatableView
 from django.contrib.auth.models import Permission, User
+from django.urls import reverse
+
+from ajax_datatable.views import AjaxDatatableView
 
 from .models import *
 
@@ -22,4 +24,6 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Agent Dashboard'] = '<a href="{% ''agent_page'' 1 %}">View</a>'
+        row['Agent Dashboard'] = '<a href="%s">View</a>' % (
+            reverse('agent_page', args=(obj.id,))
+        )
