@@ -49,13 +49,17 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     column_defs = [
         {'name': 'contact_date', 'visible': True, },
         {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
+        {'name': 'Demo', 'visible': True, 'searchable': False, },
     ]
+
+    def customize_row(self, row, obj):
+        row['Demo'] = '<b>' + agent + '</b>'
 
     def get_initial_queryset(self, request=None):
 
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
-        queryset = self.model.objects.filter(agent_id=agent)
+        queryset = self.model.objects.filter()
 
         return queryset
