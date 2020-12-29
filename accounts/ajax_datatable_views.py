@@ -56,6 +56,6 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
-        queryset = self.model.objects.filter(agent=agent)
+        queryset = self.model.objects.filter(agent=1)
 
         return queryset
