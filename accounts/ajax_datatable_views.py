@@ -20,3 +20,6 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         {'name': 'Department', 'foreign_field': 'team_id__department_id__department_name', 'visible': True, },
         AjaxDatatableView.render_row_tools_column_def(),
     ]
+
+    def render_row_details(self, pk, request=None):
+        return "test"
