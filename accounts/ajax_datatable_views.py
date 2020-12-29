@@ -50,6 +50,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         {'name': 'contact_date', 'visible': True, },
         {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
         {'name': 'Demo', 'visible': True, 'searchable': False, },
+        {'name': 'Agent', 'visible': True, 'searchable': False, },
     ]
 
     def customize_row(self, row, obj):
