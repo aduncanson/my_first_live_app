@@ -51,7 +51,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     search_values_separator = '+'
 
     column_defs = [
-        {'name': 'contact_id_id', 'visible': True, },
+        {'name': 'contact_id', 'visible': True, },
     ]
 
     def get_initial_queryset(self, request=None):
