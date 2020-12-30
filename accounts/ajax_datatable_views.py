@@ -61,13 +61,6 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
         queryset = self.model.objects.filter(contact_id_id__agent=request.REQUEST.get('agent')).values(
             "contact_id",
-            "contact_id__contact_date",
-            "contact_id__contact_session_id__call_start_time",
-            "contact_id__contact_session_id__wrap_up_duration",
-            "contact_id__contact_session_id__call_end_time",
-            "contact_id__call_outcome",
-            "contact_id__wrap_up_notes",
         )
 
         return queryset
-
