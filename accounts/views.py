@@ -191,7 +191,6 @@ def agentPage(request, pk):
         ).annotate(
             call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time'),
         )
-    )
 
     context = {
         "title": title,
