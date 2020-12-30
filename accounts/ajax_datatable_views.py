@@ -55,6 +55,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         {'name': 'contact_date', 'visible': True, },
         {'name': 'call_outcome', 'visible': True, },
         {'name': 'wrap_up_notes', 'visible': True, },
+        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id__brand_name', 'visible': True, },
     ]
 
     def get_initial_queryset(self, request=None):
