@@ -2,6 +2,7 @@ from django.contrib.auth.models import Permission, User
 from django.urls import reverse
 from django.db.models import *
 from django.contrib.postgres.aggregates import *
+from django.utils import dateparse
 
 from ajax_datatable.views import AjaxDatatableView
 
@@ -61,7 +62,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Call Time'] = obj.call_time
+        row['Call Time'] = dateparse.parse_datetime(obj.call_time)
 
     def get_initial_queryset(self, request=None):
 
