@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-{{ table_model }}
+
 <script language="javascript">
     $(document).ready(function() {
 
@@ -27,7 +27,8 @@
                 full_row_select: false,
                 scrollX: false
             }, {
-                agent: "{{ agent }}",
+                agent: "{{ table_model }}",
+                table_model: "{{ table_model }}",
             },
         );
     });

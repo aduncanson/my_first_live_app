@@ -52,16 +52,18 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     column_defs = [
         {'name': 'contact_id_id', 'visible': True, },
-        {'name': 'count', 'visible': True, },
+        {'name': 'call_time', 'visible': True, },
     ]
 
     def get_initial_queryset(self, request=None):
 
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
-
+        """
         queryset = self.model.objects.filter(contact_id_id__agent=request.REQUEST.get('agent')).values(
             "contact_id_id",
-        ).annotate(count=Count("req_service_id"))
+        ).annotate(count=Count("req_service_id"))"""
+
+        queryset = request.REQUEST.get('table_model')
 
         return queryset
