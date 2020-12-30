@@ -61,7 +61,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Call Time'] = row['contact_date']
+        row['Call Time'] = type(row['contact_date'])
 
     def get_initial_queryset(self, request=None):
 
