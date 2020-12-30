@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Permission, User
 from django.urls import reverse
-from django.db.models import F, Func
+from django.db.models import *
 from django.contrib.postgres.aggregates import *
 
 from ajax_datatable.views import AjaxDatatableView
@@ -69,7 +69,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
         queryset = self.model.objects.filter(agent=request.REQUEST.get('agent')).annotate(
-            call_time=Func(F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time'), function="age")
+            call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
             )
 
         return queryset
