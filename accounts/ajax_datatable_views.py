@@ -46,12 +46,12 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     model = ReqService
     title = 'ReqService'
-    initial_order = [["contact_id_id", "asc"], ]
+    initial_order = [["req_service_id", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
 
     column_defs = [
-        {'name': 'contact_id_id', 'visible': True, },
+        {'name': 'req_service_id', 'visible': True, },
         {'name': 'count', 'visible': True, },
     ]
 
@@ -61,7 +61,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
         queryset = self.model.objects.filter(contact_id_id__agent=request.REQUEST.get('agent')).values(
-            "contact_id_id",
+            "req_service_id",
         ).annotate(count=Count("req_service_id"))
 
         return queryset
