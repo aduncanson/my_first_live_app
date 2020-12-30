@@ -52,7 +52,6 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     column_defs = [
         {'name': 'contact_id_id', 'visible': True, },
-        {'name': 'call_time', 'visible': True, },
     ]
 
     def get_initial_queryset(self, request=None):
