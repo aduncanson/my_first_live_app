@@ -46,7 +46,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     model = ReqService
     title = 'ReqService'
-    initial_order = [["contact_id_id", "asc"], ]
+    initial_order = [["contact_id", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
 
