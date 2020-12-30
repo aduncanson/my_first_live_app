@@ -59,9 +59,9 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         {'name': 'Call End Time', 'foreign_field': 'contact_session_id__call_end_time', 'visible': True, },
         {'name': 'call_outcome', 'visible': True, },
         {'name': 'wrap_up_notes', 'visible': True, },
-        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
         {'name': 'Call Type', 'foreign_field': 'contact_session_id__call_type', 'visible': True, },
         {'name': 'Dialled', 'foreign_field': 'contact_session_id__dialled', 'visible': True, },
+        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
         {'name': 'Comments', 'visible': True, },
     ]
 
