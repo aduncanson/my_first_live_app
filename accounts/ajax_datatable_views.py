@@ -46,28 +46,33 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     model = ClientContact
     title = 'ClientContact'
-    initial_order = [["contact_id", "asc"], ]
+    initial_order = [["contact_date", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
 
     column_defs = [
         {'name': 'contact_id', 'visible': True, },
         {'name': 'contact_date', 'visible': True, },
-        {'name': 'Call Start', 'foreign_field': 'contact_session_id__call_start_time', 'visible': True, },
+        {'name': 'Call Time', 'visible': True, },
+        {'name': 'Call Start Time', 'foreign_field': 'contact_session_id__call_start_time', 'visible': True, },
         {'name': 'Wrap Up Duration', 'foreign_field': 'contact_session_id__wrap_up_duration', 'visible': True, },
-        {'name': 'Call End', 'foreign_field': 'contact_session_id__call_end_time', 'visible': True, },
-        {'name': 'Call Type', 'foreign_field': 'contact_session_id__call_type', 'visible': True, },
-        {'name': 'Dialled', 'foreign_field': 'contact_session_id__dialled', 'visible': True, },
+        {'name': 'Call End Time', 'foreign_field': 'contact_session_id__call_end_time', 'visible': True, },
         {'name': 'call_outcome', 'visible': True, },
         {'name': 'wrap_up_notes', 'visible': True, },
-        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id__brand_name', 'visible': True, },
+        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
+        {'name': 'Comments', 'visible': True, },
     ]
+
+    def customize_row(self, row, obj):
+        row['Call Time'] = str(obj.call_time)
 
     def get_initial_queryset(self, request=None):
 
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
-        queryset = self.model.objects.filter(agent=request.REQUEST.get('agent'))
+        queryset = self.model.objects.filter(agent=request.REQUEST.get('agent')).annotate(
+            call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
+            )
 
         return queryset
