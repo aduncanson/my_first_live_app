@@ -59,19 +59,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
-        queryset = self.model.objects.filter(contact_id_id__agent=request.REQUEST.get('agent')).values(
-            "contact_id_id",
-            "contact_id_id__contact_date",
-            "contact_id_id__contact_session_id_id__call_start_time",
-            "contact_id_id__contact_session_id_id__wrap_up_duration",
-            "contact_id_id__contact_session_id_id__call_end_time",
-            "contact_id_id__call_outcome",
-            "contact_id_id__wrap_up_notes",
-        ).annotate(
-            call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time'),
-            comments=ArrayAgg('comments', ordering=("c")),
-            services=ArrayAgg('service_type_id_id__service_type_name', ordering=("req_service_id")),
-        )
+        queryset = self.model.objects.filter(contact_id_id__agent=request.REQUEST.get('agent'))
 
         return queryset
 
