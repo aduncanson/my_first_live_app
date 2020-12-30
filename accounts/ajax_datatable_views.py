@@ -64,7 +64,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         ).annotate(count=Count("req_service_id"))"""
 
         queryset = ReqService.objects.filter(
-            contact_id_id__agent_id=agent.user).values(
+            contact_id_id__agent_id=request.REQUEST.get('agent').user).values(
                 "contact_id",
                 "contact_id__contact_date",
                 "contact_id__contact_session_id__call_start_time",
