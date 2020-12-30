@@ -5,9 +5,16 @@ from django.contrib.postgres.aggregates import *
 from django.utils import dateparse
 
 from ajax_datatable.views import AjaxDatatableView
-import datetime
+from datetime import date, datetime, time, timedelta
+from pydantic import BaseModel
 
 from .models import *
+
+class tdToDate(BaseModel):
+    d: date = None
+    dt: datetime = None
+    t: time = None
+    td: timedelta = None
 
 class AgentListAjaxDatatableView(AjaxDatatableView):
 
@@ -63,7 +70,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Call Time'] = datetime.timedelta(timedelta=obj.call_time)
+        row['Call Time'] = tdToDate(td=obj.call_time).dict()
 
     def get_initial_queryset(self, request=None):
 
