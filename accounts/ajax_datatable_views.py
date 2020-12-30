@@ -61,7 +61,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
         queryset = self.model.objects.filter(contact_id_id__agent=request.REQUEST.get('agent')).values(
-            "contact_id",
+            "contact_id_id",
         ).annotate(count=Count("req_service_id"))
 
         return queryset
