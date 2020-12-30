@@ -46,12 +46,12 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     model = ReqService
     title = 'ReqService'
-    initial_order = [["contact_id", "asc"], ]
+    initial_order = [["contact_id_id", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
 
     column_defs = [
-        {'name': 'contact_id', 'visible': True, },
+        {'name': 'contact_id_id', 'visible': True, },
     ]
 
     def get_initial_queryset(self, request=None):
@@ -60,7 +60,13 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
         queryset = self.model.objects.filter(contact_id_id__agent=request.REQUEST.get('agent')).values(
-            "contact_id_id",
+            "contact_id",
+            "contact_id__contact_date",
+            "contact_id__contact_session_id__call_start_time",
+            "contact_id__contact_session_id__wrap_up_duration",
+            "contact_id__contact_session_id__call_end_time",
+            "contact_id__call_outcome",
+            "contact_id__wrap_up_notes",
         )
 
         return queryset
