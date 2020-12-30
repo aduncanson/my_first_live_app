@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Permission, User
 from django.urls import reverse
-from django.db.models import *
+from django.db.models import fields, ExpressionWrapper, F
 from django.contrib.postgres.aggregates import *
 
 from ajax_datatable.views import AjaxDatatableView
