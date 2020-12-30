@@ -74,7 +74,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         )
 
         row['Call Time'] = str(obj.call_time)
-        row['Comments'] = "<br>".join(service_model.comments)
+        row['Comments'] = service_model
 
     def get_initial_queryset(self, request=None):
 
