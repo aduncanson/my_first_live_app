@@ -6,15 +6,8 @@ from django.utils import dateparse
 
 from ajax_datatable.views import AjaxDatatableView
 from datetime import date, datetime, time, timedelta
-from pydantic import BaseModel
 
 from .models import *
-
-class tdToDate(BaseModel):
-    d: date = None
-    dt: datetime = None
-    t: time = None
-    td: timedelta = None
 
 class AgentListAjaxDatatableView(AjaxDatatableView):
 
@@ -70,7 +63,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['contact_date'] = obj.contact_date.dict()
+        row['contact_date'] = obj.contact_date
         row['Call Time'] = str(obj.call_time)
 
     def get_initial_queryset(self, request=None):
