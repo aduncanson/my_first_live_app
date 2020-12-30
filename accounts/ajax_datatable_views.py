@@ -44,7 +44,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     model = ClientContact
     title = 'ClientContact'
-    initial_order = [["Call Time", "asc"], ]
+    initial_order = [["contact_date", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
 
