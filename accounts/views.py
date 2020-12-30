@@ -187,7 +187,7 @@ def agentPage(request, pk):
             "contact_id__wrap_up_notes",
         ).annotate(
             comments=ArrayAgg('comments', ordering=("req_service_id")),
-            services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id"),
+            services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
         ).annotate(
             call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time'),
         )
