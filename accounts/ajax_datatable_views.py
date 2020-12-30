@@ -63,6 +63,20 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             "contact_id_id",
         ).annotate(count=Count("req_service_id"))"""
 
-        queryset = request.REQUEST.get('table_model')
+        queryset = ReqService.objects.filter(
+            contact_id_id__agent_id=agent.user).values(
+                "contact_id",
+                "contact_id__contact_date",
+                "contact_id__contact_session_id__call_start_time",
+                "contact_id__contact_session_id__wrap_up_duration",
+                "contact_id__contact_session_id__call_end_time",
+                "contact_id__call_outcome",
+                "contact_id__wrap_up_notes",
+            ).annotate(
+                comments=ArrayAgg('comments', ordering=("req_service_id")),
+                services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
+            ).annotate(
+                call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time'),
+            )
 
         return queryset
