@@ -176,6 +176,22 @@ def agentPage(request, pk):
 
     title = "User Page"
 
+    table_model = ReqService.objects.filter(
+        contact_id_id__agent_id=agent.user).values(
+            "contact_id",
+            "contact_id__contact_date",
+            "contact_id__contact_session_id__call_start_time",
+            "contact_id__contact_session_id__wrap_up_duration",
+            "contact_id__contact_session_id__call_end_time",
+            "contact_id__call_outcome",
+            "contact_id__wrap_up_notes",
+        ).annotate(
+            comments=ArrayAgg('comments', ordering=("req_service_id")),
+            services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id"),
+            call_time=F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time'),
+        )
+    )
+
     context = {
         "title": title,
         "calls_today_count": 100,
@@ -184,6 +200,7 @@ def agentPage(request, pk):
         "ranged_count": 2,
         "oversessing": True,
         "agent": agent,
+        "table_model": table_model,
     }
 
     return render(request, 'accounts/agent.html', context)
