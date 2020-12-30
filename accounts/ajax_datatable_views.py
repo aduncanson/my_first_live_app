@@ -69,7 +69,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
         queryset = self.model.objects.filter(agent=request.REQUEST.get('agent')).annotate(
-            call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
+            call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')[0]
             )
 
         return queryset
