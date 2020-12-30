@@ -54,10 +54,6 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         {'name': 'contact_id_id', 'visible': True, },
     ]
 
-    def customize_row(self, row, obj):
-        row['Call Time'] = str(obj.call_time)
-        row['Comments'] = "sdv"
-
     def get_initial_queryset(self, request=None):
 
         if not getattr(request, 'REQUEST', None):
