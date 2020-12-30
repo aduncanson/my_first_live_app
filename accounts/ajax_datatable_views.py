@@ -60,10 +60,12 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         {'name': 'call_outcome', 'visible': True, },
         {'name': 'wrap_up_notes', 'visible': True, },
         {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
+        {'name': 'Comments', 'visible': True, },
     ]
 
     def customize_row(self, row, obj):
         row['Call Time'] = str(obj.call_time)
+        row['Comments'] = "sdv"
 
     def get_initial_queryset(self, request=None):
 
