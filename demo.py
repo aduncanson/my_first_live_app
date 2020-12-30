@@ -17,4 +17,4 @@ m = Model(
 )
 
 #print(m.dict())
-print(m.td)
+print(m.td.seconds)
