@@ -61,15 +61,13 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Call Time'] = obj.call_time.getFullYear()
+        row['Call Time'] = obj.contact_session_id__call_start_time
 
     def get_initial_queryset(self, request=None):
 
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
-        queryset = self.model.objects.filter(agent=request.REQUEST.get('agent')).annotate(
-            call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
-            )
+        queryset = self.model.objects.filter(agent=request.REQUEST.get('agent'))
 
         return queryset
