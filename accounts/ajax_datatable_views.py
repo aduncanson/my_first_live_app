@@ -6,7 +6,6 @@ from django.contrib.postgres.aggregates import *
 from ajax_datatable.views import AjaxDatatableView
 
 from .models import *
-from datetime import *
 
 class AgentListAjaxDatatableView(AjaxDatatableView):
 
@@ -62,7 +61,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        row['Call Time'] = obj.call_time.getDate()
+        row['Call Time'] = obj.call_time
 
     def get_initial_queryset(self, request=None):
 
