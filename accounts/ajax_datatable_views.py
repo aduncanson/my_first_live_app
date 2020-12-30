@@ -53,6 +53,11 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     column_defs = [
         {'name': 'contact_id', 'visible': True, },
         {'name': 'contact_date', 'visible': True, },
+        {'name': 'Call Start', 'foreign_field': 'contact_session_id__call_start_time', 'visible': True, },
+        {'name': 'Wrap Up Duration', 'foreign_field': 'contact_session_id__wrap_up_duration', 'visible': True, },
+        {'name': 'Call End', 'foreign_field': 'contact_session_id__call_end_time', 'visible': True, },
+        {'name': 'Call Type', 'foreign_field': 'contact_session_id__call_type', 'visible': True, },
+        {'name': 'Dialled', 'foreign_field': 'contact_session_id__dialled', 'visible': True, },
         {'name': 'call_outcome', 'visible': True, },
         {'name': 'wrap_up_notes', 'visible': True, },
         {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id__brand_name', 'visible': True, },
