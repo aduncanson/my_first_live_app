@@ -46,12 +46,12 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
     model = ReqService
     title = 'ReqService'
-    initial_order = [["contact_id_id", "asc"], ]
+    initial_order = [["contact_id", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
 
     column_defs = [
-        {'name': 'contact_id_id', 'visible': True, },
+        {'name': 'contact_id', 'visible': True, },
     ]
 
     def get_initial_queryset(self, request=None):
