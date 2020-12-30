@@ -44,8 +44,8 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
 
 class AgentContactsAjaxDatatableView(AjaxDatatableView):
 
-    model = ReqService
-    title = 'ReqService'
+    model = ClientContact
+    title = 'ClientContact'
     initial_order = [["contact_id_id", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
@@ -59,6 +59,6 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         if not getattr(request, 'REQUEST', None):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
-        queryset = self.model.objects.filter(contact_id_id__agent=request.REQUEST.get('agent'))
+        queryset = self.model.objects.filter(agent=request.REQUEST.get('agent'))
 
         return queryset
