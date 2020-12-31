@@ -70,10 +70,10 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             "contact_id"
         ).annotate(
             comments=ArrayAgg('comments', ordering=("req_service_id")),
-        ).count()
+        )
 
         row['Call Time'] = str(obj.call_time)
-        row['Comments'] = service_model
+        row['Comments'] = [p.comments for p in service_model]
 
     def get_initial_queryset(self, request=None):
 
