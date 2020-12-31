@@ -73,10 +73,9 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             comments=ArrayAgg('comments', ordering=("req_service_id")),
             services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
         )
-        comments = service_model.values("comments")
 
         row['Call Time'] = str(obj.call_time)
-        row['Comments'] = comments
+        row['Comments'] = str(service_model)
         row['Services'] = service_model.count()
 
     def get_initial_queryset(self, request=None):
