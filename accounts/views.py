@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.db.models import *
 
+from django.utils.safestring import mark_safe
+
 # my django imports
 from .models import *
 from .forms import *
@@ -191,7 +193,7 @@ def agentPage(request, pk):
         "ranged_count": 2,
         "oversessing": True,
         "agent": agent,
-        "service_model": "<br>".join(service_model.values("comments")[0]["comments"]),
+        "service_model": mark_safe("<br>".join(service_model.values("comments")[0]["comments"])),
     }
 
     return render(request, 'accounts/agent.html', context)
