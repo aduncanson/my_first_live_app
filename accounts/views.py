@@ -176,6 +176,13 @@ def agentPage(request, pk):
 
     title = "User Page"
 
+    service_model = ReqService.objects.filter(contact_id_id=obj.contact_id).values(
+        "contact_id"
+    ).annotate(
+        comments=ArrayAgg('comments', ordering=("req_service_id")),
+        services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
+    )
+
     context = {
         "title": title,
         "calls_today_count": 100,
@@ -184,6 +191,7 @@ def agentPage(request, pk):
         "ranged_count": 2,
         "oversessing": True,
         "agent": agent,
+        "service_model": service_model,
     }
 
     return render(request, 'accounts/agent.html', context)
