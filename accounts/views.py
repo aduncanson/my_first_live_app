@@ -191,7 +191,7 @@ def agentPage(request, pk):
         "ranged_count": 2,
         "oversessing": True,
         "agent": agent,
-        "service_model": service_model.values("comments")["comments"],
+        "service_model": service_model.values("comments")[0][0],
     }
 
     return render(request, 'accounts/agent.html', context)
