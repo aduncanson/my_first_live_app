@@ -9,6 +9,7 @@
         <div class="card card-body">
 
             <table id="agent_contact_sessions" class="table table-sm">
+                {% include 'accounts/tables/agent_contact_sessions.html' %}
             </table>
 
         </div>
@@ -19,7 +20,7 @@
     $(document).ready(function() {
 
         AjaxDatatableViewUtils.initialize_table(
-            $('#agent_contact_sessions'),
+            $('#agent_contact_sessions1'),
             "{% url 'ajax_agent_contact_sessions' %}",
             {
                 processing: false,
