@@ -59,6 +59,10 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         {'name': 'Wrap Up Duration', 'foreign_field': 'contact_session_id__wrap_up_duration', 'visible': True, },
         {'name': 'Call End Time', 'foreign_field': 'contact_session_id__call_end_time', 'visible': True, },
         {'name': 'call_outcome', 'visible': True, },
+        {'name': 'wrap_up_notes', 'visible': True, },
+        {'name': 'Call Type', 'foreign_field': 'contact_session_id__call_type', 'visible': True, },
+        {'name': 'Dialled', 'foreign_field': 'contact_session_id__dialled', 'visible': True, },
+        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
         {'name': 'Comments', 'visible': True, },
         {'name': 'Services', 'visible': True, },
     ]
@@ -75,7 +79,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             if value.count() == 0:
                 return ""
             else:
-                return mark_safe("&#013;".join(value[0][field]))
+                return mark_safe("<br>".join(value[0][field]))
 
         row['Call Time'] = str(obj.call_time)
         row['Comments'] = return_val(service_model.values("comments"), "comments")
