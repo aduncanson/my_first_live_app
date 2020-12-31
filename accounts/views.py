@@ -181,8 +181,8 @@ def agentPage(request, pk):
     table = ReqService.objects.filter(contact_id__agent=agent.user).values(
         "contact_id"
     ).annotate(
-        comments=mark_safe("<br>".join(ArrayAgg('comments', ordering=("req_service_id")))),
-        services=mark_safe("<br>".join(ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")))),
+        comments=ArrayAgg('comments', ordering=("req_service_id")),
+        services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
         call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
     )
 
