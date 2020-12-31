@@ -76,7 +76,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         )
 
         row['Call Time'] = str(obj.call_time)
-        row['Comments'] = mark_safe("<br>".join(service_model.values("comments")[0]["comments"]))
+        row['Comments'] = "gfd"
         row['Services'] = obj.contact_id
 
     def get_initial_queryset(self, request=None):
