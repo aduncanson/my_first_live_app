@@ -25,14 +25,18 @@
                 processing: false,
                 autoWidth: true,
                 full_row_select: false,
-                scrollX: false,
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
+                scrollX: false
             }, {
                 agent: "{{ agent }}",
             },
         );
+
+        $('#agent_contact_sessions').DataTable().button().add( 0, {
+        action: function ( e, dt, button, config ) {
+            alert(111);
+        },
+        text: 'Reload table'
+    } );
     });
 </script>
 
