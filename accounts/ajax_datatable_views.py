@@ -63,6 +63,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         {'name': 'Dialled', 'foreign_field': 'contact_session_id__dialled', 'visible': True, },
         {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
         {'name': 'Comments', 'visible': True, },
+        {'name': 'Services', 'visible': True, },
     ]
 
     def customize_row(self, row, obj):
@@ -70,10 +71,12 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             "contact_id"
         ).annotate(
             comments=ArrayAgg('comments', ordering=("req_service_id")),
+            services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
         )
 
         row['Call Time'] = str(obj.call_time)
         row['Comments'] = service_model.count()
+        row['Services'] = service_model.count()
 
     def get_initial_queryset(self, request=None):
 
