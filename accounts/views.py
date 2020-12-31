@@ -8,8 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.db.models import *
 
-from django.utils.safestring import mark_safe
-
 # my django imports
 from .models import *
 from .forms import *
@@ -178,13 +176,6 @@ def agentPage(request, pk):
 
     title = "User Page"
 
-    service_model = ReqService.objects.filter(contact_id_id=769).values(
-        "contact_id"
-    ).annotate(
-        comments=ArrayAgg('comments', ordering=("req_service_id")),
-        services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
-    )
-
     context = {
         "title": title,
         "calls_today_count": 100,
@@ -193,7 +184,6 @@ def agentPage(request, pk):
         "ranged_count": 2,
         "oversessing": True,
         "agent": agent,
-        "service_model": mark_safe("<br>".join(service_model.values("comments")[0]["comments"])),
     }
 
     return render(request, 'accounts/agent.html', context)

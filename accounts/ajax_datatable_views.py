@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.db.models import *
 from django.contrib.postgres.aggregates import *
 from django.utils import dateparse
+from django.utils.safestring import mark_safe
 
 from ajax_datatable.views import AjaxDatatableView
 from datetime import date, datetime, time, timedelta
@@ -75,7 +76,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         )
 
         row['Call Time'] = str(obj.call_time)
-        row['Comments'] = str(service_model.values("comments"))
+        row['Comments'] = mark_safe("<br>".join(service_model.values("comments")[0]["comments"]))
         row['Services'] = service_model.count()
 
     def get_initial_queryset(self, request=None):
