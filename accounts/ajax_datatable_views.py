@@ -79,7 +79,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             if value.count() == 0:
                 return ""
             else:
-                return mark_safe("<br>".join(value[0][field]))
+                return mark_safe("&#013;".join(value[0][field]))
 
         row['Call Time'] = str(obj.call_time)
         row['Comments'] = return_val(service_model.values("comments"), "comments")
