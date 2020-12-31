@@ -75,15 +75,15 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
         )
 
-        def return_val(value):
+        def return_val(value, field):
             if value.count() == 0:
                 return ""
             else:
-                return mark_safe("<br>".join(value[0]["comments"]))
+                return mark_safe("<br>".join(value[0][field]))
 
         row['Call Time'] = str(obj.call_time)
-        row['Comments'] = return_val(service_model.values("comments"))
-        row['Services'] = return_val(service_model.values("services"))
+        row['Comments'] = return_val(service_model.values("comments"), "comments")
+        row['Services'] = return_val(service_model.values("services"), "services")
 
     def get_initial_queryset(self, request=None):
 
