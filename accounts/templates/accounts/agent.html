@@ -17,18 +17,7 @@
 <script language="javascript">
     $(document).ready(function() {
 
-        AjaxDatatableViewUtils.initialize_table(
-            $('#agent_contact_sessions1'),
-            "{% url 'ajax_agent_contact_sessions' %}",
-            {
-                processing: false,
-                autoWidth: true,
-                full_row_select: false,
-                scrollX: false
-            }, {
-                agent: "{{ agent }}",
-            },
-        );
+        $('#agent_contact_sessions').DataTable();
 
     });
 </script>
