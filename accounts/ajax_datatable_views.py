@@ -75,7 +75,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
             services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
         )
 
-        def return_val(self, value):
+        def return_val(value):
             if value.count() == 0:
                 return ""
             else:
