@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.db.models import *
 from django.contrib.postgres.aggregates import *
+from django.utils.safestring import mark_safe
 
 # my django imports
 from .models import *
@@ -180,8 +181,8 @@ def agentPage(request, pk):
     table = ReqService.objects.filter(contact_id__agent=agent.user).values(
         "contact_id"
     ).annotate(
-        comments=ArrayAgg('comments', ordering=("req_service_id")),
-        services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
+        comments=mark_safe("<br>".join(ArrayAgg('comments', ordering=("req_service_id")))),
+        services=mark_safe("<br>".join(ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")))),
         call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
     )
 
