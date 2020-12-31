@@ -66,7 +66,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        service_model = ReqService.objects.filter(contact_id_id=obj.contact_id).count()
+        service_model = ReqService.objects.filter(contact_id_id=obj.contact_id)
 
         row['Call Time'] = str(obj.call_time)
         row['Comments'] = service_model
