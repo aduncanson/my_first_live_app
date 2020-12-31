@@ -62,7 +62,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
         {'name': 'wrap_up_notes', 'visible': True, },
         {'name': 'Call Type', 'foreign_field': 'contact_session_id__call_type', 'visible': True, },
         {'name': 'Dialled', 'foreign_field': 'contact_session_id__dialled', 'visible': True, },
-        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id', 'visible': True, },
+        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id__brand_name', 'visible': True, },
         {'name': 'Comments', 'visible': True, },
         {'name': 'Services', 'visible': True, },
     ]
