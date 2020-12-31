@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.db.models import *
+from django.contrib.postgres.aggregates import *
 
 # my django imports
 from .models import *
