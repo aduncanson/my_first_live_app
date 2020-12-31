@@ -176,7 +176,9 @@ def agentPage(request, pk):
 
     title = "User Page"
 
-    table = ReqService.objects.filter(contact_id__agent=agent.user)
+    table = ReqService.objects.filter(contact_id__agent=agent.user).annotate(
+        call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
+    )
 
     context = {
         "title": title,
