@@ -68,7 +68,7 @@ class AgentContactsAjaxDatatableView(AjaxDatatableView):
     ]
 
     def customize_row(self, row, obj):
-        service_model = ReqService.objects.filter(contact_id_id=769).values(
+        service_model = ReqService.objects.filter(contact_id_id=row['contact_id']).values(
             "contact_id"
         ).annotate(
             comments=ArrayAgg('comments', ordering=("req_service_id")),
