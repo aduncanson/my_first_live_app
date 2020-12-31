@@ -176,6 +176,8 @@ def agentPage(request, pk):
 
     title = "User Page"
 
+    table = ReqService.objects.filter(agent=agent)
+
     context = {
         "title": title,
         "calls_today_count": 100,
@@ -184,6 +186,7 @@ def agentPage(request, pk):
         "ranged_count": 2,
         "oversessing": True,
         "agent": agent,
+        "table": table,
     }
 
     return render(request, 'accounts/agent.html', context)
