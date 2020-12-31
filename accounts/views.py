@@ -176,7 +176,7 @@ def agentPage(request, pk):
 
     title = "User Page"
 
-    table = ReqService.objects.filter(agent=agent)
+    table = ReqService.objects.filter(contact_id__agent=agent)
 
     context = {
         "title": title,
