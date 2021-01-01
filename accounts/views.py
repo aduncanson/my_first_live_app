@@ -179,7 +179,8 @@ def agentPage(request, pk):
     title = "User Page"
 
     table = ReqService.objects.filter(contact_id__agent=agent.user).values(
-        "contact_id_id",
+        "contact_id",
+        "contact_id__contact_date",
     ).annotate(
         comments=ArrayAgg('comments', ordering=("req_service_id")),
         services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
