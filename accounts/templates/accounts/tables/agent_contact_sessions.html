@@ -14,7 +14,7 @@
         <tr>
             <td>{{ row.contact_id }}</td>
             <td>{{ row.contact_id__contact_date|date:"N j, Y" }}</td>
-            <td>{{ row.call_time }}</td>
+            <td>{{ row.call_time|time"G:i:s" }}</td>
             <td>{{ row.comments|join:"<br>" }}</td>
             <td>{{ row.services|join:"<br>" }}</td>
         </tr>
