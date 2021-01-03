@@ -13,7 +13,7 @@ from .models import *
 class AgentListAjaxDatatableView(AjaxDatatableView):
 
     model = Agent
-    title = 'Agent'
+    title = 'Agent List'
     initial_order = [["Username", "asc"], ]
     length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
     search_values_separator = '+'
@@ -39,59 +39,5 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
             request.REQUEST = request.GET if request.method=='GET' else request.POST
 
         queryset = self.model.objects.filter(user__is_superuser=False)
-
-        return queryset
-
-
-class AgentContactsAjaxDatatableView(AjaxDatatableView):
-
-    model = ClientContact
-    title = 'ClientContact'
-    initial_order = [["contact_date", "asc"], ]
-    length_menu = [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'all']]
-    search_values_separator = '+'
-
-    column_defs = [
-        {'name': 'contact_id', 'visible': True, },
-        {'name': 'contact_date', 'visible': True, },
-        {'name': 'Call Time', 'visible': True, 'orderable': True, 'searchable': True, },
-        {'name': 'Call Start Time', 'foreign_field': 'contact_session_id__call_start_time', 'visible': True, },
-        {'name': 'Wrap Up Duration', 'foreign_field': 'contact_session_id__wrap_up_duration', 'visible': True, },
-        {'name': 'Call End Time', 'foreign_field': 'contact_session_id__call_end_time', 'visible': True, },
-        {'name': 'call_outcome', 'visible': True, },
-        {'name': 'wrap_up_notes', 'visible': True, },
-        {'name': 'Call Type', 'foreign_field': 'contact_session_id__call_type', 'visible': True, },
-        {'name': 'Dialled', 'foreign_field': 'contact_session_id__dialled', 'visible': True, },
-        {'name': 'Brand', 'foreign_field': 'contact_session_id__brand_id__brand_name', 'visible': True, },
-        {'name': 'Comments', 'visible': True, },
-        {'name': 'Services', 'visible': True, },
-    ]
-
-    def customize_row(self, row, obj):
-        service_model = ReqService.objects.filter(contact_id_id=obj.contact_id).values(
-            "contact_id"
-        ).annotate(
-            comments=ArrayAgg('comments', ordering=("req_service_id")),
-            services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
-        )
-
-        def return_val(value, field):
-            if value.count() == 0:
-                return ""
-            else:
-                return mark_safe("<br>".join(value[0][field]))
-
-        row['Call Time'] = str(obj.call_time)
-        row['Comments'] = return_val(service_model.values("comments"), "comments")
-        row['Services'] = return_val(service_model.values("services"), "services")
-
-    def get_initial_queryset(self, request=None):
-
-        if not getattr(request, 'REQUEST', None):
-            request.REQUEST = request.GET if request.method=='GET' else request.POST
-
-        queryset = self.model.objects.filter(agent=request.REQUEST.get('agent')).annotate(
-            call_time=F('contact_session_id_id__call_end_time') - F('contact_session_id_id__call_start_time')
-            )
 
         return queryset
