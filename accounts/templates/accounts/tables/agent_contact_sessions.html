@@ -4,9 +4,17 @@
         <tr>
             <th>Contact ID</th>
             <th>Date</th>
+            <th>Call Dur.</th>
+            <th>Start Time</th>
+            <th>Wrap Up Dur.</th>
+            <th>End Time</th>
+            <th>Call Type</th>
+            <th>Dialled</th>
+            <th>Brand</th>
+            <th>Call Outcome</th>
+            <th>Wrap Up Notes</th>
             <th>Comments</th>
             <th>Services</th>
-            <th>Call Time</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +23,14 @@
             <td>{{ row.contact_id }}</td>
             <td>{{ row.contact_id__contact_date|date:"N j, Y" }}</td>
             <td>{{ row.call_time|time"G:i:s" }}</td>
+            <td>{{ row.contact_id__contact_session_id__call_start_time|time"g:i:s a" }}</td>
+            <td>{{ row.contact_id__contact_session_id__wrap_up_duration|time"G:i:s" }}</td>
+            <td>{{ row.contact_id__contact_session_id__call_end_time|time"g:i:s a" }}</td>
+            <td>{{ row.contact_id__contact_session_id__call_type }}</td>
+            <td>{{ row.contact_id__contact_session_id__dialled }}</td>
+            <td>{{ row.contact_id__contact_session_id__brand_id }}</td>
+            <td>{{ row.contact_id__call_outcome }}</td>
+            <td>{{ row.contact_id__wrap_up_notes }}</td>
             <td>{{ row.comments|join:"<br>" }}</td>
             <td>{{ row.services|join:"<br>" }}</td>
         </tr>
@@ -24,9 +40,17 @@
         <tr>
             <th>Contact ID</th>
             <th>Date</th>
+            <th>Call Dur.</th>
+            <th>Start Time</th>
+            <th>Wrap Up Dur.</th>
+            <th>End Time</th>
+            <th>Call Type</th>
+            <th>Dialled</th>
+            <th>Brand</th>
+            <th>Call Outcome</th>
+            <th>Wrap Up Notes</th>
             <th>Comments</th>
             <th>Services</th>
-            <th>Call Time</th>
         </tr>
     </tfoot>
 </table>
