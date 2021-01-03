@@ -178,7 +178,11 @@ def agentPage(request, pk):
 
     title = "User Page"
 
-    table = ReqService.objects.filter(contact_id__agent=agent.user).values(
+    table = ReqService.objects.filter(
+        contact_id__agent=agent.user,
+        contact_id__contact_date_gte=datetime(2020, 1, 1),
+        contact_id__contact_date_lte=datetime(2020, 1, 2),
+    ).values(
         "contact_id",
         "contact_id__contact_date",
         "contact_id__call_outcome",
