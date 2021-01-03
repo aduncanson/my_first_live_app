@@ -188,7 +188,7 @@ def agentPage(request, pk):
         "contact_id__contact_session_id__call_end_time",
         "contact_id__contact_session_id__call_type",
         "contact_id__contact_session_id__dialled",
-        "contact_id__contact_session_id__brand_id",
+        "contact_id__contact_session_id__brand_id__brand_name",
     ).annotate(
         comments=ArrayAgg('comments', ordering=("req_service_id")),
         services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
