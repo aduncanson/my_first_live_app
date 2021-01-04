@@ -41,7 +41,7 @@ def contact_reports(request, agent, start_date, end_date):
         contact_id__contact_session_id__brand_id__in=agent_search.brands.all()
     ).order_by("-call_time")
 
-    call_outcome_table = full_contact_table.values(
+    call_outcome_table = all_reqservices.values(
         "contact_id__call_outcome",
     ).annotate(
         count=Count("contact_id"),
@@ -57,7 +57,7 @@ def contact_reports(request, agent, start_date, end_date):
         )
     ).order_by("-count")
 
-    services_table = full_contact_table.values(
+    services_table = all_reqservices.values(
         "service_type_id__service_type_name",
     ).annotate(
         count=Count("req_service_id"),
