@@ -1,6 +1,6 @@
 {% load static %}
 
-<table id="agent_contact_sessions" class="table table-sm">
+<table id="criteria_contact_table" class="table table-sm">
     <thead>
         <tr>
             <th>Contact ID</th>
@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for row in table %}
+        {% for row in criteria_contact_table %}
         <tr>
             <td>{{ row.contact_id }}</td>
             <td>{{ row.contact_id__contact_date|date:"N j, Y" }}</td>
@@ -59,7 +59,7 @@
 <script language="javascript">
     $(document).ready(function() {
 
-        $('#agent_contact_sessions').DataTable();
+        $('#criteria_contact_table').DataTable();
 
     });
 </script>

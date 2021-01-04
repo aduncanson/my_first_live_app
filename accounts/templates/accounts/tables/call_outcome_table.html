@@ -1,0 +1,35 @@
+{% load static %}
+
+<table id="call_outcome_table" class="table table-sm">
+    <thead>
+        <tr>
+            <th>Call Outcome</th>
+            <th>Count</th>
+            <th>Count Criteria</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in call_outcome_table %}
+        <tr>
+            <td>{{ row.contact_id__call_outcome }}</td>
+            <td>{{ row.count }}</td>
+            <td>{{ row.count_criteria }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Call Outcome</th>
+            <th>Count</th>
+            <th>Count Criteria</th>
+        </tr>
+    </tfoot>
+</table>
+
+<script language="javascript">
+    $(document).ready(function() {
+
+        $('#call_outcome_table').DataTable();
+
+    });
+</script>
