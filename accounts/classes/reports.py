@@ -49,7 +49,7 @@ def contact_reports(request, agent, start_date, end_date):
     ).values(
         "contact_id__call_outcome"
     ).annotate(
-        count=Count("count2")
+        count=Count("contact_id")
     )
 
     content = {
