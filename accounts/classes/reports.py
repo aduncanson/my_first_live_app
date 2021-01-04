@@ -59,22 +59,6 @@ def contact_reports(request, agent, start_date, end_date):
         )
     ).order_by("-count")
 
-    services_table = all_reqservices.values(
-        "service_type_id__service_type_name",
-    ).annotate(
-        count=Count("req_service_id"),
-        count_criteria=Count(
-            Case(
-                When(
-                    call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
-                    contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
-                    then=1
-                    ),
-                output_field=IntegerField(),
-            )
-        )
-    ).order_by("-count")
-
     content = {
         "criteria_contact_table": criteria_contact_table,
         "call_outcome_table": call_outcome_table,
