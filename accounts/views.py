@@ -188,7 +188,7 @@ def agentPage(request, pk):
         "ranged_count": 2,
         "oversessing": True,
         "agent": agent,
-        "table": all_reports.criteria_contact_table,
+        "table": all_reports["criteria_contact_table"],
     }
 
     return render(request, 'accounts/agent.html', context)
