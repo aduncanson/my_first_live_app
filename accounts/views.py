@@ -176,28 +176,9 @@ def agentPage(request, pk):
         max=Max(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
     )"""
 
-    title = "User Page"
+    contact_reports = contact_reports(agent, datetime(2021, 1, 1), datetime(2021, 1, 2))
 
-    table = ReqService.objects.filter(
-        contact_id__agent=agent.user,
-        contact_id__contact_date__gte=datetime(2021, 1, 1),
-        contact_id__contact_date__lte=datetime(2021, 1, 2),
-    ).values(
-        "contact_id",
-        "contact_id__contact_date",
-        "contact_id__call_outcome",
-        "contact_id__wrap_up_notes",
-        "contact_id__contact_session_id__call_start_time",
-        "contact_id__contact_session_id__wrap_up_duration",
-        "contact_id__contact_session_id__call_end_time",
-        "contact_id__contact_session_id__call_type",
-        "contact_id__contact_session_id__dialled",
-        "contact_id__contact_session_id__brand_id__brand_name",
-    ).annotate(
-        comments=ArrayAgg('comments', ordering=("req_service_id")),
-        services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
-        call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
-    )
+    title = "User Page"
 
     context = {
         "title": title,
