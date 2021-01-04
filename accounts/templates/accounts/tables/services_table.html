@@ -1,0 +1,35 @@
+{% load static %}
+
+<table id="services_table" class="table table-sm">
+    <thead>
+        <tr>
+            <th>Service</th>
+            <th>Count</th>
+            <th>Count Criteria</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in services_table %}
+        <tr>
+            <td>{{ row.service_type_id__service_type_name }}</td>
+            <td>{{ row.full_count }}</td>
+            <td>{{ row.criteria_count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Service</th>
+            <th>Count</th>
+            <th>Count Criteria</th>
+        </tr>
+    </tfoot>
+</table>
+
+<script language="javascript">
+    $(document).ready(function() {
+
+        $('#services_table').DataTable();
+
+    });
+</script>
