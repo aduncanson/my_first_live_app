@@ -176,7 +176,7 @@ def agentPage(request, pk):
         max=Max(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
     )"""
 
-    contact_reports = contact_reports(agent, datetime(2021, 1, 1), datetime(2021, 1, 2))
+    all_reports = contact_reports(agent, datetime(2021, 1, 1), datetime(2021, 1, 2))
 
     title = "User Page"
 
