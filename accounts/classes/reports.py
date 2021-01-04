@@ -45,12 +45,8 @@ def contact_reports(request, agent, start_date, end_date):
         "contact_id",
         "contact_id__call_outcome"
     ).annotate(
-        count2=Count("req_service_id")
-    ).values(
-        "contact_id__call_outcome"
-    ).annotate(
-        count=Count("contact_id")
-    ).distinct()
+        count=Count("req_service_id")
+    )
 
     content = {
         "criteria_contact_table": criteria_contact_table,
