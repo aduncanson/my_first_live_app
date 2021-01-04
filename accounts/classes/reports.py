@@ -52,7 +52,7 @@ def contact_reports(request, agent, start_date, end_date):
         full_count=Count("contact_id", distinct=True),
         criteria_count=Case(
             When(
-                (F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'))__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
+                #call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
                 contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
                 then=1
                 ),
