@@ -47,21 +47,7 @@ def contact_reports(request, agent, start_date, end_date):
         "contact_id__contact_session_id__brand_id",
     ).annotate(
         call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
-    ).values(
-        "contact_id__call_outcome",
-    ).annotate(
-        count=Count("contact_id"),
-        count_criteria=Count(
-            Case(
-                When(
-                    call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
-                    contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
-                    then=1
-                    ),
-                output_field=IntegerField(),
-            )
-        )
-    ).order_by("-count_criteria", "count")
+    )
 
     content = {
         "criteria_contact_table": criteria_contact_table,
