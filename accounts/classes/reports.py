@@ -41,7 +41,7 @@ def contact_reports(request, agent, start_date, end_date):
         contact_id__contact_session_id__brand_id__in=agent_search.brands.all()
     ).order_by("-call_time")
 
-    call_outcome_table = all_reqservices.annotate(
+    call_outcome_table = all_reqservices.values(
         "contact_id__call_outcome",
     ).annotate(
         call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
