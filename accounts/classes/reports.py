@@ -50,13 +50,14 @@ def contact_reports(request, agent, start_date, end_date):
     #    "call_time",
     ).annotate(
         full_count=Count("contact_id", distinct=True),
-        criteria_count=Case(
+        criteria_count=Count(Case(
             When(
                 #call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
                 contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
                 then=1
-                )
-        )
+                ),
+            output_field=IntegerField(),
+        ))
     )
 
     content = {
