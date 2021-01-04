@@ -45,6 +45,10 @@ def contact_reports(request, agent, start_date, end_date):
         "contact_id__call_outcome",
     ).annotate(
         call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
+    ).values(
+        "contact_id__call_outcome",
+        "call_time",
+    ).annotate(
         full_count=Count("contact_id", distinct=True),
         criteria_count=Case(
             When(
