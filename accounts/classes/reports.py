@@ -37,9 +37,7 @@ def contact_reports(request, agent, start_date, end_date):
     )
 
     criteria_contact_table = full_contact_table.filter(
-        call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
-        contact_id__contact_session_id__brand_id__in=agent_search.brands.all()
-    ).order_by("-call_time")
+    ).order_by("-contact_id")
 
     call_outcome_table = all_reqservices
 
