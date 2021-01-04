@@ -44,8 +44,12 @@ def contact_reports(request, agent, start_date, end_date):
     call_outcome_table = all_reqservices.values(
         "contact_id",
         "contact_id__call_outcome",
+        "contact_id__contact_session_id__brand_id",
     ).annotate(
         call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
+    ).values(
+        "contact_id__call_outcome",
+    ).annotate(
         count=Count("contact_id"),
         count_criteria=Count(
             Case(
@@ -57,7 +61,7 @@ def contact_reports(request, agent, start_date, end_date):
                 output_field=IntegerField(),
             )
         )
-    ).order_by("-count")
+    ).order_by("-count_criteria", "count")
 
     content = {
         "criteria_contact_table": criteria_contact_table,
