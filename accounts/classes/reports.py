@@ -46,7 +46,7 @@ def contact_reports(request, agent, start_date, end_date):
     ).values(
         "contact_id__call_outcome",
     ).annotate(
-        count=Count("contact_id"),
+        count=Count("req_service_id"),
         count_criteria=Count(
             Case(
                 When(
