@@ -58,7 +58,7 @@ def contact_reports(request, agent, start_date, end_date):
                     ),
             output_field=IntegerField(),
         ), distinct=True)
-    ).order_by("-criteria_count", "count")
+    ).order_by("-criteria_count", "full_count", "contact_id__call_outcome")
 
     content = {
         "criteria_contact_table": criteria_contact_table,
