@@ -42,11 +42,10 @@ def contact_reports(request, agent, start_date, end_date):
     ).order_by("-call_time")
 
     call_outcome_table = all_reqservices.annotate(
-        call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
-    ).values(
         "contact_id__call_outcome",
     ).annotate(
-        count=Count("req_service_id"),
+        call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
+        count=Count("contact_id"),
         count_criteria=Count(
             Case(
                 When(
