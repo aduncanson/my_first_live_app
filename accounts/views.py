@@ -200,7 +200,7 @@ def pie_chart(request):
     labels = []
     data = []
 
-    queryset = Agent.objects.order_by('-user')[:5]
+    queryset = Agent.objects.order_by('-user')
     for user in queryset:
         labels.append(user.user.username)
         data.append(user.team_id.team_id)
