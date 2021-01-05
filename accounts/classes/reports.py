@@ -17,7 +17,7 @@ def contact_reports(request, agent, start_date, end_date):
     all_reqservices = ReqService.objects.filter(
         contact_id__contact_date__gte=start_date,
         contact_id__contact_date__lte=end_date,
-        contact_id__agent_id=agent.user
+        contact_id__agent_id=agent.user,
     )
 
     full_contact_table = all_reqservices.values(
