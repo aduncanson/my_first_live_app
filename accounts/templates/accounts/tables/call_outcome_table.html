@@ -18,7 +18,7 @@
             <td>{{ row.full_count }}</td>
             <td>{{ row.criteria_count }}</td>
             <td>{{ row.max }}</td>
-            <td>{{ row.avg }}</td>
+            <td>{{ row.avg|time:"H:i:s" }}</td>
             <td>{{ row.min }}</td>
         </tr>
         {% endfor %}
