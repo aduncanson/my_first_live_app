@@ -6,7 +6,6 @@ from ..models import *
 from ..forms import *
 # from ..filters import *
 from ..decorators import *
-from ..tables import *
 
 import datetime
 
