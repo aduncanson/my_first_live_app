@@ -203,7 +203,7 @@ def pie_chart(request):
     queryset = Agent.objects.order_by('-user')[:5]
     for user in queryset:
         labels.append(user.user.username)
-        data.append(1)
+        data.append(user.team_id.team_id)
 
     return render(request, 'accounts/pie_chart.html', {
         'labels': labels,
