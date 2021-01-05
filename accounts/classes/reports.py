@@ -8,6 +8,8 @@ from ..forms import *
 from ..decorators import *
 from ..tables import *
 
+import time
+
 
 def contact_reports(request, agent, start_date, end_date):
 
@@ -63,7 +65,7 @@ def contact_reports(request, agent, start_date, end_date):
         distinct=True
         ),
         max=Max("call_time"),
-        avg=Avg("contact_id", distinct=True),
+        avg=time.strftime('%H:%M:%S', time.gmtime(Avg("contact_id", distinct=True))),
         min=Min("call_time"),
     )
 
