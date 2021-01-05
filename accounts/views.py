@@ -205,7 +205,7 @@ def pie_chart(request):
         labels.append(user.user)
         data.append(1)
 
-    return render(request, 'pie_chart.html', {
+    return render(request, 'accounts/pie_chart.html', {
         'labels': labels,
         'data': data,
     })
