@@ -8,6 +8,8 @@ from ..forms import *
 from ..decorators import *
 from ..tables import *
 
+import datetime
+
 
 def contact_reports(request, agent, start_date, end_date):
 
