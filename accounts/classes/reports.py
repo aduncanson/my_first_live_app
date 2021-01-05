@@ -62,8 +62,9 @@ def contact_reports(request, agent, start_date, end_date):
         ),
         distinct=True
         ),
-        avg=Avg("contact_id"),
-        avg_dist=Avg("contact_id", distinct=True),
+        max=Avg("call_time"),
+        avg=Avg("contact_id", distinct=True),
+        min=Avg("call_time"),
     )
 
     services_table = call_time_qs.values(
