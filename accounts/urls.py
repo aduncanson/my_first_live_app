@@ -26,6 +26,6 @@ urlpatterns = [
 
     # chartjs
     path('chart', views.line_chart, name='line_chart'),
-    path('chartJSON', views.line_chart_json, name='line_chart_json'),
+    path('chartJSON', views.line_chart_json.as_view(), name='line_chart_json'),
 
 ]
