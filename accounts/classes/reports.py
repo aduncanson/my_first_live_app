@@ -62,9 +62,9 @@ def contact_reports(request, agent, start_date, end_date):
         ),
         distinct=True
         ),
-        max=Avg("call_time"),
+        max=Maz("call_time"),
         avg=Avg("contact_id", distinct=True),
-        min=Avg("call_time"),
+        min=Min("call_time"),
     )
 
     services_table = call_time_qs.values(
