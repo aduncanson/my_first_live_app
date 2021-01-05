@@ -6,6 +6,8 @@
             <th>Call Outcome</th>
             <th>Count</th>
             <th>Count Criteria</th>
+            <th>Avg</th>
+            <th>Avg Dist</th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +16,8 @@
             <td>{{ row.contact_id__call_outcome }}</td>
             <td>{{ row.full_count }}</td>
             <td>{{ row.criteria_count }}</td>
+            <td>{{ row.avg }}</td>
+            <td>{{ row.avg_dist }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -22,6 +26,8 @@
             <th>Call Outcome</th>
             <th>Count</th>
             <th>Count Criteria</th>
+            <th>Avg</th>
+            <th>Avg Dist</th>
         </tr>
     </tfoot>
 </table>

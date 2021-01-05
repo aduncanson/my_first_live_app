@@ -61,7 +61,9 @@ def contact_reports(request, agent, start_date, end_date):
             output_field=IntegerField(),
         ),
         distinct=True
-        )
+        ),
+        avg=Avg("contact_id"),
+        avg_dist=Avg("contact_id", distinct=True),
     )
 
     services_table = call_time_qs.values(
