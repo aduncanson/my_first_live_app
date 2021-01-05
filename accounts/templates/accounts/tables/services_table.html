@@ -6,6 +6,9 @@
             <th>Service</th>
             <th>Count</th>
             <th>Count Criteria</th>
+            <th>Max</th>
+            <th>Avg</th>
+            <th>Min</th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +17,9 @@
             <td>{{ row.service_type_id__service_type_name }}</td>
             <td>{{ row.full_count }}</td>
             <td>{{ row.criteria_count }}</td>
+            <td>{{ row.max }}</td>
+            <td>{{ row.avg }}</td>
+            <td>{{ row.min }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -22,6 +28,9 @@
             <th>Service</th>
             <th>Count</th>
             <th>Count Criteria</th>
+            <th>Max</th>
+            <th>Avg</th>
+            <th>Min</th>
         </tr>
     </tfoot>
 </table>
