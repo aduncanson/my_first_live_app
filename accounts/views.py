@@ -200,22 +200,6 @@ def agentPage(request, pk):
         "services_table": all_reports["services_table"],
         'labels': labels,
         'data': data,
-        'demo': HttpResponse('accounts/demo.html'),
     }
 
     return render(request, 'accounts/agent.html', context)
-
-
-def pie_chart(request):
-    labels = []
-    data = []
-
-    queryset = Agent.objects.order_by('-user')
-    for user in queryset:
-        labels.append(user.user.username)
-        data.append(user.team_id.team_id)
-
-    return JsonResponse(data={
-        'labels': labels,
-        'data': data,
-    })
