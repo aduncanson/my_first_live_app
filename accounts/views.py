@@ -183,10 +183,9 @@ def agentPage(request, pk):
     labels = []
     data = []
 
-    queryset = Agent.objects.order_by('-user')
-    for user in queryset:
-        labels.append(user.user.username)
-        data.append(user.team_id.team_id)
+    for user in all_reports["call_outcome_table"]:
+        labels.append(user.service_type_id.service_type_name)
+        data.append(user.full_count)
 
     context = {
         "title": title,
