@@ -182,10 +182,16 @@ def agentPage(request, pk):
 
     call_outcome_table_labels = []
     call_outcome_table_data = []
+    services_table_labels = []
+    services_table_data = []
 
-    for user in all_reports["call_outcome_table"]:
-        call_outcome_table_labels.append(user['contact_id__call_outcome'])
-        call_outcome_table_data.append(user['full_count'])
+    for call in all_reports["call_outcome_table"]:
+        call_outcome_table_labels.append(call['contact_id__call_outcome'])
+        call_outcome_table_data.append(call['full_count'])
+
+    for call in all_reports["services_table"]:
+        services_table_labels.append(call['service_type_id__service_type_name'])
+        services_table_data.append(call['full_count'])
 
     context = {
         "title": title,
@@ -200,6 +206,8 @@ def agentPage(request, pk):
         "services_table": all_reports["services_table"],
         'call_outcome_table_labels': call_outcome_table_labels,
         'call_outcome_table_data': call_outcome_table_data,
+        'services_table_labels': services_table_labels,
+        'services_table_data': services_table_data,
     }
 
     return render(request, 'accounts/agent.html', context)
