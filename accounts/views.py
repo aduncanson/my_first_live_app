@@ -184,8 +184,8 @@ def agentPage(request, pk):
     call_outcome_table_data = []
 
     for user in all_reports["call_outcome_table"]:
-        labels.append(user['contact_id__call_outcome'])
-        data.append(user['full_count'])
+        call_outcome_table_labels.append(user['contact_id__call_outcome'])
+        call_outcome_table_data.append(user['full_count'])
 
     context = {
         "title": title,
