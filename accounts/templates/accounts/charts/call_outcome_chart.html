@@ -11,10 +11,10 @@
         type: 'pie',
         data: {
             datasets: [{
-                data: {{ data|safe }},
+                data: {{ call_outcome_table_data|safe }},
                 label: 'Calls'
             }],
-            labels: {{ labels|safe }}
+            labels: {{ call_outcome_table_labels|safe }}
         },
         options: {
             responsive: true,

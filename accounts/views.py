@@ -180,8 +180,8 @@ def agentPage(request, pk):
 
     title = "User Page"
 
-    labels = []
-    data = []
+    call_outcome_table_labels = []
+    call_outcome_table_data = []
 
     for user in all_reports["call_outcome_table"]:
         labels.append(user['contact_id__call_outcome'])
@@ -198,8 +198,8 @@ def agentPage(request, pk):
         "criteria_contact_table": all_reports["criteria_contact_table"],
         "call_outcome_table": all_reports["call_outcome_table"],
         "services_table": all_reports["services_table"],
-        'labels': labels,
-        'data': data,
+        'call_outcome_table_labels': call_outcome_table_labels,
+        'call_outcome_table_data': call_outcome_table_data,
     }
 
     return render(request, 'accounts/agent.html', context)
