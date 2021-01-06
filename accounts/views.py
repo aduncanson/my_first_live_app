@@ -214,7 +214,7 @@ def pie_chart(request):
         labels.append(user.user.username)
         data.append(user.team_id.team_id)
 
-    return render(request, 'accounts/call_outcome_chart.html', {
+    return JsonResponse(data={
         'labels': labels,
         'data': data,
     })
