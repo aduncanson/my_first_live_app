@@ -180,6 +180,14 @@ def agentPage(request, pk):
 
     title = "User Page"
 
+    labels = []
+    data = []
+
+    queryset = Agent.objects.order_by('-user')
+    for user in queryset:
+        labels.append(user.user.username)
+        data.append(user.team_id.team_id)
+
     context = {
         "title": title,
         "calls_today_count": 100,
@@ -191,6 +199,8 @@ def agentPage(request, pk):
         "criteria_contact_table": all_reports["criteria_contact_table"],
         "call_outcome_table": all_reports["call_outcome_table"],
         "services_table": all_reports["services_table"],
+        'labels': labels,
+        'data': data,
     }
 
     return render(request, 'accounts/agent.html', context)
