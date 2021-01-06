@@ -200,6 +200,7 @@ def agentPage(request, pk):
         "services_table": all_reports["services_table"],
         'labels': labels,
         'data': data,
+        'demo': render(request, 'accounts/demo.html'),
     }
 
     return render(request, 'accounts/agent.html', context)
