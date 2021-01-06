@@ -204,3 +204,17 @@ def agentPage(request, pk):
 
     return render(request, 'accounts/agent.html', context)
 
+
+def pie_chart(request):
+    labels = []
+    data = []
+
+    queryset = Agent.objects.order_by('-user')
+    for user in queryset:
+        labels.append(user.user.username)
+        data.append(user.team_id.team_id)
+
+    return render(request, 'accounts/call_outcome_chart.html', {
+        'labels': labels,
+        'data': data,
+    })
