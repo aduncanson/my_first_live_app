@@ -9,11 +9,11 @@
 <script>
     $(function () {
         var $pieChart = $("#pie-chart");
-        alert($pieChart.data("url"));
+        
         $.ajax({
         url: $pieChart.data("url"),
         success: function (data) {
-
+            alert(data);
             var ctx = $pieChart[0].getContext("2d");
 
             new Chart(ctx, {
