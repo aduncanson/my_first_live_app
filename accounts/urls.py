@@ -24,7 +24,4 @@ urlpatterns = [
     # ajax
     path('ajax_datatable/agent_list/', ajax_datatable_views.AgentListAjaxDatatableView.as_view(), name="ajax_list_of_agents_table"),
 
-    # chartjs
-    path('pie-chart/', views.pie_chart, name='pie-chart'),
-
 ]
