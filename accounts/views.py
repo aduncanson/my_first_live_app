@@ -184,8 +184,8 @@ def agentPage(request, pk):
     data = []
 
     for user in all_reports["call_outcome_table"]:
-        labels.append(user.full_count)
-        data.append(user.full_count)
+        labels.append(1)
+        data.append(1)
 
     context = {
         "title": title,
@@ -200,6 +200,7 @@ def agentPage(request, pk):
         "services_table": all_reports["services_table"],
         'labels': labels,
         'data': data,
+        'demo': all_reports["call_outcome_table"],
     }
 
     return render(request, 'accounts/agent.html', context)
