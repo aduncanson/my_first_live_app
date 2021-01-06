@@ -19,4 +19,13 @@
 {% include 'accounts/charts/call_outcome_chart.html' %}
 {% include 'accounts/charts/services_chart.html' %}
 
+<script>
+    window.onload = function() {
+        var ctx1 = document.getElementById('call-outcome-pie-chart').getContext('2d');
+        var ctx2 = document.getElementById('services-pie-chart').getContext('2d');
+        window.myPie = new Chart(ctx2, config);
+        window.myPie = new Chart(ctx1, config);
+    };
+</script>
+
 {% endblock content %}
