@@ -9,6 +9,7 @@
 <script>
     $(function () {
         var $pieChart = $("#pie-chart");
+        alert($pieChart.data("url"));
         $.ajax({
         url: $pieChart.data("url"),
         success: function (data) {
