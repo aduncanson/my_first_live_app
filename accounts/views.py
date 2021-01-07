@@ -184,6 +184,7 @@ def agentPage(request, pk):
     call_outcome_table_data = []
     services_table_labels = []
     services_table_data = []
+    services_table_colour = []
 
     for call in all_reports["call_outcome_table"]:
         call_outcome_table_labels.append(call['contact_id__call_outcome'])
@@ -192,6 +193,11 @@ def agentPage(request, pk):
     for call in all_reports["services_table"]:
         services_table_labels.append(call['service_type_id__service_type_name'])
         services_table_data.append(call['full_count'])
+        services_table_colour.append("rgb(" +
+            Math.floor(Math.random() * 150 + 50) +
+            Math.floor(Math.random() * 150 + 50) +
+            Math.floor(Math.random() * 150 + 50) +
+            ")")
 
     context = {
         "title": title,
@@ -208,6 +214,7 @@ def agentPage(request, pk):
         'call_outcome_table_data': call_outcome_table_data,
         'services_table_labels': services_table_labels,
         'services_table_data': services_table_data,
+        'services_table_colour': services_table_colour,
     }
 
     return render(request, 'accounts/agent.html', context)

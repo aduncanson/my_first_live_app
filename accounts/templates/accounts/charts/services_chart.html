@@ -12,6 +12,7 @@
         data: {
             datasets: [{
                 data: {{ services_table_data|safe }},
+                backgroundColor: {{ services_table_colour|safe }},
                 label: 'Calls'
             }],
             labels: {{ services_table_labels|safe }}
