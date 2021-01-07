@@ -11,11 +11,11 @@
         type: 'pie',
         data: {
             datasets: [{
-                data: {{ call_outcome_graph.data|safe }},
-                backgroundColor: {{ call_outcome_graph.colour|safe }},
+                data: {{ call_duration_graph.data|safe }},
+                backgroundColor: {{ call_duration_graph.colour|safe }},
                 label: 'Calls'
             }],
-            labels: {{ call_outcome_graph.labels|safe }}
+            labels: {{ call_duration_graph.labels|safe }}
         },
         options: {
             responsive: true,
