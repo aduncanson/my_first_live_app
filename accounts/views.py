@@ -196,9 +196,9 @@ def agentPage(request, pk):
         services_table_labels.append(call['service_type_id__service_type_name'])
         services_table_data.append(call['full_count'])
         services_table_colour.append("rgb(" +
-            random.randint(55, 200) + "," +
-            random.randint(55, 200) + "," +
-            random.randint(55, 200) + ")")
+            str(random.randint(55, 200)) + "," +
+            str(random.randint(55, 200)) + "," +
+            str(random.randint(55, 200)) + ")")
 
     context = {
         "title": title,
