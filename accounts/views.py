@@ -14,12 +14,11 @@ from django.utils.safestring import mark_safe
 from .models import *
 from .forms import *
 from .decorators import *
-from .classes.reports import *
+from .classes.tables import *
+from .classes.graphs import *
 
 # external imports
 from datetime import datetime
-
-import random
 
 
 """
@@ -180,30 +179,10 @@ def agentPage(request, pk):
 
     all_reports = contact_reports(request, agent, datetime(2021, 1, 1), datetime(2021, 1, 2))
 
+    call_outcome_graph = call_outcome_data(all_reports["call_outcome_table"])
+    services_graph = services_data(all_reports["services_table"])
+
     title = "User Page"
-
-    call_outcome_table_labels = []
-    call_outcome_table_data = []
-    call_outcome_table_colour = []
-    services_table_labels = []
-    services_table_data = []
-    services_table_colour = []
-
-    for call in all_reports["call_outcome_table"]:
-        call_outcome_table_labels.append(call['contact_id__call_outcome'])
-        call_outcome_table_data.append(call['full_count'])
-        call_outcome_table_colour.append("rgba(" +
-            str(random.randint(75, 220)) + "," +
-            str(random.randint(75, 220)) + "," +
-            str(random.randint(75, 220)) + ", 0.7)")
-
-    for call in all_reports["services_table"]:
-        services_table_labels.append(call['service_type_id__service_type_name'])
-        services_table_data.append(call['full_count'])
-        services_table_colour.append("rgba(" +
-            str(random.randint(75, 220)) + "," +
-            str(random.randint(75, 220)) + "," +
-            str(random.randint(75, 220)) + ", 0.7)")
 
     context = {
         "title": title,
@@ -216,12 +195,8 @@ def agentPage(request, pk):
         "criteria_contact_table": all_reports["criteria_contact_table"],
         "call_outcome_table": all_reports["call_outcome_table"],
         "services_table": all_reports["services_table"],
-        'call_outcome_table_labels': call_outcome_table_labels,
-        'call_outcome_table_data': call_outcome_table_data,
-        'call_outcome_table_colour': call_outcome_table_colour,
-        'services_table_labels': services_table_labels,
-        'services_table_data': services_table_data,
-        'services_table_colour': services_table_colour,
+        'call_outcome_graph': call_outcome_graph,
+        'services_graph': services_graph,
     }
 
     return render(request, 'accounts/agent.html', context)

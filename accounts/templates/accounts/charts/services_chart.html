@@ -11,11 +11,11 @@
         type: 'pie',
         data: {
             datasets: [{
-                data: {{ services_table_data|safe }},
-                backgroundColor: {{ services_table_colour|safe }},
+                data: {{ services_graph.data|safe }},
+                backgroundColor: {{ services_graph.colour|safe }},
                 label: 'Calls'
             }],
-            labels: {{ services_table_labels|safe }}
+            labels: {{ services_graph.label|safe }}
         },
         options: {
             responsive: true,
