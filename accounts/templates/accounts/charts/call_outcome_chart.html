@@ -12,6 +12,7 @@
         data: {
             datasets: [{
                 data: {{ call_outcome_table_data|safe }},
+                backgroundColor: {{ call_outcome_table_colour|safe }},
                 label: 'Calls'
             }],
             labels: {{ call_outcome_table_labels|safe }}
