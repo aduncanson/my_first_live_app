@@ -184,6 +184,7 @@ def agentPage(request, pk):
 
     call_outcome_table_labels = []
     call_outcome_table_data = []
+    call_outcome_table_colour = []
     services_table_labels = []
     services_table_data = []
     services_table_colour = []
