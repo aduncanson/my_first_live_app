@@ -19,6 +19,8 @@ from .classes.reports import *
 # external imports
 from datetime import datetime
 
+import random
+
 
 """
 ----------------------------------------------------------------------------------------
@@ -194,10 +196,9 @@ def agentPage(request, pk):
         services_table_labels.append(call['service_type_id__service_type_name'])
         services_table_data.append(call['full_count'])
         services_table_colour.append("rgb(" +
-            Math.floor(Math.random() * 150 + 50) +
-            Math.floor(Math.random() * 150 + 50) +
-            Math.floor(Math.random() * 150 + 50) +
-            ")")
+            random.randint(55, 200) + "," +
+            random.randint(55, 200) + "," +
+            random.randint(55, 200) + ")")
 
     context = {
         "title": title,
