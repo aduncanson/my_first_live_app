@@ -171,11 +171,6 @@ def dashboard(request):
 @allowed_users(allowed_roles=["Admin", "Agent"])
 def agentPage(request, pk):
     agent = Agent.objects.get(id=pk)
-    """
-    statistics = agent_contacts["all_calls_with_ct"].aggregate(
-        avg=Avg(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
-        max=Max(F('contact_id_id__contact_session_id_id__call_end_time') - F('contact_id_id__contact_session_id_id__call_start_time')),
-    )"""
 
     all_reports = contact_reports(request, agent, datetime(2021, 1, 1), datetime(2021, 1, 2))
 

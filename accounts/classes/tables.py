@@ -8,6 +8,7 @@ from ..forms import *
 from ..decorators import *
 
 import datetime
+import math
 
 
 def contact_reports(request, agent, start_date, end_date):
@@ -35,6 +36,7 @@ def contact_reports(request, agent, start_date, end_date):
         comments=ArrayAgg('comments', ordering=("req_service_id")),
         services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
         call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
+        rounded_time=math.floor((F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'))/60),
     )
 
     criteria_contact_table = full_contact_table.filter(
