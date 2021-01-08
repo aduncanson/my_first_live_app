@@ -62,37 +62,42 @@
         </div>
     </div>
 </div>
-<br>
-<div class="row collapse" id="call_outcome_table_row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card card-body">
-                {% include 'accounts/tables/call_outcome_table.html' %}
+<div id="call_outcome_table_row">
+    <br>
+    <div class="row collapse">
+        <div class="col">
+            <div class="col-md">
+                <div class="card card-body">
+                    {% include 'accounts/tables/call_outcome_table.html' %}
+                </div>
             </div>
         </div>
     </div>
 </div>
-<br>
-<div class="row collapse" id="services_table_row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card card-body">
-                {% include 'accounts/tables/services_table.html' %}
+<div id="services_table_row">
+    <br>
+    <div class="row collapse">
+        <div class="col">
+            <div class="col-md">
+                <div class="card card-body">
+                    {% include 'accounts/tables/services_table.html' %}
+                </div>
             </div>
         </div>
     </div>
 </div>
-<br>
-<div class="row collapse" id="criteria_contact_table_row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card card-body">
-                {% include 'accounts/tables/criteria_contact_table.html' %}
+<div id="criteria_contact_table_row">
+    <br>
+    <div class="row collapse">
+        <div class="col">
+            <div class="col-md">
+                <div class="card card-body">
+                    {% include 'accounts/tables/criteria_contact_table.html' %}
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <script>
     window.onload = function() {
         var ctx1 = document.getElementById('call-outcome-pie-chart').getContext('2d');
