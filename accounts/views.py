@@ -16,7 +16,6 @@ from .forms import *
 from .decorators import *
 from .classes.tables import *
 from .classes.graphs import *
-from .classes.calculations import *
 
 # external imports
 from datetime import datetime
