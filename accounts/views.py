@@ -191,7 +191,7 @@ def agentPage(request, pk):
 
     context = {
         "title": title,
-        "calls_today_count": exists,
+        "calls_today_count": groups,
         "avg": 123,
         "max": 1,
         "ranged_count": 2,
