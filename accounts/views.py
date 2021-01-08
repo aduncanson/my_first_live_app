@@ -172,17 +172,6 @@ def agentPage(request, pk):
 
     groups = None
     exists = None
-    
-    if request.user.groups.exists():
-        groups = request.user.groups.all()
-    
-    for group in groups:
-        if group.name in ['Admin', 'Supervisor']:
-            exists = 1
-
-    if exists != 1:
-        if request.user.id != pk:
-            return redirect("agent_page", request.user.id)
 
     agent = Agent.objects.get(id=pk)
 
