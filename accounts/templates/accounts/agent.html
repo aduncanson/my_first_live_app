@@ -5,84 +5,54 @@
 {% include 'accounts/statistics.html' %}
 
 <div class="row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center card-body">
+    <div class="col-md">
+        <div class="card card-body">
 
-                {% include 'accounts/charts/call_outcome_chart.html' %}
+            {% include 'accounts/charts/call_outcome_chart.html' %}
 
-            </div>
         </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center card-body">
+    <div class="col-md">
+        <div class="card card-body">
 
-                {% include 'accounts/charts/services_chart.html' %}
+            {% include 'accounts/charts/services_chart.html' %}
 
-            </div>
         </div>
     </div>
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center card-body">
+    <div class="col-md">
+        <div class="card card-body">
 
-                {% include 'accounts/charts/brands_chart.html' %}
+            {% include 'accounts/charts/brands_chart.html' %}
 
-            </div>
         </div>
     </div>
 </div>
-<br>
 
 <div class="row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center card-body">
+    <div class="col-md">
+        <div class="card card-body">
 
-                call duration
+            {% include 'accounts/tables/call_outcome_table.html' %}
 
-            </div>
         </div>
     </div>
 </div>
 <br>
-<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#call_outcome_table_row">Call Outcome Table</button>
-<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#services_table_row">Services Table</button>
-<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#criteria_contact_table_row">Report Table</button>
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
 
-<br>
-<div class="row collapse" id="call_outcome_table_row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card card-body">
+            {% include 'accounts/tables/services_table.html' %}
 
-                {% include 'accounts/tables/call_outcome_table.html' %}
-
-            </div>
         </div>
     </div>
 </div>
-<br>
-<div class="row collapse" id="services_table_row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card card-body">
 
-                {% include 'accounts/tables/services_table.html' %}
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            {% include 'accounts/tables/criteria_contact_table.html' %}
 
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-<div class="row collapse" id="criteria_contact_table_row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card card-body">
-                {% include 'accounts/tables/criteria_contact_table.html' %}
-
-            </div>
         </div>
     </div>
 </div>
