@@ -168,8 +168,21 @@ def dashboard(request):
 
 # Agent specific dashboard
 @login_required(login_url="login")
-@agent_self_only(allowed_roles=["Admin", "Supervisor"])
 def agentPage(request, pk):
+
+    groups = None
+    exists = None
+    
+    if request.user.groups.exists():
+        groups = request.user.groups.all()
+    
+    for group in groups:
+        if group.name in ['Admin', 'Supervisor']:
+            exists = 1
+
+    if exists != 1:
+        return redirect("agent_page", request.user.id)
+
     agent = Agent.objects.get(id=pk)
 
     all_reports = contact_reports(request, agent, datetime(2021, 1, 1), datetime(2021, 1, 2))
