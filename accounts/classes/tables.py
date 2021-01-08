@@ -24,6 +24,9 @@ def contact_reports(request, agent, start_date, end_date):
         contact_date__gte=start_date,
         contact_date__lte=end_date,
         agent_id=agent.user,
+    ).values(
+        "contact_id",
+        "contact_session_id__brand_id",
     ).annotate(
         call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
     )
