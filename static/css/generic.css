@@ -5,6 +5,7 @@ html {
 body {
     margin-bottom: 40px;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 footer {
     position: absolute;
