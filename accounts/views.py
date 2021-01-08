@@ -179,8 +179,7 @@ def agentPage(request, pk):
             exists = 1
 
     if exists == 0:
-        if request.user.id != pk:
-            exists = 2
+        pk = request.user.id
 
     agent = Agent.objects.get(id=pk)
 
