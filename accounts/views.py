@@ -180,7 +180,7 @@ def agentPage(request, pk):
 
     if exists == 0:
         if request.user.id != pk:
-            return redirect("agent_page", request.user.id)
+            exists = 2
 
     agent = Agent.objects.get(id=pk)
 
