@@ -15,7 +15,7 @@ def calculations(request, queryset):
             Case(
                 When(
                     call_time__range=[agent_search.call_lower_limit, agent_search.call_upper_limit],
-                    contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
+                    contact_session_id__brand_id__in=agent_search.brands.all(),
                     then=F("contact_id")
                     ),
             output_field=IntegerField(),
