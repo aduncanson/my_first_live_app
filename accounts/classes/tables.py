@@ -8,6 +8,7 @@ from ..forms import *
 from ..decorators import *
 
 import datetime
+import math
 
 
 def contact_reports(request, agent, start_date, end_date):
@@ -18,17 +19,6 @@ def contact_reports(request, agent, start_date, end_date):
         contact_id__contact_date__gte=start_date,
         contact_id__contact_date__lte=end_date,
         contact_id__agent_id=agent.user,
-    )
-
-    all_contacts = ClientContact.objects.filter(
-        contact_date__gte=start_date,
-        contact_date__lte=end_date,
-        agent_id=agent.user,
-    ).values(
-        "contact_id",
-        "contact_session_id__brand_id",
-    ).annotate(
-        call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
     )
 
     full_contact_table = all_reqservices.values(
@@ -100,11 +90,9 @@ def contact_reports(request, agent, start_date, end_date):
     )
 
     content = {
-        "full_contact_table": full_contact_table,
         "criteria_contact_table": criteria_contact_table,
         "call_outcome_table": call_outcome_table,
         "services_table": services_table,
-        "all_contacts": all_contacts,
     }
 
     return content
