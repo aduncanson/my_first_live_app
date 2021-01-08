@@ -168,7 +168,7 @@ def dashboard(request):
 
 # Agent specific dashboard
 @login_required(login_url="login")
-@allowed_users(allowed_roles=["Admin", "Agent"])
+@agent_self_only(allowed_roles=["Admin", "Supervisor"])
 def agentPage(request, pk):
     agent = Agent.objects.get(id=pk)
 
