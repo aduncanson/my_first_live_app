@@ -16,6 +16,7 @@ from .forms import *
 from .decorators import *
 from .classes.tables import *
 from .classes.graphs import *
+from .classes.calculations import *
 
 # external imports
 from datetime import datetime
@@ -183,20 +184,21 @@ def agentPage(request, pk):
 
     agent = Agent.objects.get(id=pk)
 
-    all_reports = contact_reports(request, agent, datetime(2021, 1, 1), datetime(2021, 1, 2))
+    all_reports = contact_reports(request, datetime(2021, 1, 1), datetime(2021, 1, 2))
 
     call_outcome_graph = call_outcome_data(all_reports["call_outcome_table"])
     services_graph = services_data(all_reports["services_table"])
     brands_graph = brands_data(all_reports["full_contact_table"])
 
+    statistics = calculations(request, all_reports["all_contacts"])
+
     title = "User Page"
 
     context = {
         "title": title,
-        "calls_today_count": exists,
-        "avg": 123,
-        "max": 1,
-        "ranged_count": 2,
+        "calls_today_count": statistics["full_count"],
+        "avg": statistics["avg"],
+        "criteria_count": statistics["criteria_count"],
         "oversessing": True,
         "agent": agent,
         "criteria_contact_table": all_reports["criteria_contact_table"],

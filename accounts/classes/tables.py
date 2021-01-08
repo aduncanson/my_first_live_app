@@ -10,7 +10,7 @@ from ..decorators import *
 import datetime
 
 
-def contact_reports(request, agent, start_date, end_date):
+def contact_reports(request, start_date, end_date):
 
     agent_search = AgentSearch.objects.get(agent=request.user.agent)
 
@@ -18,6 +18,14 @@ def contact_reports(request, agent, start_date, end_date):
         contact_id__contact_date__gte=start_date,
         contact_id__contact_date__lte=end_date,
         contact_id__agent_id=agent.user,
+    )
+
+    all_contacts = ClientContact.objects.filter(
+        contact_date__gte=start_date,
+        contact_date__lte=end_date,
+        agent_id=agent.user,
+    ).annotate(
+        call_time=F('contact_id__contact_session_id__call_end_time') - F('contact_id__contact_session_id__call_start_time'),
     )
 
     full_contact_table = all_reqservices.values(
@@ -93,6 +101,7 @@ def contact_reports(request, agent, start_date, end_date):
         "criteria_contact_table": criteria_contact_table,
         "call_outcome_table": call_outcome_table,
         "services_table": services_table,
+        "all_contacts": all_contacts,
     }
 
     return content
