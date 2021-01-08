@@ -89,6 +89,7 @@ def contact_reports(request, agent, start_date, end_date):
     )
 
     content = {
+        "full_contact_table": full_contact_table,
         "criteria_contact_table": criteria_contact_table,
         "call_outcome_table": call_outcome_table,
         "services_table": services_table,
