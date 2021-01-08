@@ -170,15 +170,14 @@ def dashboard(request):
 @login_required(login_url="login")
 def agentPage(request, pk):
 
-    groups = None
     exists = None
     
-    if request.user.groups.exists():
-        groups = request.user.groups.all()
+    groups = request.user.groups.all()
     
     for group in groups:
         if group.name in ['Admin', 'Supervisor']:
             exists = 1
+
 
     agent = Agent.objects.get(id=pk)
 
@@ -192,7 +191,7 @@ def agentPage(request, pk):
 
     context = {
         "title": title,
-        "calls_today_count": 100,
+        "calls_today_count": exists,
         "avg": 123,
         "max": 1,
         "ranged_count": 2,
