@@ -64,7 +64,7 @@ def contact_reports(request, agent, start_date, end_date):
         distinct=True
         ),
         max=Max("call_time"),
-        avg=Avg("contact_id", distinct=True),
+        avg=Avg("call_time", distinct=True),
         min=Min("call_time"),
     )
 
@@ -84,7 +84,7 @@ def contact_reports(request, agent, start_date, end_date):
         distinct=True
         ),
         max=Max("call_time"),
-        avg=Avg("contact_id", distinct=True),
+        avg=Avg("call_time", distinct=True),
         min=Min("call_time"),
     )
 

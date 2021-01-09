@@ -189,6 +189,7 @@ def agentPage(request, pk):
     services_graph = services_data(all_reports["services_table"])
     brands_graph = brands_data(all_reports["full_contact_table"])
 
+
     title = "User Page"
 
     context = {
