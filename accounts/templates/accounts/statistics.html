@@ -61,7 +61,8 @@
                 </div>
                 <div class="card-body">
                     <div class="card-title">
-                        <div data-toggle="collapse" data-target="#date_filter_form" >
+                        <div>
+                            <div data-toggle="collapse" data-target="#date_filter_form">View</div>
                             <form id="date_filter_form" method="POST" action="" enctype="multipart/form-data" class="collapse">
                                 {% csrf_token %}
                                 {{ date_form.as_p }}
