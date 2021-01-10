@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from .models import *
-import datetime
+from datetime import datetime
 
 class AgentForm(forms.ModelForm):  
     class Meta:  
@@ -36,8 +36,8 @@ class MinContactDate(forms.ModelForm):
         ]
 
 class FilterContactDate(forms.ModelForm):
-    start_date_time = forms.DateTimeField(initial=datetime.date.today())
-    end_date_time = forms.DateTimeField(initial=datetime.date.today() + datetime.timedelta(days=1))
+    start_date_time = forms.DateTimeField(initial=date.today())
+    end_date_time = forms.DateTimeField(initial=date.today() + timedelta(days=1))
     class Meta:  
         model = ClientContact
         fields = [
