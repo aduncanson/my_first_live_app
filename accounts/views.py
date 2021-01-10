@@ -154,6 +154,11 @@ def agentList(request):
 @allowed_users(allowed_roles=["Admin", "Supervisor"])
 def dashboard(request):
 
+    date_form = FilterContactDate()
+
+    if request.method == "POST":
+        date_form = FilterContactDate(request.POST)
+
     all_reports = contact_reports(request, None, datetime(2021, 1, 1), datetime(2021, 1, 2))
 
     call_outcome_graph = call_outcome_data(all_reports["call_outcome_table"])
@@ -166,6 +171,7 @@ def dashboard(request):
 
     context = {
         "title": title,
+        "date_form": date_form,
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
         "call_average": stats["call_average"],

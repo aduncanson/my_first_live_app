@@ -52,5 +52,25 @@
             </div>
         </div>
     </div>
+    
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center mb-3" id="average-call-length">
+                <div class="card-header">
+                    <div class="card-title">Select date range</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ date_form.as_p }}
+                    
+                            <input class="btn btn-primary" type="submit" name="Get date range">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
