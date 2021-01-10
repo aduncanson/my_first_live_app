@@ -21,20 +21,7 @@
                     <div class="card-title">Total calls today</div>
                 </div>
                 <div class="card-body">
-                    <div class="card-title">{{ calls_today_count }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center mb-3" id="average-call-length">
-                <div class="card-header">
-                    <div class="card-title">Average call duration</div>
-                </div>
-                <div class="card-body">
-                    <div class="card-title">{{ avg }}</div>
+                    <div class="card-title">{{ full_call_count }}</div>
                 </div>
             </div>
         </div>
@@ -47,7 +34,7 @@
                     <div class="card-title">Calls outside criteria</div>
                 </div>
                 <div class="card-body">
-                    <div class="card-title">{{ max }}</div>
+                    <div class="card-title">{{ criteria_call_count }}</div>
                 </div>
             </div>
         </div>
@@ -55,12 +42,12 @@
     
     <div class="col">
         <div class="col-md">
-            <div class="card text-center mb-3" id="perc-outside-limit">
+            <div class="card text-center mb-3" id="average-call-length">
                 <div class="card-header">
-                    <div class="card-title">Vs yesterday</div>
+                    <div class="card-title">Average call duration</div>
                 </div>
                 <div class="card-body">
-                    <div class="card-title">{{ max }}</div>
+                    <div class="card-title">{{ call_average }}</div>
                 </div>
             </div>
         </div>

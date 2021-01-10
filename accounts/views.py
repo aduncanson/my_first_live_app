@@ -189,15 +189,15 @@ def agentPage(request, pk):
     services_graph = services_data(all_reports["services_table"])
     brands_graph = brands_data(all_reports["full_contact_table"])
 
+    stats = dailyStats(request, all_reports["full_contact_table"])
 
     title = "User Page"
 
     context = {
         "title": title,
-        "calls_today_count": exists,
-        "avg": 123,
-        "max": 1,
-        "ranged_count": 2,
+        "full_call_count": stats["full_call_count"],
+        "criteria_call_count": stats["criteria_call_count"],
+        "call_average": stats["call_average"],
         "oversessing": True,
         "agent": agent,
         "criteria_contact_table": all_reports["criteria_contact_table"],
