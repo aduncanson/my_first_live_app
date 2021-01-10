@@ -9,7 +9,7 @@ def dailyStats(request, queryset):
 
     agent_search = AgentSearch.objects.get(agent=request.user.agent)
 
-    stats = queryset.values(1).annotate(
+    stats = queryset.values("1").annotate(
         full_call_count=Count("contact_id", distinct=True),
         criteria_call_count=Count(
             Case(
