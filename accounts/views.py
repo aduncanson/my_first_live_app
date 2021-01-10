@@ -156,8 +156,8 @@ def dashboard(request):
 
     date_form = FilterContactDate()
 
-    start_date_time = date.today()
-    end_date_time = date.today() + timedelta(days=1)
+    start_date_time = datetime(2021, 1, 1)
+    end_date_time = datetime(2021, 1, 2)
 
     if request.method == "POST":
         date_form = FilterContactDate(request.POST)
