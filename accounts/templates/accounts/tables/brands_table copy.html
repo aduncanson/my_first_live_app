@@ -1,0 +1,44 @@
+{% load static %}
+
+<table id="brands_table" class="table table-sm">
+    <thead>
+        <tr>
+            <th>Brands</th>
+            <th>Count</th>
+            <th>Count Criteria</th>
+            <th>Max</th>
+            <th>Avg</th>
+            <th>Min</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in services_table %}
+        <tr>
+            <td>{{ row.contact_id__contact_session_id__brand_id__brand_name }}</td>
+            <td>{{ row.full_count }}</td>
+            <td>{{ row.criteria_count }}</td>
+            <td>{{ row.max }}</td>
+            <td>{{ row.avg }}</td>
+            <td>{{ row.min }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Brands</th>
+            <th>Count</th>
+            <th>Count Criteria</th>
+            <th>Max</th>
+            <th>Avg</th>
+            <th>Min</th>
+        </tr>
+    </tfoot>
+</table>
+
+<script language="javascript">
+    $(document).ready(function() {
+
+        $('#brands_table').DataTable();
+
+    });
+</script>

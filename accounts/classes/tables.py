@@ -105,11 +105,37 @@ def contact_reports(request, agent, start_date, end_date):
         min=Min("call_time"),
     )
 
+    brands_table = call_time_qs.values(
+        "contact_id__contact_session_id__brand_id__brand_name",
+    ).annotate(
+        full_count=Count("contact_id", distinct=True),
+        criteria_count=Count(
+            Case(
+                When(
+                    call_time__lte=agent_search.call_lower_limit,
+                    contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
+                    then=F("contact_id")
+                ),
+                When(
+                    call_time__gte=agent_search.call_upper_limit,
+                    contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
+                    then=F("contact_id")
+                ),
+            output_field=IntegerField(),
+            ),
+            distinct=True
+        ),
+        max=Max("call_time"),
+        avg=Avg("call_time", distinct=True),
+        min=Min("call_time"),
+    )
+
     content = {
         "full_contact_table": full_contact_table,
         "criteria_contact_table": criteria_contact_table,
         "call_outcome_table": call_outcome_table,
         "services_table": services_table,
+        "brands_table": brands_table,
     }
 
     return content

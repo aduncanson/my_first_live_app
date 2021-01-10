@@ -57,6 +57,13 @@
     <div class="col">
         <div class="col-md">
             <div class="card text-center card-body">
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#brands_table_row" onclick="toggleBorder(this)">Brands Table</button>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center card-body">
                 <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#criteria_contact_table_row" onclick="toggleBorder(this)">Report Table</button>
             </div>
         </div>
@@ -80,6 +87,17 @@
         <div class="col-md">
             <div class="card card-body">
                 {% include 'accounts/tables/services_table.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row collapse" id="brands_table_row">
+    <br>
+    <div class="col">
+        <div class="col-md">
+            <div class="card card-body">
+                {% include 'accounts/tables/brands_table.html' %}
             </div>
         </div>
     </div>
