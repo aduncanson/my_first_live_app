@@ -19,7 +19,7 @@ from .classes.graphs import *
 from .classes.calculations import *
 
 # external imports
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 
 """
