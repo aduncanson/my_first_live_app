@@ -169,7 +169,7 @@ def dashboard(request):
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
         "call_average": stats["call_average"],
-        "oversessing": True,
+        "oversessing": False,
         "criteria_contact_table": all_reports["criteria_contact_table"],
         "call_outcome_table": all_reports["call_outcome_table"],
         "services_table": all_reports["services_table"],
