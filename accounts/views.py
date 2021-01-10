@@ -221,7 +221,7 @@ def agentPage(request, pk):
             start_date_time = date_form.cleaned_data['start_date_time']
             end_date_time = date_form.cleaned_data['end_date_time']
 
-    all_reports = contact_reports(request, None, start_date_time, end_date_time)
+    all_reports = contact_reports(request, agent, start_date_time, end_date_time)
 
     call_outcome_graph = call_outcome_data(all_reports["call_outcome_table"])
     services_graph = services_data(all_reports["services_table"])
