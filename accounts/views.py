@@ -171,7 +171,7 @@ def dashboard(request):
 
     context = {
         "title": title,
-        "date_form": date_form,
+        "date_form": date_form.__dict__,
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
         "call_average": stats["call_average"],
