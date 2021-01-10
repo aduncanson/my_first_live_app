@@ -38,8 +38,8 @@ class MinContactDate(forms.ModelForm):
 class FilterContactDate(forms.ModelForm):
     #start_date_time = forms.DateTimeField(initial=date.today())
     #end_date_time = forms.DateTimeField(initial=date.today() + timedelta(days=1))
-    start_date_time = datetime(2021, 1, 1)
-    end_date_time = datetime(2021, 1, 2)
+    start_date_time = forms.DateTimeField(initial=datetime(2021, 1, 1))
+    end_date_time = forms.DateTimeField(initial=datetime(2021, 1, 2))
     class Meta:  
         model = ClientContact
         fields = [
