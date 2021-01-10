@@ -170,7 +170,7 @@ def dashboard(request):
     title = "User Page"
 
     context = {
-        "title": date_form.cleaned_data.get('start_date_time'),
+        "title": title,
         "date_form": date_form,
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
