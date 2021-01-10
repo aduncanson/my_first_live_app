@@ -26,9 +26,9 @@ def dailyStats(request, queryset):
     )
 
     context = {
-        "full_call_count": stats.values("full_call_count")["full_call_count"],
-        "criteria_call_count": stats.values("criteria_call_count")["criteria_call_count"],
-        "call_average": stats.values("call_average")["call_average"],
+        "full_call_count": stats.values("full_call_count"),
+        "criteria_call_count": stats.values("criteria_call_count"),
+        "call_average": stats.values("call_average"),
     }
 
     return context
