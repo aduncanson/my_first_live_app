@@ -159,7 +159,7 @@ def dashboard(request):
     if request.method == "POST":
         date_form = FilterContactDate(request.POST)
 
-    all_reports = contact_reports(request, None, date_form.start_date_time, date_form.end_date_time)
+    all_reports = contact_reports(request, None, datetime(2021, 1, 1), datetime(2021, 1, 2))
 
     call_outcome_graph = call_outcome_data(all_reports["call_outcome_table"])
     services_graph = services_data(all_reports["services_table"])
@@ -170,7 +170,7 @@ def dashboard(request):
     title = "User Page"
 
     context = {
-        "title": title,
+        "title": date_form.cleaned_data.get('start_date_time'),
         "date_form": date_form,
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
@@ -204,12 +204,7 @@ def agentPage(request, pk):
 
     agent = Agent.objects.get(id=pk)
 
-    date_form = FilterContactDate()
-
-    if request.method == "POST":
-        date_form = FilterContactDate(request.POST)
-
-    all_reports = contact_reports(request, agent, date_form.cleaned_data.get('start_date_time'), date_form.cleaned_data.get('end_date_time'))
+    all_reports = contact_reports(request, agent, datetime(2021, 1, 1), datetime(2021, 1, 2))
 
     call_outcome_graph = call_outcome_data(all_reports["call_outcome_table"])
     services_graph = services_data(all_reports["services_table"])
