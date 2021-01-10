@@ -159,8 +159,8 @@ def dashboard(request):
     if request.method == "POST":
         date_form = FilterContactDate(request.POST)
         if date_form.is_valid():
-            start_date_time = FilterContactDate.cleaned_data['start_date_time']
-            end_date_time = FilterContactDate.cleaned_data['end_date_time']
+            start_date_time = date_form.cleaned_data['start_date_time']
+            end_date_time = date_form.cleaned_data['end_date_time']
 
     all_reports = contact_reports(request, None, start_date_time, end_date_time)
 
