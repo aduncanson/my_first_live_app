@@ -45,8 +45,7 @@ def contact_reports(request, agent, start_date, end_date):
     )
 
     criteria_contact_table = full_contact_table.filter(
-        call_time__lte=agent_search.call_lower_limit,
-        call_time__gte=agent_search.call_upper_limit,
+        (Q(call_time__lte=agent_search.call_lower_limit) | Q(call_time__gte=agent_search.call_upper_limit)),
         contact_id__contact_session_id__brand_id__in=agent_search.brands.all()
     )
 
@@ -66,15 +65,15 @@ def contact_reports(request, agent, start_date, end_date):
                     call_time__lte=agent_search.call_lower_limit,
                     contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
                     then=F("contact_id")
-                    ),
+                ),
                 When(
                     call_time__gte=agent_search.call_upper_limit,
                     contact_id__contact_session_id__brand_id__in=agent_search.brands.all(),
                     then=F("contact_id")
-                    ),
+                ),
             output_field=IntegerField(),
-        ),
-        distinct=True
+            ),
+            distinct=True
         ),
         max=Max("call_time"),
         avg=Avg("call_time", distinct=True),
