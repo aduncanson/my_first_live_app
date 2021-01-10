@@ -156,8 +156,8 @@ def dashboard(request):
 
     date_form = FilterContactDate()
 
-    start_date_time = date_form.cleaned_data['start_date_time']
-    end_date_time = date_form.cleaned_data['end_date_time']
+    start_date_time = date_form.data['start_date_time']
+    end_date_time = date_form.data['end_date_time']
 
     if request.method == "POST":
         date_form = FilterContactDate(request.POST)
@@ -177,7 +177,7 @@ def dashboard(request):
 
     context = {
         "title": title,
-        "date_form": date_form.__dict__,
+        "date_form": date_form,
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
         "call_average": stats["call_average"],
