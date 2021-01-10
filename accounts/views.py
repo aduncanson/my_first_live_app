@@ -153,18 +153,32 @@ def agentList(request):
 @login_required(login_url="login")
 @allowed_users(allowed_roles=["Admin", "Supervisor"])
 def dashboard(request):
-    calls_today = ClientContact.objects.all()
-    calls_today_count = calls_today.filter().count()
 
-    title = "Dashboard"
+    all_reports = contact_reports(request, None, datetime(2021, 1, 1), datetime(2021, 1, 2))
+
+    call_outcome_graph = call_outcome_data(all_reports["call_outcome_table"])
+    services_graph = services_data(all_reports["services_table"])
+    brands_graph = brands_data(all_reports["full_contact_table"])
+
+    stats = dailyStats(request, all_reports["full_contact_table"])
+
+    title = "User Page"
 
     context = {
         "title": title,
-        'calls_today': calls_today,
-        'calls_today_count': calls_today_count,
+        "full_call_count": stats["full_call_count"],
+        "criteria_call_count": stats["criteria_call_count"],
+        "call_average": stats["call_average"],
+        "oversessing": True,
+        "criteria_contact_table": all_reports["criteria_contact_table"],
+        "call_outcome_table": all_reports["call_outcome_table"],
+        "services_table": all_reports["services_table"],
+        'call_outcome_graph': call_outcome_graph,
+        'services_graph': services_graph,
+        'brands_graph': brands_graph,
     }
 
-    return render(request, 'accounts/dashboard.html', context)
+    return render(request, 'accounts/agent.html', context)
 
 
 # Agent specific dashboard

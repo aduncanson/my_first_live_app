@@ -14,11 +14,17 @@ def contact_reports(request, agent, start_date, end_date):
 
     agent_search = AgentSearch.objects.get(agent=request.user.agent)
 
-    all_reqservices = ReqService.objects.filter(
-        contact_id__contact_date__gte=start_date,
-        contact_id__contact_date__lte=end_date,
-        contact_id__agent_id=agent.user,
-    )
+    if agent == None:
+        all_reqservices = ReqService.objects.filter(
+            contact_id__contact_date__gte=start_date,
+            contact_id__contact_date__lte=end_date,
+        )
+    else:
+        all_reqservices = ReqService.objects.filter(
+            contact_id__contact_date__gte=start_date,
+            contact_id__contact_date__lte=end_date,
+            contact_id__agent_id=agent.user,
+        )
 
     full_contact_table = all_reqservices.values(
         "contact_id",
