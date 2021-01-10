@@ -156,8 +156,8 @@ def dashboard(request):
 
     date_form = FilterContactDate()
 
-    start_date_time = date_form.data['start_date_time']
-    end_date_time = date_form.data['end_date_time']
+    start_date_time = date_form['start_date_time']
+    end_date_time = date_form['end_date_time']
 
     if request.method == "POST":
         date_form = FilterContactDate(request.POST)
