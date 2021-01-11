@@ -267,7 +267,7 @@ def agentActivity(request, pk):
         services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
     )
 
-    username = contact_details["contact_id__agent__username"]
+    username = contact_details.get("contact_id__agent__username")
 
     context = {
         "title": title,
