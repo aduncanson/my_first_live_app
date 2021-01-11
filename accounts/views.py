@@ -250,3 +250,19 @@ def agentPage(request, pk):
     }
 
     return render(request, 'accounts/agent.html', context)
+
+
+
+# Agent activity table view
+@login_required(login_url="login")
+@allowed_users(allowed_roles=["Admin", "Supervisor"])
+def agentActivity(request, pk):
+
+
+    title = "Agent Activity"
+
+    context = {
+        "title": title,
+    }
+
+    return render(request, 'accounts/agent.html', context)
