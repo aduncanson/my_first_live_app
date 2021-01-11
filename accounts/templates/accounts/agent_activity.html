@@ -3,6 +3,30 @@
 {% block content %}
 
 <div class="row">
+    
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center mb-3" id="select-contact-id">
+                <div class="card-header">
+                    <div class="card-title">Search Contact Id:</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <div>
+                            <div class="hoverBtn" data-toggle="collapse" data-target="#contact_id_form">Click to view...</div>
+                            <form id="contact_id_form" method="POST" action="{% url 'agent_activity' pk %}" enctype="multipart/form-data" class="collapse">
+                                <br>
+                                {% csrf_token %}
+                                {{ contact_id_form.as_p }}
+                        
+                                <input class="btn btn-primary" type="submit" name="Get contact id">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col">
         <div class="col-md">
             <div class="card text-center mb-3" id="perc-outside-limit">

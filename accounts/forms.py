@@ -46,3 +46,10 @@ class FilterContactDate(forms.ModelForm):
             "start_date_time",
             "end_date_time"
         ]
+
+class SearchContactId(forms.ModelForm):
+    class Meta:  
+        model = ClientContact
+        fields = [
+            "contact_id"
+        ]
