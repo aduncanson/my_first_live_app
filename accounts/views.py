@@ -261,21 +261,28 @@ def agentActivity(request, pk):
     title = "Agent Activity"
 
     contact_details = ReqService.objects.filter(contact_id=pk).values(
-        "contact_id__agent__username"
+        "contact_id__agent__username",
+        "contact_id__agent__first_name",
+        "contact_id__agent__last_name",
+        "contact_id__call_outcome",
+        "contact_id__wrap_up_notes",
     ).annotate(
         comments=ArrayAgg('comments', ordering=("req_service_id")),
         services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
     )
 
     username = contact_details[0]["contact_id__agent__username"]
+    agent_name = contact_details[0]["contact_id__agent__first_name"] + " " + contact_details[0]["contact_id__agent__last_name"]
+    call_outcome = contact_details[0]["contact_id__call_outcome"]
+    wrap_up_notes = contact_details[0]["wrap_up_notes"]
 
     context = {
         "title": title,
         "agent_name": username,
         "username": username,
-        "call_outcome": username,
+        "call_outcome": call_outcome,
         "services": username,
-        "wrap_up_notes": username,
+        "wrap_up_notes": wrap_up_notes,
         #"agent_activity_table": agent_activity_table,
     }
 
