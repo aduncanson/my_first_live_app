@@ -262,17 +262,10 @@ def agentActivity(request, pk):
 
     contact_id_form = SearchContactId()
 
-    if pk == 0:
-        no_show_table = True
-    else:
-        no_show_table = False
-        pk = 1
-
     if request.method == "POST":
         contact_id_form = SearchContactId(request.POST)
         if contact_id_form.is_valid():
             pk = contact_id_form.cleaned_data['search_contact_id']
-            no_show_table = False
 
     contact_details = ReqService.objects.filter(contact_id=pk).values(
         "contact_id__agent__username",
@@ -301,7 +294,6 @@ def agentActivity(request, pk):
         "call_outcome": call_outcome,
         "wrap_up_notes": wrap_up_notes,
         "contact_id_form": contact_id_form,
-        "no_show_table": no_show_table,
     }
 
     return render(request, 'accounts/agent_activity.html', context)
