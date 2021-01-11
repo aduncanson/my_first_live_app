@@ -274,11 +274,11 @@ def agentActivity(request, pk):
     username = contact_details[0]["contact_id__agent__username"]
     agent_name = contact_details[0]["contact_id__agent__first_name"] + " " + contact_details[0]["contact_id__agent__last_name"]
     call_outcome = contact_details[0]["contact_id__call_outcome"]
-    wrap_up_notes = contact_details[0]["wrap_up_notes"]
+    wrap_up_notes = contact_details[0]["contact_id__wrap_up_notes"]
 
     context = {
         "title": title,
-        "agent_name": username,
+        "agent_name": agent_name,
         "username": username,
         "call_outcome": call_outcome,
         "services": username,
