@@ -262,6 +262,11 @@ def agentActivity(request, pk):
 
     contact_id_form = SearchContactId()
 
+    if pk == 0:
+        no_show_table = True
+    else:
+        no_show_table = False
+
     if request.method == "POST":
         contact_id_form = SearchContactId(request.POST)
         if contact_id_form.is_valid():
@@ -294,6 +299,7 @@ def agentActivity(request, pk):
         "call_outcome": call_outcome,
         "wrap_up_notes": wrap_up_notes,
         "contact_id_form": contact_id_form,
+        "no_show_table": no_show_table,
     }
 
     return render(request, 'accounts/agent_activity.html', context)
