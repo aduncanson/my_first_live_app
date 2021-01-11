@@ -3,29 +3,31 @@
 <table id="agent_activity_table" class="table table-sm">
     <thead>
         <tr>
-            <th>Service</th>
-            <th>Count</th>
-            <th>Count Criteria</th>
-            <th>Max</th>
-            <th>Avg</th>
-            <th>Min</th>
+            <th>Order</th>
+            <th>Time</th>
+            <th>Source</th>
+            <th>Event</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="agent_activity_tbody">
     </tbody>
     <tfoot>
         <tr>
-            <th>Service</th>
-            <th>Count</th>
-            <th>Count Criteria</th>
-            <th>Max</th>
-            <th>Avg</th>
-            <th>Min</th>
+            <th>Order</th>
+            <th>Time</th>
+            <th>Source</th>
+            <th>Event</th>
         </tr>
     </tfoot>
 </table>
 
 <script language="javascript">
+    tbody = document.getElementById("agent_activity_tbody");
+    rows = Math.floor(Math.random() * 100);
+    for(var i = 0; i < rows; i++){
+        tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + (i+1) + "</td><td>" + (i+1) + "</td><td>" + (i+1) + "</td></tr>";
+    }
+
     $(document).ready(function() {
 
         $('#agent_activity_table').DataTable();
