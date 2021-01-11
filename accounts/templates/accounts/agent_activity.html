@@ -27,6 +27,7 @@
             </div>
         </div>
     </div>
+    {% if no_show_table == False %}
     <div class="col">
         <div class="col-md">
             <div class="card text-center mb-3" id="perc-outside-limit">
@@ -91,7 +92,6 @@
 
 <br>
 
-{% if no_show_table == False %}
 <div class="row" id="call_outcome_table_row">
     <br>
     <div class="col">
@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 </div>
-{% endif %}
 
 {% endblock content %}
