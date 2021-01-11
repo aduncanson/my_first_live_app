@@ -264,7 +264,6 @@ def agentActivity(request, pk):
         "contact_id__agent__username"
         "contact_id__agent__first_name"
         "contact_id__agent__last_name"
-        "contact_id__agent__team_id__team_name"
         "contact_id__call_outcome",
         "contact_id__wrap_up_notes",
     ).annotate(
@@ -272,10 +271,9 @@ def agentActivity(request, pk):
         services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
     )
 
-    agent_name = contact_details["contact_id__agent__user__first_name"] + " " + contact_details["contact_id__agent__user__last_name"]
-    username = contact_details["contact_id__agent__user__username"]
-    team = contact_details["contact_id__agent__user__username"]
-    agent_name = contact_details["contact_id__agent__user__team_id__team_name"]
+    agent_name = contact_details["contact_id__agent__first_name"] + " " + contact_details["contact_id__agent__last_name"]
+    username = contact_details["contact_id__agent__username"]
+    team = contact_details["contact_id__agent__username"]
     call_outcome = contact_details["contact_id__call_outcome"]
     wrap_up_notes = contact_details["contact_id__wrap_up_notes"]
     services = contact_details["services"]
@@ -284,7 +282,6 @@ def agentActivity(request, pk):
         "title": title,
         "agent_name": agent_name,
         "username": username,
-        "team": team,
         "call_outcome": call_outcome,
         "services": services,
         "wrap_up_notes": wrap_up_notes,
