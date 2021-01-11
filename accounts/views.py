@@ -275,8 +275,8 @@ def agentActivity(request, pk):
     agent_name = contact_details[0]["contact_id__agent__first_name"] + " " + contact_details[0]["contact_id__agent__last_name"]
     call_outcome = contact_details[0]["contact_id__call_outcome"]
     wrap_up_notes = contact_details[0]["contact_id__wrap_up_notes"]
-    services = contact_details[0]["contact_id__wrap_up_notes"]
-    comments = contact_details[0]["contact_id__wrap_up_notes"]
+    services = contact_details[0]["services"]
+    comments = contact_details[0]["comments"]
 
     context = {
         "title": title,
