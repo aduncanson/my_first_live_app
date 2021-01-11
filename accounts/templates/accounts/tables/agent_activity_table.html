@@ -24,8 +24,8 @@
 <script language="javascript">
     tbody = document.getElementById("agent_activity_tbody");
     rows = Math.floor(Math.random() * 50) + 50;
-    date = new Date();
-    start_time = date.setHours(0, 0, 0, 0);
+    date = new Date(0, 0, 0, 0, 0, 0);
+    start_time = date;
     alert(start_time.getMinutes());
 
     $(document).ready(function() {
