@@ -24,11 +24,12 @@
 <script language="javascript">
     tbody = document.getElementById("agent_activity_tbody");
     rows = Math.floor(Math.random() * 100);
-    for(var i = 0; i < rows; i++){
-        tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + (i+1) + "</td><td>" + (i+1) + "</td><td>" + (i+1) + "</td></tr>";
-    }
 
     $(document).ready(function() {
+
+        for(var i = 0; i < rows; i++){
+            tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + (i+1) + "</td><td>" + (i+1) + "</td><td>" + (i+1) + "</td></tr>";
+        }
 
         $('#agent_activity_table').DataTable();
 
