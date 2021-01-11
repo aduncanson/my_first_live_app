@@ -258,11 +258,37 @@ def agentPage(request, pk):
 @allowed_users(allowed_roles=["Admin", "Supervisor"])
 def agentActivity(request, pk):
 
-
     title = "Agent Activity"
+
+    contact_details = ReqService.objects.get(contact_id=pk).values(
+        "contact_id__agent__user__username"
+        "contact_id__agent__user__first_name"
+        "contact_id__agent__user__last_name"
+        "contact_id__agent__user__team_id__team_name"
+        "contact_id__call_outcome",
+        "contact_id__wrap_up_notes",
+    ).annotate(
+        comments=ArrayAgg('comments', ordering=("req_service_id")),
+        services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
+    )
+
+    agent_name = contact_details["contact_id__agent__user__first_name"] + " " + contact_details["contact_id__agent__user__last_name"]
+    username = contact_details["contact_id__agent__user__username"]
+    team = contact_details["contact_id__agent__user__username"]
+    agent_name = contact_details["contact_id__agent__user__team_id__team_name"]
+    call_outcome = contact_details["contact_id__call_outcome"]
+    wrap_up_notes = contact_details["contact_id__wrap_up_notes"]
+    services = contact_details["services"]
 
     context = {
         "title": title,
+        "agent_name": agent_name,
+        "username": username,
+        "team": team,
+        "call_outcome": call_outcome,
+        "services": services,
+        "wrap_up_notes": wrap_up_notes,
+        #"agent_activity_table": agent_activity_table,
     }
 
-    return render(request, 'accounts/agent.html', context)
+    return render(request, 'accounts/agent_activity.html', context)

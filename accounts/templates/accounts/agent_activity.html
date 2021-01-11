@@ -1,0 +1,81 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center mb-3" id="perc-outside-limit">
+                <div class="card-header">
+                    <div class="card-title">Agent</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">{{ agent_name }} - {{ username }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center mb-3" id="perc-outside-limit">
+                <div class="card-header">
+                    <div class="card-title">Team</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">{{ team }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center mb-3" id="perc-outside-limit">
+                <div class="card-header">
+                    <div class="card-title">Call Outcome</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">{{ call_outcome }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center mb-3" id="perc-outside-limit">
+                <div class="card-header">
+                    <div class="card-title">Services</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">{{ services }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center mb-3" id="perc-outside-limit">
+                <div class="card-header">
+                    <div class="card-title">Wrap up notes</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">{{ wrap_up_notes }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row collapse" id="call_outcome_table_row">
+    <br>
+    <div class="col">
+        <div class="col-md">
+            <div class="card card-body">
+                {% include 'accounts/tables/agent_activity_table.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

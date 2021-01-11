@@ -1,0 +1,34 @@
+{% load static %}
+
+<table id="agent_activity_table" class="table table-sm">
+    <thead>
+        <tr>
+            <th>Service</th>
+            <th>Count</th>
+            <th>Count Criteria</th>
+            <th>Max</th>
+            <th>Avg</th>
+            <th>Min</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Service</th>
+            <th>Count</th>
+            <th>Count Criteria</th>
+            <th>Max</th>
+            <th>Avg</th>
+            <th>Min</th>
+        </tr>
+    </tfoot>
+</table>
+
+<script language="javascript">
+    $(document).ready(function() {
+
+        $('#agent_activity_table').DataTable();
+
+    });
+</script>
