@@ -260,6 +260,11 @@ def agentActivity(request, pk):
 
     title = "Agent Activity"
 
+    contact_id_form = SearchContactId()
+
+    if request.method == "POST":
+        contact_id_form = SearchContactId(request.POST)
+
     contact_details = ReqService.objects.filter(contact_id=pk).values(
         "contact_id__agent__username",
         "contact_id__agent__first_name",
