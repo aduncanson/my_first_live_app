@@ -30,7 +30,7 @@
 
         for(var i = 0; i < rows; i++){
 
-            tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + start_time + "</td><td>" + (i+1) + "</td><td>" + (i+1) + "</td></tr>";
+            tbody.innerHTML += "<tr><td>" + (i+1) + "</td><td>" + start_time.getMinutes() + "</td><td>" + (i+1) + "</td><td>" + (i+1) + "</td></tr>";
 
             start_time += start_time + 2;
         }
