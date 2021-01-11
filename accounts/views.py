@@ -261,9 +261,9 @@ def agentActivity(request, pk):
     title = "Agent Activity"
 
     contact_details = ReqService.objects.filter(contact_id=pk).values(
-        "contact_id__agent__user_id__username"
-        "contact_id__agent__user__first_name"
-        "contact_id__agent__user__last_name"
+        "contact_id__agent__username"
+        "contact_id__agent__first_name"
+        "contact_id__agent__last_name"
         "contact_id__agent__team_id__team_name"
         "contact_id__call_outcome",
         "contact_id__wrap_up_notes",
