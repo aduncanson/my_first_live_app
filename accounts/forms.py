@@ -49,7 +49,7 @@ class FilterContactDate(forms.ModelForm):
 
 class SearchContactId(forms.ModelForm):
     class Meta:  
-        model = ClientContact
+        model = ReqService
         fields = [
             "contact_id"
         ]
