@@ -22,7 +22,7 @@
                     <div class="card-title">Services</div>
                 </div>
                 <div class="card-body">
-                    <div class="card-title">{{ services }}</div>
+                    <div class="card-title">{{ services|join:"<br>" }}</div>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                     <div class="card-title">Comments</div>
                 </div>
                 <div class="card-body">
-                    <div class="card-title">{{ comments }}</div>
+                    <div class="card-title">{{ comments|join:"<br>" }}</div>
                 </div>
             </div>
         </div>

@@ -286,7 +286,6 @@ def agentActivity(request, pk):
         "comments": comments,
         "call_outcome": call_outcome,
         "wrap_up_notes": wrap_up_notes,
-        #"agent_activity_table": agent_activity_table,
     }
 
     return render(request, 'accounts/agent_activity.html', context)
