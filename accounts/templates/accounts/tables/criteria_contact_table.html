@@ -21,7 +21,7 @@
     <tbody>
         {% for row in criteria_contact_table %}
         <tr>
-            <td><a href="{% url 'agent_activity' {{ row }} %}">{{ row.contact_id }}</a></td>
+            <td><a href="{% url 'agent_activity' row %}">{{ row.contact_id }}</a></td>
             <td>{{ row.contact_id__contact_date|date:"N j, Y" }}</td>
             <td>{{ row.call_time }}</td>
             <td>{{ row.contact_id__contact_session_id__call_start_time|time:"g:i:s a" }}</td>
