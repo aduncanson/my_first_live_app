@@ -227,6 +227,7 @@ def agentPage(request, pk):
     call_outcome_graph = call_outcome_data(all_reports["call_outcome_table"])
     services_graph = services_data(all_reports["services_table"])
     brands_graph = brands_data(all_reports["full_contact_table"])
+    call_duration_hist_graph = call_duration_hist(all_reports["full_contact_table"])
 
     stats = dailyStats(request, all_reports["full_contact_table"])
 
@@ -247,6 +248,7 @@ def agentPage(request, pk):
         'call_outcome_graph': call_outcome_graph,
         'services_graph': services_graph,
         'brands_graph': brands_graph,
+        "call_duration_hist_graph": call_duration_hist_graph,
     }
 
     return render(request, 'accounts/agent.html', context)
