@@ -25,7 +25,7 @@
     tbody = document.getElementById("agent_activity_tbody");
     rows = Math.floor(Math.random() * 50) + 50;
     date = new Date();
-    start_time = date;
+    start_time = date.setHours(0, 0, 0, 0);
     alert(start_time.getMinutes());
 
     $(document).ready(function() {
