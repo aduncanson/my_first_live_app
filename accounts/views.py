@@ -264,6 +264,8 @@ def agentActivity(request, pk):
 
     if request.method == "POST":
         contact_id_form = SearchContactId(request.POST)
+        if contact_id_form.is_valid():
+            pk = contact_id_form.cleaned_data['contact_id']
 
     contact_details = ReqService.objects.filter(contact_id=pk).values(
         "contact_id__agent__username",
