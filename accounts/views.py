@@ -264,7 +264,7 @@ def agentActivity(request, pk):
         "contact_id__agent__user__username"
         "contact_id__agent__user__first_name"
         "contact_id__agent__user__last_name"
-        "contact_id__agent__user__team_id__team_name"
+        "contact_id__agent__team_id__team_name"
         "contact_id__call_outcome",
         "contact_id__wrap_up_notes",
     ).annotate(
