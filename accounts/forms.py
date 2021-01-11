@@ -48,8 +48,9 @@ class FilterContactDate(forms.ModelForm):
         ]
 
 class SearchContactId(forms.ModelForm):
+    search_contact_id = forms.IntegerField(initial=None)
     class Meta:  
         model = ReqService
         fields = [
-            "contact_id"
+            "search_contact_id"
         ]
