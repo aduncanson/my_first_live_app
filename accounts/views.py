@@ -272,6 +272,7 @@ def agentActivity(request, pk):
         contact_id_form = SearchContactId(request.POST)
         if contact_id_form.is_valid():
             pk = contact_id_form.cleaned_data['search_contact_id']
+            no_show_table = False
 
     contact_details = ReqService.objects.filter(contact_id=pk).values(
         "contact_id__agent__username",
