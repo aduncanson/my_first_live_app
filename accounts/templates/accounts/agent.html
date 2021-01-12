@@ -136,6 +136,7 @@
         o.classList.toggle("make-bar-chart");
         if (graph == 'call-outcome') {
             window.myPieCallOutcome.destroy();
+            window.myPieCallOutcome = null;
             if (call_outcome_chart_config.type == "pie") {
                 call_outcome_chart_config.type = "bar";
             } else {
