@@ -6,20 +6,20 @@
 
 <div class="row">
     <div class="col">
-        <div class="col-md text-center">
-            <div class="card text-center card-body mb-3">
-                {% include 'accounts/charts/call_outcome_chart.html' %}
-            </div>
-            <div class="card text-center card-header mb-3">
-                <div class="btn btn-info make-bar-chart" onclick="chnage_graph_type(this)"></div>
+        <div class="col-md">
+            <div class="card text-center mb-3">
+                <div class="card-header">
+                    <div class="btn btn-info make-bar-chart" onclick="chnage_graph_type(this)"></div>
+                </div>
+                <div class="card-body">
+                    {% include 'accounts/charts/call_outcome_chart.html' %}
+                </div>
             </div>
         </div>
     </div>
-
-
     <div class="col">
         <div class="col-md">
-            <div class="card text-center mb-3" id="average-call-length">
+            <div class="card text-center mb-3">
                 <div class="card-header">
                     <div class="btn btn-info make-bar-chart" onclick="chnage_graph_type(this)"></div>
                 </div>
@@ -29,15 +29,15 @@
             </div>
         </div>
     </div>
-
-
     <div class="col">
-        <div class="col-md text-center">
-            <div class="card text-center card-body mb-3">
-                {% include 'accounts/charts/brands_chart.html' %}
-            </div>
-            <div class="card text-center card-header mb-3">
-                <div class="btn btn-info make-bar-chart" onclick="chnage_graph_type(this)"></div>
+        <div class="col-md">
+            <div class="card text-center mb-3">
+                <div class="card-header">
+                    <div class="btn btn-info make-bar-chart" onclick="chnage_graph_type(this)"></div>
+                </div>
+                <div class="card-body">
+                    {% include 'accounts/charts/brands_chart.html' %}
+                </div>
             </div>
         </div>
     </div>
