@@ -35,8 +35,8 @@ footer {
     cursor: pointer;
 }
 .make-pie-chart::after{
-    content: "Pie chart";
+    content: "View pie chart...";
 }
 .make-bar-chart::after{
-    content: "Bar chart";
+    content: "View bar chart...";
 }
