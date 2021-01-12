@@ -124,9 +124,9 @@
         var call_outcome_chart = document.getElementById('call-outcome-chart').getContext('2d');
         var services_chart = document.getElementById('services-chart').getContext('2d');
         var brands_chart = document.getElementById('brands-chart').getContext('2d');
-        window.myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
-        window.myPieServices = new Chart(services_chart, services_chart_config);
-        window.myPieBrands = new Chart(brands_chart, brands_chart_config);
+        var myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
+        var myPieServices = new Chart(services_chart, services_chart_config);
+        var myPieBrands = new Chart(brands_chart, brands_chart_config);
     };
     function toggleBorder(o){
         o.classList.toggle("selectedBorder");
@@ -136,14 +136,15 @@
         o.classList.toggle("make-bar-chart");
         if (graph == 'call-outcome') {
             if (call_outcome_chart_config.type == "pie") {
-                window.myPieCallOutcome.destroy()
-                call_outcome_chart_config.type == "bar";
-                window.myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
+                myPieCallOutcome.destroy()
+                call_outcome_chart_config.type = "bar";
+                myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
             } else {
-                window.myPieCallOutcome.destroy()
-                call_outcome_chart_config.type == "pie";
-                window.myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
+                myPieCallOutcome.destroy()
+                call_outcome_chart_config.type = "pie";
+                myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
             }
+            alert(call_outcome_chart_config.type)
         }
     }
 </script>
