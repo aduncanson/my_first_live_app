@@ -5,10 +5,6 @@
 <div class="container h-100">
 	<div class="d-flex justify-content-center h-100">
 		<div class="user_card">
-			<div class="d-flex justify-content-center">
-
-				<h3 id="form-title">LOGIN</h3>
-			</div>
 			<div class="d-flex justify-content-center form_container">
 				<form method="POST" action="">
 					{% csrf_token %}
@@ -31,8 +27,30 @@
 				</form>
 
 			</div>
-	
-			<div class="mt-4">
+		</div>
+	</div>
+</div>
+<div class="col">
+	<div class="col-md">
+		<div class="card text-center mb-3" id="select-date-range">
+			<div class="card-header">
+				<div class="card-title">Login</div>
+			</div>
+			<div class="card-body">
+				<div class="card-title">
+					<div>
+						<div class="hoverBtn" data-toggle="collapse" data-target="#date_filter_form">Click to view...</div>
+						<form id="date_filter_form" method="POST" action="" enctype="multipart/form-data" class="collapse">
+							<br>
+							{% csrf_token %}
+							{{ date_form.as_p }}
+					
+							<input class="btn btn-primary" type="submit" name="Get date range">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="card-title">
 				<div class="d-flex justify-content-center links">
 					Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
 				</div>
