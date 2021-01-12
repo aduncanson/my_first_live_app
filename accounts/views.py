@@ -256,9 +256,20 @@ def agentPage(request, pk):
 # Agent activity table view
 @login_required(login_url="login")
 @allowed_users(allowed_roles=["Admin", "Supervisor"])
-def agentActivity(request, pk):
+def agentActivity(request, pk=None):
 
     title = "Agent Activity"
+
+    if pk == None:
+        show_agent_activity_table = False
+        context = {
+            "title": title,
+            "show_agent_activity_table": show_agent_activity_table,
+        }
+
+        return render(request, 'accounts/agent_activity.html', context)
+    
+    show_agent_activity_table = True
 
     contact_id_form = SearchContactId()
 
@@ -294,6 +305,7 @@ def agentActivity(request, pk):
         "call_outcome": call_outcome,
         "wrap_up_notes": wrap_up_notes,
         "contact_id_form": contact_id_form,
+        "show_agent_activity_table": show_agent_activity_table,
     }
 
     return render(request, 'accounts/agent_activity.html', context)
