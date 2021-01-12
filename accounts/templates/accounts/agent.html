@@ -106,12 +106,12 @@
 
 <script>
     window.onload = function() {
-        var ctx1 = document.getElementById('call-outcome-pie-chart').getContext('2d');
-        var ctx2 = document.getElementById('services-pie-chart').getContext('2d');
-        var ctx3 = document.getElementById('brands-pie-chart').getContext('2d');
-        window.myPie = new Chart(ctx1, config1);
-        window.myPie = new Chart(ctx2, config2);
-        window.myPie = new Chart(ctx3, config3);
+        var call_outcome_chart = document.getElementById('call-outcome-chart').getContext('2d');
+        var services_chart = document.getElementById('services-chart').getContext('2d');
+        var brands_chart = document.getElementById('brands-chart').getContext('2d');
+        window.myPie = new Chart(call_outcome_chart, call_outcome_chart_config);
+        window.myPie = new Chart(services_chart, services_chart_config);
+        window.myPie = new Chart(brands_chart, brands_chart_config3);
     };
     function toggleBorder(o){
         o.classList.toggle("selectedBorder");
