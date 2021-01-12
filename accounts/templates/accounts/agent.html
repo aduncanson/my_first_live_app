@@ -124,12 +124,27 @@
         var call_outcome_chart = document.getElementById('call-outcome-chart').getContext('2d');
         var services_chart = document.getElementById('services-chart').getContext('2d');
         var brands_chart = document.getElementById('brands-chart').getContext('2d');
-        window.myPie1 = new Chart(call_outcome_chart, call_outcome_chart_config);
-        window.myPie2 = new Chart(services_chart, services_chart_config);
-        window.myPie3 = new Chart(brands_chart, brands_chart_config);
+        window.myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
+        window.myPieServices = new Chart(services_chart, services_chart_config);
+        window.myPieBrands = new Chart(brands_chart, brands_chart_config);
     };
     function toggleBorder(o){
         o.classList.toggle("selectedBorder");
+    }
+    function chnage_graph_type(o, graph){
+        o.classList.toggle("make-pie-chart");
+        o.classList.toggle("make-bar-chart");
+        if (graph == 'call-outcome') {
+            if (call_outcome_chart_config.type == "pie") {
+                window.myPieCallOutcome.destroy()
+                call_outcome_chart_config.type == "bar";
+                window.myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
+            } else {
+                window.myPieCallOutcome.destroy()
+                call_outcome_chart_config.type == "pie";
+                window.myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
+            }
+        }
     }
 </script>
 
