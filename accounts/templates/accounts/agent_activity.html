@@ -14,7 +14,7 @@
                     <div class="card-title">
                         <div>
                             <div class="hoverBtn" data-toggle="collapse" data-target="#contact_id_form">Click to view...</div>
-                            <form id="contact_id_form" method="POST" action="{% url 'agent_activity' contact_id_form.search_contact_id %}" enctype="multipart/form-data" class="collapse">
+                            <form id="contact_id_form" method="POST" action="{% url 'agent_activity' contact_id_form.search_contact_id.value %}" enctype="multipart/form-data" class="collapse">
                                 <br>
                                 {% csrf_token %}
                                 {{ contact_id_form.as_p }}
