@@ -139,7 +139,12 @@
         o.classList.toggle("make-bar-chart");
         if (graph == 'call-outcome') {
             myPieCallOutcome.destroy();
-            alert(call_outcome_chart_config);
+            if (call_outcome_chart_config.type == "pie") {
+                call_outcome_chart_config.type = "bar";
+            } else {
+                call_outcome_chart_config.type = "pie";
+            }
+            alert(call_outcome_chart_config.type);
         }
     }
 </script>
