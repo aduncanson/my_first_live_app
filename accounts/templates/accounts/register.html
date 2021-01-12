@@ -52,6 +52,10 @@
 	form_fields[4].placeholder='Email...';
 	form_fields[5].placeholder='Enter password...';
 	form_fields[6].placeholder='Re-enter Password...';
+	
+	for (var field in form_fields){	
+		form_fields[field].className += ' form-control'
+	}
 </script>
 
 {% endblock content %}
