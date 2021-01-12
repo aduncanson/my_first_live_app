@@ -11,8 +11,11 @@
 </head>
 
 <body>
-
-    {% include 'accounts/navbar.html' %}
+    {% if title == "Login" %}
+        {% include 'accounts/navbar_login.html' %}
+    {% else %}
+        {% include 'accounts/navbar.html' %}
+    {% endif %}
 
     <div id="main-body">
         {% block content %}
