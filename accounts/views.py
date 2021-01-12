@@ -260,18 +260,19 @@ def agentActivity(request, pk=None):
 
     title = "Agent Activity"
 
+    contact_id_form = SearchContactId()
+
     if pk == None:
         show_agent_activity_table = False
         context = {
             "title": title,
             "show_agent_activity_table": show_agent_activity_table,
+            "contact_id_form": contact_id_form,
         }
 
         return render(request, 'accounts/agent_activity.html', context)
     
     show_agent_activity_table = True
-
-    contact_id_form = SearchContactId()
 
     if request.method == "POST":
         contact_id_form = SearchContactId(request.POST)
