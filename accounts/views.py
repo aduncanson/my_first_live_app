@@ -51,6 +51,7 @@ def registerPage(request):
 
     context = {
         "title": title,
+        "login": "No",
         'form': form
     }
 
@@ -75,7 +76,8 @@ def loginPage(request):
     title = "Login"
     
     context = {
-        "title": title
+        "title": title,
+        "login": "No",
     }
 
     return render(request, 'accounts/login.html', context)
@@ -113,6 +115,7 @@ def agentSettings(request):
     
     context = {
         "title": title,
+        "login": "Yes",
         "agent": agent,
         "form": form,
         "profilePic": profilePic,
@@ -137,6 +140,7 @@ def agentList(request):
 
     context = {
         "title": title,
+        "login": "Yes",
     }
 
     return render(request, 'accounts/agent_list.html', context)
@@ -188,6 +192,7 @@ def agentActivity(request, pk=None):
 
     context = {
         "title": title,
+        "login": "Yes",
         "username": username,
         "agent_name": agent_name,
         "services": services,
@@ -236,6 +241,7 @@ def dashboard(request):
 
     context = {
         "title": title,
+        "login": "Yes",
         "date_form": date_form,
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
@@ -293,6 +299,7 @@ def agentPage(request, pk):
 
     context = {
         "title": title,
+        "login": "Yes",
         "date_form": date_form,
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
