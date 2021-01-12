@@ -142,6 +142,65 @@ def agentList(request):
     return render(request, 'accounts/agent_list.html', context)
 
 
+# Agent activity table view
+@login_required(login_url="login")
+@allowed_users(allowed_roles=["Admin", "Supervisor"])
+def agentActivity(request, pk=None):
+
+    title = "Agent Activity"
+
+    contact_id_form = SearchContactId()
+
+    if pk == None:
+        show_agent_activity_table = False
+        context = {
+            "title": title,
+            "show_agent_activity_table": show_agent_activity_table,
+            "contact_id_form": contact_id_form,
+        }
+
+        return render(request, 'accounts/agent_activity.html', context)
+    
+    show_agent_activity_table = True
+
+    if request.method == "POST":
+        contact_id_form = SearchContactId(request.POST)
+        if contact_id_form.is_valid():
+            pk = contact_id_form.cleaned_data['search_contact_id']
+
+    contact_details = ReqService.objects.filter(contact_id=pk).values(
+        "contact_id__agent__username",
+        "contact_id__agent__first_name",
+        "contact_id__agent__last_name",
+        "contact_id__call_outcome",
+        "contact_id__wrap_up_notes",
+    ).annotate(
+        comments=ArrayAgg('comments', ordering=("req_service_id")),
+        services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
+    )
+
+    username = contact_details[0]["contact_id__agent__username"]
+    agent_name = contact_details[0]["contact_id__agent__first_name"] + " " + contact_details[0]["contact_id__agent__last_name"]
+    call_outcome = contact_details[0]["contact_id__call_outcome"]
+    wrap_up_notes = contact_details[0]["contact_id__wrap_up_notes"]
+    services = contact_details[0]["services"]
+    comments = contact_details[0]["comments"]
+
+    context = {
+        "title": title,
+        "username": username,
+        "agent_name": agent_name,
+        "services": services,
+        "comments": comments,
+        "call_outcome": call_outcome,
+        "wrap_up_notes": wrap_up_notes,
+        "contact_id_form": contact_id_form,
+        "show_agent_activity_table": show_agent_activity_table,
+    }
+
+    return render(request, 'accounts/agent_activity.html', context)
+
+
 """
 ----------------------------------------------------------------------------------------
 ----------------------------------- ALL AGENT VIEWS -----------------------------------
@@ -250,63 +309,3 @@ def agentPage(request, pk):
     }
 
     return render(request, 'accounts/agent.html', context)
-
-
-
-# Agent activity table view
-@login_required(login_url="login")
-@allowed_users(allowed_roles=["Admin", "Supervisor"])
-def agentActivity(request, pk=None):
-
-    title = "Agent Activity"
-
-    contact_id_form = SearchContactId()
-
-    if pk == None:
-        show_agent_activity_table = False
-        context = {
-            "title": title,
-            "show_agent_activity_table": show_agent_activity_table,
-            "contact_id_form": contact_id_form,
-        }
-
-        return render(request, 'accounts/agent_activity.html', context)
-    
-    show_agent_activity_table = True
-
-    if request.method == "POST":
-        contact_id_form = SearchContactId(request.POST)
-        if contact_id_form.is_valid():
-            pk = contact_id_form.cleaned_data['search_contact_id']
-
-    contact_details = ReqService.objects.filter(contact_id=pk).values(
-        "contact_id__agent__username",
-        "contact_id__agent__first_name",
-        "contact_id__agent__last_name",
-        "contact_id__call_outcome",
-        "contact_id__wrap_up_notes",
-    ).annotate(
-        comments=ArrayAgg('comments', ordering=("req_service_id")),
-        services=ArrayAgg('service_type_id__service_type_name', ordering=("req_service_id")),
-    )
-
-    username = contact_details[0]["contact_id__agent__username"]
-    agent_name = contact_details[0]["contact_id__agent__first_name"] + " " + contact_details[0]["contact_id__agent__last_name"]
-    call_outcome = contact_details[0]["contact_id__call_outcome"]
-    wrap_up_notes = contact_details[0]["contact_id__wrap_up_notes"]
-    services = contact_details[0]["services"]
-    comments = contact_details[0]["comments"]
-
-    context = {
-        "title": title,
-        "username": username,
-        "agent_name": agent_name,
-        "services": services,
-        "comments": comments,
-        "call_outcome": call_outcome,
-        "wrap_up_notes": wrap_up_notes,
-        "contact_id_form": contact_id_form,
-        "show_agent_activity_table": show_agent_activity_table,
-    }
-
-    return render(request, 'accounts/agent_activity.html', context)
