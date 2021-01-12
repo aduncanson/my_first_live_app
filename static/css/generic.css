@@ -34,3 +34,9 @@ footer {
 .hoverBtn:hover {
     cursor: pointer;
 }
+.make-pie-chart::after{
+    content: "Pie...";
+}
+.make-bar-chart::after{
+    content: "Bar...";
+}

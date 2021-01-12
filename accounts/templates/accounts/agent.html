@@ -69,6 +69,7 @@
             </div>
         </div>
     </div>
+    <div class="btn make-bar-chart" onclick="chnage_graph_type(this)"></div>
 </div>
 
 <div class="row collapse" id="services_table_row">
@@ -80,6 +81,7 @@
             </div>
         </div>
     </div>
+    <div class="btn make-bar-chart" onclick="chnage_graph_type(this)"></div>
 </div>
 
 <div class="row collapse" id="brands_table_row">
@@ -91,6 +93,7 @@
             </div>
         </div>
     </div>
+    <div class="btn make-bar-chart" onclick="chnage_graph_type(this)"></div>
 </div>
 
 <div class="row collapse" id="criteria_contact_table_row">
@@ -115,6 +118,10 @@
     };
     function toggleBorder(o){
         o.classList.toggle("selectedBorder");
+    }
+    function chnage_graph_type(o){
+        o.classList.toggle("make-pie-chart");
+        o.classList.toggle("make-bar-chart");
     }
 </script>
 
