@@ -206,13 +206,6 @@ def agentActivity(request, pk=None):
     return render(request, 'accounts/agent_activity.html', context)
 
 
-"""
-----------------------------------------------------------------------------------------
------------------------------------ ALL AGENT VIEWS -----------------------------------
-----------------------------------------------------------------------------------------
-"""
-
-
 # The dashboard admin and supervisors are taken to upon login
 @login_required(login_url="login")
 @allowed_users(allowed_roles=["Admin", "Supervisor"])
@@ -257,6 +250,13 @@ def dashboard(request):
     }
 
     return render(request, 'accounts/agent.html', context)
+
+
+"""
+----------------------------------------------------------------------------------------
+----------------------------------- ALL AGENT VIEWS -----------------------------------
+----------------------------------------------------------------------------------------
+"""
 
 
 # Agent specific dashboard
