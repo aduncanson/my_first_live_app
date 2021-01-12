@@ -16,7 +16,8 @@ urlpatterns = [
 
     path('agent_list/', views.agentList, name="agent_list"),
 
-    path('agent_activity/(?P<str:pk>\w+)/$/', views.agentActivity, name="agent_activity"),
+    path('agent_activity/', views.agentActivity, name="agent_activity"),
+    path('agent_activity/<str:pk>/', views.agentActivity, name="agent_activity"),
 
     path("reset_password/", auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"), name="reset_password"),
     path("reset_password_sent/", auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"), name="password_reset_done"),
