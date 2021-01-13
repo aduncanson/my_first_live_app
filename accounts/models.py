@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
 
+"""
+    Model for Brands
+"""
 class Brand(models.Model):
     brand_id = models.AutoField(primary_key=True)
     brand_name = models.CharField(max_length=200, null=True)
@@ -9,6 +12,9 @@ class Brand(models.Model):
     def __str__(self):
         return self.brand_name
 
+"""
+    Model for Departments
+"""
 class Department(models.Model):
     department_id = models.AutoField(primary_key=True)
     department_name = models.CharField(max_length=200, null=True)
@@ -16,6 +22,9 @@ class Department(models.Model):
     def __str__(self):
         return self.department_name
 
+"""
+    Model for Teams
+"""
 class Team(models.Model):
     team_id = models.AutoField(primary_key=True)
     team_name = models.CharField(max_length=200, null=True)
@@ -24,6 +33,9 @@ class Team(models.Model):
     def __str__(self):
         return self.team_name
 
+"""
+    Model for Service Type
+"""
 class ServiceType(models.Model):
     service_type_id = models.AutoField(primary_key=True)
     service_type_name = models.CharField(max_length=200, null=True)
@@ -31,6 +43,9 @@ class ServiceType(models.Model):
     def __str__(self):
         return self.service_type_name
 
+"""
+    Model for Agents
+"""
 class Agent(models.Model):
     user = models.OneToOneField(User, unique=True, null=True, blank=True, on_delete=models.CASCADE)
     profile_pic = models.ImageField(default="profile.png", null=True, blank=True)
@@ -39,6 +54,9 @@ class Agent(models.Model):
     def __str__(self):
         return self.user.username
 
+"""
+    Model for Agent search criteria
+"""
 class AgentSearch(models.Model):
     agent = models.OneToOneField(Agent, unique=True, null=True, blank=True, on_delete=models.CASCADE)
     brands = models.ManyToManyField(Brand)
@@ -49,6 +67,9 @@ class AgentSearch(models.Model):
     def __str__(self):
         return self.agent.user.username
 
+"""
+    Model for Contact Sessions
+"""
 class ContactSession(models.Model):
     contact_session_id = models.AutoField(primary_key=True)
     call_start_time = models.TimeField(blank=True, null=True)
@@ -61,7 +82,9 @@ class ContactSession(models.Model):
     def __str__(self):
         return str(self.contact_session_id)
         
-
+"""
+    Model for Client Contacts
+"""
 class ClientContact(models.Model):
     contact_id = models.AutoField(primary_key=True)
     contact_session_id = models.ForeignKey(ContactSession, null=True, blank=True, on_delete=models.SET_NULL)
@@ -73,6 +96,9 @@ class ClientContact(models.Model):
     def __str__(self):
         return str(self.contact_id)
 
+"""
+    Model for Required Services
+"""
 class ReqService(models.Model):
     req_service_id = models.AutoField(primary_key=True)
     contact_id = models.ForeignKey(ClientContact, null=True, blank=True, on_delete=models.SET_NULL)

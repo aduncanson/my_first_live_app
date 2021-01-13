@@ -10,6 +10,9 @@ from datetime import date, datetime, time, timedelta
 
 from .models import *
 
+"""
+    Returns a table automatically formatted with Datatables js plugin, lists all agents
+"""
 class AgentListAjaxDatatableView(AjaxDatatableView):
 
     model = Agent
@@ -28,11 +31,14 @@ class AgentListAjaxDatatableView(AjaxDatatableView):
         {'name': 'Agent Dashboard', 'visible': True, 'searchable': False, },
     ]
 
+    # Allows customization of each row
     def customize_row(self, row, obj):
+        # For 'Agent Dashboard', return it as a button
         row['Agent Dashboard'] = '<a class="btn btn-primary btn-sm btn-block" href="%s">View</a>' % (
             reverse('agent_page', args=(obj.id,))
         )
 
+    # The initial queryset to be displayed, ignore admin users
     def get_initial_queryset(self, request=None):
 
         if not getattr(request, 'REQUEST', None):

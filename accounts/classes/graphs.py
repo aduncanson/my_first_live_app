@@ -1,7 +1,9 @@
 from ..models import *
-
 import random
 
+"""
+    Turns queryset into arrays for populating call outcome graph
+"""
 def call_outcome_data(queryset):
 
     labels = []
@@ -24,7 +26,9 @@ def call_outcome_data(queryset):
     
     return context
 
-
+"""
+    Turns queryset into arrays for populating services graph
+"""
 def services_data(queryset):
 
     labels = []
@@ -47,7 +51,9 @@ def services_data(queryset):
     
     return context
 
-
+"""
+    Turns queryset into arrays for populating brands graph
+"""
 def brands_data(queryset):
     all_brands = Brand.objects.all()
 
@@ -67,6 +73,7 @@ def brands_data(queryset):
         index = labels.index(call['contact_id__contact_session_id__brand_id__brand_name'])
         data[index] += 1
 
+    # Dict to be returned
     context = {
         "labels": labels,
         "data": data,

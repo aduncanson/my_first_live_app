@@ -6,16 +6,10 @@ from .models import *
 
 from datetime import datetime
 
-class AgentFilter(django_filters.FilterSet):
-    start_date = DateTimeFilter(field_name="contact_date", lookup_expr="gte", widget=forms.DateInput(attrs={'type': 'datetime-local'}))
-    end_date = DateTimeFilter(field_name="contact_date", lookup_expr="lte", widget=forms.DateInput(attrs={'type': 'datetime-local'}))
-    wrap_up_notes = CharFilter(field_name="wrap_up_notes", lookup_expr="icontains")
-    call_outcome = CharFilter(field_name="call_outcome", lookup_expr="icontains")
-
-    class Meta:
-        model = ClientContact
-        fields = []
-
+"""
+    Returns filtered queryset depending on POSTed inputs
+    Now decomissioned as using responsive filter in tables rather than POSTed fields
+"""
 class AgentListFilter(django_filters.FilterSet):
     username = CharFilter(field_name="user_id__username", lookup_expr="icontains")
     team = CharFilter(field_name="team_id__team_name", lookup_expr="icontains")
