@@ -43,8 +43,8 @@ class UpdateProfilePic(forms.ModelForm):
 class FilterContactDate(forms.ModelForm):
     #start_date_time = forms.DateTimeField(initial=date.today())
     #end_date_time = forms.DateTimeField(initial=date.today() + timedelta(days=1))
-    start_date_time = forms.DateTimeField(initial=datetime(2021, 1, 1), widget=forms.DateInput(attrs={'type': 'datetime-local'}))
-    end_date_time = forms.DateTimeField(initial=datetime(2021, 1, 2), widget=forms.DateInput(attrs={'type': 'datetime-local'}))
+    start_date_time = forms.DateTimeField(initial=datetime(2021, 1, 1, 0, 0), widget=forms.DateInput(attrs={'type': 'datetime-local'}))
+    end_date_time = forms.DateTimeField(initial=datetime(2021, 1, 2, 0, 0), widget=forms.DateInput(attrs={'type': 'datetime-local'}))
     class Meta:  
         model = ClientContact
         fields = [
