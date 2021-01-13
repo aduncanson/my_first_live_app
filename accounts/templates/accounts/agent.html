@@ -145,6 +145,22 @@
                 call_outcome_chart_config.type = "pie";
             }
             myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
+        } else if (graph == 'services') {
+            myPieServices.destroy();
+            if (services_chart_config.type == "pie") {
+                services_chart_config.type = "bar";
+            } else {
+                services_chart_config.type = "pie";
+            }
+            myPieServices = new Chart(services_chart, services_chart_config);
+        } else if (graph == 'brands') {
+            myPieBrands.destroy();
+            if (brands_chart_config.type == "pie") {
+                brands_chart_config.type = "bar";
+            } else {
+                brands_chart_config.type = "pie";
+            }
+            myPieBrands = new Chart(brands_chart, brands_chart_config);
         }
     }
 </script>
