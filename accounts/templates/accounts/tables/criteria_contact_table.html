@@ -59,7 +59,19 @@
 <script language="javascript">
     $(document).ready(function() {
 
-        $('#criteria_contact_table').DataTable();
+        $('#criteria_contact_table').DataTable(
+            buttons: [
+                $.extend( true, {}, buttonCommon, {
+                    extend: 'copyHtml5'
+                } ),
+                $.extend( true, {}, buttonCommon, {
+                    extend: 'excelHtml5'
+                } ),
+                $.extend( true, {}, buttonCommon, {
+                    extend: 'pdfHtml5'
+                } )
+            ]
+        );
 
     });
 </script>
