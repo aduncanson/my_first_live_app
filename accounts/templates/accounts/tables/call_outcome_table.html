@@ -41,15 +41,14 @@
         $('#call_outcome_table').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                $.extend( true, {}, buttonCommon, {
-                    extend: 'copy'
-                } ),
-                $.extend( true, {}, buttonCommon, {
-                    extend: 'excelHtml5'
-                } ),
-                $.extend( true, {}, buttonCommon, {
-                    extend: 'pdfHtml5'
-                } )
+                {
+                    extend: 'copy',
+                    text: "Copy table"
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: "Export table",
+                }
             ]
         });
 
