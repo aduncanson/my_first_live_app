@@ -39,14 +39,12 @@
     $(document).ready(function() {
 
         $('#call_outcome_table').DataTable({
-            buttons: [{
-                extend: 'colvis',
-                text: "Column visibility"
-                },
+            buttons: [
                 {
                 extend: 'copy',
                 text: "Copy entire table"
-            }]
+                }
+            ]
         });
 
     });
