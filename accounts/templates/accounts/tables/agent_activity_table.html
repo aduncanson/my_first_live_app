@@ -54,17 +54,15 @@
         }
 
         $('#agent_activity_table').DataTable({
-            buttons: [
-                $.extend( true, {}, buttonCommon, {
-                    extend: 'copyHtml5'
-                } ),
-                $.extend( true, {}, buttonCommon, {
-                    extend: 'excelHtml5'
-                } ),
-                $.extend( true, {}, buttonCommon, {
-                    extend: 'pdfHtml5'
-                } )
-            ]
+            buttons: [{
+                extend: 'colvis',
+                text: "Column visibility"
+                },
+                {
+                extend: 'copy',
+                text: "Copy entire table"
+            }]
+
         });
 
     });
