@@ -62,10 +62,15 @@
         $('#criteria_contact_table').DataTable({
             dom: 'Bfrtip',
             buttons: [
-                {
-                extend: 'copy',
-                text: "Copy entire table"
-                }
+                $.extend( true, {}, buttonCommon, {
+                    extend: 'copyHtml5'
+                } ),
+                $.extend( true, {}, buttonCommon, {
+                    extend: 'excelHtml5'
+                } ),
+                $.extend( true, {}, buttonCommon, {
+                    extend: 'pdfHtml5'
+                } )
             ]
         });
 
