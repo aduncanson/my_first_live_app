@@ -292,6 +292,7 @@ def dashboard(request):
 def agentPage(request, pk):
 
     exists = 0
+    oversessing = True
     
     groups = request.user.groups.all()
     
@@ -302,6 +303,7 @@ def agentPage(request, pk):
 
     if exists == 0:
         pk = request.user.id
+        oversessing = False
 
     agent = Agent.objects.get(id=pk)
 
@@ -340,7 +342,7 @@ def agentPage(request, pk):
         "full_call_count": stats["full_call_count"],
         "criteria_call_count": stats["criteria_call_count"],
         "call_average": stats["call_average"],
-        "oversessing": True,
+        "oversessing": oversessing,
         "agent": agent,
         "criteria_contact_table": all_reports["criteria_contact_table"],
         "call_outcome_table": all_reports["call_outcome_table"],
