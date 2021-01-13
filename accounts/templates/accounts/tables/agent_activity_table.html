@@ -53,7 +53,7 @@
 
         }
 
-        $('#agent_activity_table').DataTable(
+        $('#agent_activity_table').DataTable({
             buttons: [
                 $.extend( true, {}, buttonCommon, {
                     extend: 'copyHtml5'
@@ -65,7 +65,7 @@
                     extend: 'pdfHtml5'
                 } )
             ]
-        );
+        });
 
     });
 </script>

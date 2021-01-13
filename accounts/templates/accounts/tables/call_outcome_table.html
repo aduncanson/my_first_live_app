@@ -38,7 +38,7 @@
 <script language="javascript">
     $(document).ready(function() {
 
-        $('#call_outcome_table').DataTable(
+        $('#call_outcome_table').DataTable({
             buttons: [
                 $.extend( true, {}, buttonCommon, {
                     extend: 'copyHtml5'
@@ -50,7 +50,7 @@
                     extend: 'pdfHtml5'
                 } )
             ]
-        );
+        });
 
     });
 </script>
