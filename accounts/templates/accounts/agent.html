@@ -141,36 +141,36 @@
             myPieCallOutcome.destroy();
             if (call_outcome_chart_config.type == "pie") {
                 call_outcome_chart_config.type = "bar";
-                call_outcome_chart_config.options.scales.xAxes.display = True;
-                call_outcome_chart_config.options.scales.yAxes.display = True;
+                call_outcome_chart_config.options.scales.xAxes[0].display = True;
+                call_outcome_chart_config.options.scales.yAxes[0].display = True;
             } else {
                 call_outcome_chart_config.type = "pie";
-                call_outcome_chart_config.options.scales.xAxes.display = False;
-                call_outcome_chart_config.options.scales.yAxes.display = False;
+                call_outcome_chart_config.options.scales.xAxes[0].display = False;
+                call_outcome_chart_config.options.scales.yAxes[0].display = False;
             }
             myPieCallOutcome = new Chart(call_outcome_chart, call_outcome_chart_config);
         } else if (graph == 'services') {
             myPieServices.destroy();
             if (services_chart_config.type == "pie") {
                 services_chart_config.type = "bar";
-                services_chart_config.options.scales.xAxes.display = True;
-                services_chart_config.options.scales.yAxes.display = True;
+                services_chart_config.options.scales.xAxes[0].display = True;
+                services_chart_config.options.scales.yAxes[0].display = True;
             } else {
                 services_chart_config.type = "pie";
-                services_chart_config.options.scales.xAxes.display = False;
-                services_chart_config.options.scales.yAxes.display = False;
+                services_chart_config.options.scales.xAxes[0].display = False;
+                services_chart_config.options.scales.yAxes[0].display = False;
             }
             myPieServices = new Chart(services_chart, services_chart_config);
         } else if (graph == 'brands') {
             myPieBrands.destroy();
             if (brands_chart_config.type == "pie") {
                 brands_chart_config.type = "bar";
-                brands_chart_config.options.scales.xAxes.display = True;
-                brands_chart_config.options.scales.yAxes.display = True;
+                brands_chart_config.options.scales.xAxes[0].display = True;
+                brands_chart_config.options.scales.yAxes[0].display = True;
             } else {
                 brands_chart_config.type = "pie";
-                brands_chart_config.options.scales.xAxes.display = False;
-                brands_chart_config.options.scales.yAxes.display = False;
+                brands_chart_config.options.scales.xAxes[0].display = False;
+                brands_chart_config.options.scales.yAxes[0].display = False;
             }
             myPieBrands = new Chart(brands_chart, brands_chart_config);
         }
