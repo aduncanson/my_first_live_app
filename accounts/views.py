@@ -257,7 +257,7 @@ def dashboard(request):
     # Get statistics for banner
     stats = statistic_banner(request, all_reports["full_contact_table"])
 
-    title = "User Page"
+    title = "Dashboard"
 
     context = {
         "title": title,
