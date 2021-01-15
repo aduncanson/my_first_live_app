@@ -86,7 +86,6 @@ def contact_reports(request, agent, start_date, end_date):
         max=Max("call_time"),
         avg=Avg("call_time", distinct=True),
         min=Min("call_time"),
-        stdev=StdDev("call_time"),
     )
 
     # Returns query set to populate services table and their statistics
@@ -113,7 +112,6 @@ def contact_reports(request, agent, start_date, end_date):
         max=Max("call_time"),
         avg=Avg("call_time", distinct=True),
         min=Min("call_time"),
-        stdev=StdDev("call_time"),
     )
 
     # Returns query set to populate brands table and their statistics
@@ -140,7 +138,6 @@ def contact_reports(request, agent, start_date, end_date):
         max=Max("call_time"),
         avg=Avg("call_time", distinct=True),
         min=Min("call_time"),
-        stdev=StdDev("call_time"),
     )
 
     # Dict to be returned
