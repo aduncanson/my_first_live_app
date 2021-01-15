@@ -73,7 +73,18 @@
                 {
                     extend: 'excelHtml5',
                     text: "Export table",
-                    filename: 'SCR - Contact Report'
+                    filename: 'SCR - Contact Report',
+                    exportOptions: {
+                        format: {
+                            body: function ( data, row, column, node ) {
+                                if (column == 11 && column == 12) {
+                                    data = 'CONCATENATE("' + data.replace(/,<br>/g, ',"&CHAR(10)&"') + '")';
+                                }
+                                return data;
+                            }
+                        }
+                    },
+
                 }
             ]
         });
